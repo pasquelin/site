@@ -21,7 +21,7 @@ Skills: TypeScript, React, React Native, Three.js, WebGL, Electron, GraphQL, Nod
 
 ### GoSecure — Co-founder and CTO (2017–present)
 
-https://pasquelin.com/en/experience/gosecure/
+https://www.pasquelin.com/en/experience/gosecure/
 
 Alban Pasquelin is co-founder and CTO of GoSecure, a public-safety platform in production since 2017 with companies, local authorities and transport operators, selected by the 2026 Propulse programme of the French Transport Innovation Agency.
 
@@ -37,7 +37,7 @@ Technologies: React Native, React, Node.js, Temps réel, SaaS.
 
 ### RetroRoads — CTO (2026–present)
 
-https://pasquelin.com/en/experience/retroroads/
+https://www.pasquelin.com/en/experience/retroroads/
 
 Alban Pasquelin has been CTO of RetroRoads since May 2026, a consumer app for classic cars whose three parts he architected — a GraphQL API, an admin panel and an Expo mobile app — with content translated into twenty languages.
 
@@ -55,7 +55,7 @@ Technologies: Express 5, Apollo, TypeGraphQL, TypeORM, MySQL, Redis, RabbitMQ, E
 
 ### Ardian — React front-end developer — internal tool rebuild (2025–2026)
 
-https://pasquelin.com/en/experience/ardian/
+https://www.pasquelin.com/en/experience/ardian/
 
 Alban Pasquelin worked at Ardian from July 2025 to January 2026 on the rebuild of a strategic internal tool: stack and user-experience modernisation, a design system, and Figma implementation.
 
@@ -67,7 +67,7 @@ Technologies: React, Tailwind CSS, DaisyUI, REST, Figma.
 
 ### e-TF1 — Lead — Edito CMS rebuild (2024–2025)
 
-https://pasquelin.com/en/experience/tf1-edito/
+https://www.pasquelin.com/en/experience/tf1-edito/
 
 Alban Pasquelin led the rebuild of TF1's Edito CMS from January 2024 to July 2025, migrating the front end from Vue.js to React with end-to-end TypeScript, preserving data integrity throughout and cutting load times by more than 30%.
 
@@ -85,7 +85,7 @@ Technologies: React, TypeScript, GraphQL, Apollo, Tailwind CSS, Vue.js.
 
 ### e-TF1 — IPTV architect — MyTF1 across all platforms (2021–2024)
 
-https://pasquelin.com/en/experience/tf1-mytf1/
+https://www.pasquelin.com/en/experience/tf1-mytf1/
 
 Alban Pasquelin was IPTV architect at e-TF1 from January 2021 to January 2024, rebuilding MyTF1 across every French operator set-top box from a single codebase — Android TV, WebOS and WPE — with SCTE-35 dynamic ad insertion integrated into the Freewheel stack.
 
@@ -103,7 +103,7 @@ Technologies: React Native, React Native Web, Android TV, WebOS, WPE, SCTE-35, F
 
 ### Innso — Senior front-end developer (2019–2020)
 
-https://pasquelin.com/en/experience/innso/
+https://www.pasquelin.com/en/experience/innso/
 
 Alban Pasquelin was a senior front-end developer at Innso from March 2019 to December 2020, rebuilding the customer-relations platform and building a chatbot design studio.
 
@@ -115,7 +115,7 @@ Technologies: Vue.js, Vuex, Vuetify, iOS, Android.
 
 ### Molotov TV — Head of TV division, then head of TV & product design advisor (2015–2016)
 
-https://pasquelin.com/en/experience/molotov/
+https://www.pasquelin.com/en/experience/molotov/
 
 Alban Pasquelin was the first head of the TV division at Molotov TV from February 2015 to December 2016, from the startup's early phase through to launch — a service that won Apple App of the Year 2016.
 
@@ -131,7 +131,7 @@ Technologies: React, JavaScript ES6, HTML5 video, DRM, Apple TV, Smart TV.
 
 ### Infopro Digital, Arte, Equidia, Amplement, Business Lab — Earlier work (2005–2019)
 
-https://pasquelin.com/en/experience/earlier/
+https://www.pasquelin.com/en/experience/earlier/
 
 Between 2005 and 2019, Alban Pasquelin worked for Infopro Digital, Arte, Equidia, Staffmatch, Amplement and Business Lab, where he led a team of ten for Peugeot, Leroy Merlin and E.Leclerc, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.
 
@@ -149,7 +149,7 @@ Technologies: Vue.js, OpenTok, tvOS, PHP, JavaScript.
 
 ### AI Desktop Studio — A generative creation studio that runs on your own machine
 
-https://pasquelin.com/en/projects/ai-desktop-studio/
+https://www.pasquelin.com/en/projects/ai-desktop-studio/
 
 AI Desktop Studio is a desktop generative creation studio built solo by Alban Pasquelin: 310 MCP actions across 26 families, seven workspaces covering image, video, 3D, audio, materials and skyboxes, in Electron, React 19, Three.js, PixiJS and SQLite.
 
@@ -165,7 +165,7 @@ Technologies: Electron, React 19, Three.js, PixiJS, SQLite, TypeScript, MCP, lla
 
 ### map3D — Real-time 3D mapping for React
 
-https://pasquelin.com/en/projects/map3d/
+https://www.pasquelin.com/en/projects/map3d/
 
 map3D is a real-time 3D mapping library for React by Alban Pasquelin: a photorealistic globe on Google 3D Tiles down to street level, DOM markers and clusters, a geospatial drawing editor, an imperative Three.js engine under a declarative surface.
 
@@ -181,7 +181,7 @@ Technologies: TypeScript, React 19, Three.js, WebGL, Google 3D Tiles, Cesium ion
 
 ### panels — The chassis of a tool application, in 8 kB
 
-https://pasquelin.com/en/projects/panels/
+https://www.pasquelin.com/en/projects/panels/
 
 panels is a React library by Alban Pasquelin providing the chassis of a tool application — icon rails, resizable zones, a free centre with draggable tabs — in 8 kB gzipped, with zero dependencies, MIT licensed.
 
@@ -197,7 +197,7 @@ Technologies: TypeScript, React, Headless UI. Repository: https://github.com/pas
 
 ### media-studio — Capture, editing and video export on mobile
 
-https://pasquelin.com/en/projects/media-studio/
+https://www.pasquelin.com/en/projects/media-studio/
 
 media-studio is a React Native and Expo SDK by Alban Pasquelin for photo and video capture, editing and export on iOS and Android: filters, animated text, stickers, transitions, a timeline and background export, with a fully headless core.
 
@@ -211,7 +211,7 @@ Technologies: React Native, Expo, Skia, FFmpeg, TypeScript, Turborepo. Repositor
 
 ### Enigma Cube — A WebGL puzzle RPG, engine included
 
-https://pasquelin.com/en/projects/enigma-cube/
+https://www.pasquelin.com/en/projects/enigma-cube/
 
 Enigma Cube is a WebGL puzzle role-playing game built by Alban Pasquelin with its own Three.js engine: hero, non-player characters and their behaviour, a level editor, a map editor and a bank of 43 3D models.
 
@@ -225,7 +225,7 @@ Technologies: Three.js, WebGL, JavaScript, PHP, MySQL, Voxel. Repository: https:
 
 ### map3D plugins — The official map3D ecosystem
 
-https://pasquelin.com/en/projects/map3d-plugins/
+https://www.pasquelin.com/en/projects/map3d-plugins/
 
 Alban Pasquelin's map3D plugins form a pnpm monorepo where each geographic data source — IGN, BD TOPO, Géoplateforme, webcams, Windy — becomes an independent package.
 
@@ -237,7 +237,7 @@ Technologies: TypeScript, React 19, Three.js, pnpm, IGN, WFS. Repository: https:
 
 ### Fine-tuning local — Training and evaluating an assistant that runs offline
 
-https://pasquelin.com/en/projects/local-llm-finetuning/
+https://www.pasquelin.com/en/projects/local-llm-finetuning/
 
 Alban Pasquelin built a preparation and evaluation harness to specialise a multilingual Qwen model driving AI Desktop Studio, run locally on Apple Silicon inside Tart virtual machines.
 
@@ -251,7 +251,7 @@ Technologies: Qwen, Apple Silicon, Tart, Node.js, TypeScript, Vitest. Repository
 
 ## Working with AI
 
-https://pasquelin.com/en/ai/
+https://www.pasquelin.com/en/ai/
 
 Alban Pasquelin builds software that agents can drive: AI Desktop Studio exposes 310 actions over the MCP protocol across 26 families, and a specialised Qwen model executes them locally on Apple Silicon, measured by an automated evaluation harness.
 
@@ -290,7 +290,7 @@ Skills: TypeScript, React, React Native, Three.js, WebGL, Electron, GraphQL, Nod
 
 ### GoSecure — Cofondateur et CTO (2017–present)
 
-https://pasquelin.com/fr/experience/gosecure/
+https://www.pasquelin.com/fr/experience/gosecure/
 
 Alban Pasquelin est cofondateur et CTO de GoSecure, une plateforme de sécurité citoyenne en production depuis 2017 chez des entreprises, des collectivités et des opérateurs de transport, lauréate 2026 du programme Propulse de l'Agence Innovation pour les Transports.
 
@@ -306,7 +306,7 @@ Technologies: React Native, React, Node.js, Temps réel, SaaS.
 
 ### RetroRoads — CTO (2026–present)
 
-https://pasquelin.com/fr/experience/retroroads/
+https://www.pasquelin.com/fr/experience/retroroads/
 
 Alban Pasquelin est CTO de RetroRoads depuis mai 2026, une application grand public dédiée à l'automobile de collection dont il a architecturé les trois briques — API GraphQL, panel d'administration et application mobile Expo — avec un contenu traduit en vingt langues.
 
@@ -324,7 +324,7 @@ Technologies: Express 5, Apollo, TypeGraphQL, TypeORM, MySQL, Redis, RabbitMQ, E
 
 ### Ardian — Développeur front-end React — refonte applicative (2025–2026)
 
-https://pasquelin.com/fr/experience/ardian/
+https://www.pasquelin.com/fr/experience/ardian/
 
 Alban Pasquelin est intervenu chez Ardian de juillet 2025 à janvier 2026 sur la refonte d'un outil métier stratégique : modernisation de la stack et de l'expérience utilisateur, design system et intégration des maquettes Figma.
 
@@ -336,7 +336,7 @@ Technologies: React, Tailwind CSS, DaisyUI, REST, Figma.
 
 ### e-TF1 — Responsable de la refonte du CMS Edito (2024–2025)
 
-https://pasquelin.com/fr/experience/tf1-edito/
+https://www.pasquelin.com/fr/experience/tf1-edito/
 
 Alban Pasquelin a piloté la refonte du CMS Edito de TF1 de janvier 2024 à juillet 2025, migrant le front de Vue.js vers React avec un TypeScript intégral, sans rupture d'intégrité des données et avec plus de 30 % de temps de chargement gagnés.
 
@@ -354,7 +354,7 @@ Technologies: React, TypeScript, GraphQL, Apollo, Tailwind CSS, Vue.js.
 
 ### e-TF1 — Architecte IPTV — MyTF1 multi-plateformes (2021–2024)
 
-https://pasquelin.com/fr/experience/tf1-mytf1/
+https://www.pasquelin.com/fr/experience/tf1-mytf1/
 
 Alban Pasquelin a été architecte IPTV chez e-TF1 de janvier 2021 à janvier 2024, refondant MyTF1 sur l'ensemble des box opérateurs françaises depuis une seule base de code — Android TV, WebOS et WPE — avec publicité dynamique SCTE-35 intégrée à l'écosystème Freewheel.
 
@@ -372,7 +372,7 @@ Technologies: React Native, React Native Web, Android TV, WebOS, WPE, SCTE-35, F
 
 ### Innso — Développeur front senior (2019–2020)
 
-https://pasquelin.com/fr/experience/innso/
+https://www.pasquelin.com/fr/experience/innso/
 
 Alban Pasquelin a été développeur front senior chez Innso de mars 2019 à décembre 2020, refondant la plateforme de relation client et construisant un studio de conception de chatbots.
 
@@ -384,7 +384,7 @@ Technologies: Vue.js, Vuex, Vuetify, iOS, Android.
 
 ### Molotov TV — Responsable du pôle TV, puis Head of TV & product design advisor (2015–2016)
 
-https://pasquelin.com/fr/experience/molotov/
+https://www.pasquelin.com/fr/experience/molotov/
 
 Alban Pasquelin a été le premier responsable du pôle TV de Molotov TV de février 2015 à décembre 2016, de la phase de démarrage jusqu'à la sortie du service, qui a reçu le prix Apple Application de l'année 2016.
 
@@ -400,7 +400,7 @@ Technologies: React, JavaScript ES6, HTML5 video, DRM, Apple TV, Smart TV.
 
 ### Infopro Digital, Arte, Equidia, Amplement, Business Lab — Missions précédentes (2005–2019)
 
-https://pasquelin.com/fr/experience/earlier/
+https://www.pasquelin.com/fr/experience/earlier/
 
 Entre 2005 et 2019, Alban Pasquelin a travaillé pour Infopro Digital, Arte, Equidia, Staffmatch, Amplement et Business Lab, où il a dirigé une équipe de dix personnes pour Peugeot, Leroy Merlin et E.Leclerc, remportant deux TOPCOM d'Or et le Grand prix Stratégies du digital.
 
@@ -418,7 +418,7 @@ Technologies: Vue.js, OpenTok, tvOS, PHP, JavaScript.
 
 ### AI Desktop Studio — Un studio de création générative qui tourne sur votre machine
 
-https://pasquelin.com/fr/projects/ai-desktop-studio/
+https://www.pasquelin.com/fr/projects/ai-desktop-studio/
 
 AI Desktop Studio est un studio de création générative pour ordinateur de bureau, construit seul par Alban Pasquelin : 310 actions MCP réparties en 26 familles, sept espaces de travail pour l'image, la vidéo, la 3D, l'audio, les matières et les ciels, en Electron, React 19, Three.js, PixiJS et SQLite.
 
@@ -434,7 +434,7 @@ Technologies: Electron, React 19, Three.js, PixiJS, SQLite, TypeScript, MCP, lla
 
 ### map3D — Cartographie 3D temps réel pour React
 
-https://pasquelin.com/fr/projects/map3d/
+https://www.pasquelin.com/fr/projects/map3d/
 
 map3D est une bibliothèque de cartographie 3D temps réel pour React, écrite par Alban Pasquelin : globe photoréaliste sur les tuiles 3D Google jusqu'au niveau de la rue, marqueurs et regroupements en DOM, éditeur de dessin géospatial, moteur Three.js impératif sous une surface déclarative.
 
@@ -450,7 +450,7 @@ Technologies: TypeScript, React 19, Three.js, WebGL, Google 3D Tiles, Cesium ion
 
 ### panels — Le châssis d'une application outil, en 8 kB
 
-https://pasquelin.com/fr/projects/panels/
+https://www.pasquelin.com/fr/projects/panels/
 
 panels est une bibliothèque React d'Alban Pasquelin qui fournit le châssis d'une application outil — rails d'icônes, zones redimensionnables, centre libre avec onglets déplaçables — en 8 kB compressés, sans aucune dépendance, sous licence MIT.
 
@@ -466,7 +466,7 @@ Technologies: TypeScript, React, Headless UI. Repository: https://github.com/pas
 
 ### media-studio — Capture, montage et export vidéo sur mobile
 
-https://pasquelin.com/fr/projects/media-studio/
+https://www.pasquelin.com/fr/projects/media-studio/
 
 media-studio est un SDK React Native et Expo d'Alban Pasquelin pour la capture photo et vidéo, le montage et l'export sur iOS et Android : filtres, textes animés, autocollants, transitions, timeline et export en tâche de fond, avec un cœur entièrement sans interface.
 
@@ -480,7 +480,7 @@ Technologies: React Native, Expo, Skia, FFmpeg, TypeScript, Turborepo. Repositor
 
 ### Enigma Cube — Un RPG-puzzle en WebGL, moteur compris
 
-https://pasquelin.com/fr/projects/enigma-cube/
+https://www.pasquelin.com/fr/projects/enigma-cube/
 
 Enigma Cube est un jeu de rôle et de réflexion en WebGL construit par Alban Pasquelin, avec son propre moteur Three.js : héros, personnages non joueurs et leur intelligence, éditeur de niveaux, éditeur de cartes et banque de 43 modèles 3D.
 
@@ -494,7 +494,7 @@ Technologies: Three.js, WebGL, JavaScript, PHP, MySQL, Voxel. Repository: https:
 
 ### map3D plugins — L'écosystème officiel de map3D
 
-https://pasquelin.com/fr/projects/map3d-plugins/
+https://www.pasquelin.com/fr/projects/map3d-plugins/
 
 Les plugins map3D d'Alban Pasquelin forment un monorepo pnpm où chaque source de données géographiques — IGN, BD TOPO, Géoplateforme, webcams, Windy — devient un paquet indépendant.
 
@@ -506,7 +506,7 @@ Technologies: TypeScript, React 19, Three.js, pnpm, IGN, WFS. Repository: https:
 
 ### Fine-tuning local — Entraîner et évaluer un assistant qui tourne hors ligne
 
-https://pasquelin.com/fr/projects/local-llm-finetuning/
+https://www.pasquelin.com/fr/projects/local-llm-finetuning/
 
 Alban Pasquelin a construit un harnais de préparation et d'évaluation pour spécialiser un modèle Qwen multilingue destiné à piloter AI Desktop Studio, exécuté localement sur Apple Silicon dans des machines virtuelles Tart.
 
@@ -520,7 +520,7 @@ Technologies: Qwen, Apple Silicon, Tart, Node.js, TypeScript, Vitest. Repository
 
 ## Travailler avec l'IA
 
-https://pasquelin.com/fr/ai/
+https://www.pasquelin.com/fr/ai/
 
 Alban Pasquelin construit des logiciels pilotables par des agents : AI Desktop Studio expose 310 actions via le protocole MCP, réparties en 26 familles, et un modèle Qwen spécialisé les exécute localement sur Apple Silicon, mesuré par un harnais d'évaluation automatisé.
 

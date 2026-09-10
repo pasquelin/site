@@ -9,28 +9,28 @@ Contact: alban.pasquelin@gmail.com
 
 ## Experience
 
-- [GoSecure — Co-founder and CTO (2017–present)](https://pasquelin.com/en/experience/gosecure/): Alban Pasquelin is co-founder and CTO of GoSecure, a public-safety platform in production since 2017 with companies, local authorities and transport operators, selected by the 2026 Propulse programme of the French Transport Innovation Agency.
-- [RetroRoads — CTO (2026–present)](https://pasquelin.com/en/experience/retroroads/): Alban Pasquelin has been CTO of RetroRoads since May 2026, a consumer app for classic cars whose three parts he architected — a GraphQL API, an admin panel and an Expo mobile app — with content translated into twenty languages.
-- [Ardian — React front-end developer — internal tool rebuild (2025–2026)](https://pasquelin.com/en/experience/ardian/): Alban Pasquelin worked at Ardian from July 2025 to January 2026 on the rebuild of a strategic internal tool: stack and user-experience modernisation, a design system, and Figma implementation.
-- [e-TF1 — Lead — Edito CMS rebuild (2024–2025)](https://pasquelin.com/en/experience/tf1-edito/): Alban Pasquelin led the rebuild of TF1's Edito CMS from January 2024 to July 2025, migrating the front end from Vue.js to React with end-to-end TypeScript, preserving data integrity throughout and cutting load times by more than 30%.
-- [e-TF1 — IPTV architect — MyTF1 across all platforms (2021–2024)](https://pasquelin.com/en/experience/tf1-mytf1/): Alban Pasquelin was IPTV architect at e-TF1 from January 2021 to January 2024, rebuilding MyTF1 across every French operator set-top box from a single codebase — Android TV, WebOS and WPE — with SCTE-35 dynamic ad insertion integrated into the Freewheel stack.
-- [Innso — Senior front-end developer (2019–2020)](https://pasquelin.com/en/experience/innso/): Alban Pasquelin was a senior front-end developer at Innso from March 2019 to December 2020, rebuilding the customer-relations platform and building a chatbot design studio.
-- [Molotov TV — Head of TV division, then head of TV & product design advisor (2015–2016)](https://pasquelin.com/en/experience/molotov/): Alban Pasquelin was the first head of the TV division at Molotov TV from February 2015 to December 2016, from the startup's early phase through to launch — a service that won Apple App of the Year 2016.
-- [Infopro Digital, Arte, Equidia, Amplement, Business Lab — Earlier work (2005–2019)](https://pasquelin.com/en/experience/earlier/): Between 2005 and 2019, Alban Pasquelin worked for Infopro Digital, Arte, Equidia, Staffmatch, Amplement and Business Lab, where he led a team of ten for Peugeot, Leroy Merlin and E.Leclerc, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.
+- [GoSecure — Co-founder and CTO (2017–present)](https://www.pasquelin.com/en/experience/gosecure/): Alban Pasquelin is co-founder and CTO of GoSecure, a public-safety platform in production since 2017 with companies, local authorities and transport operators, selected by the 2026 Propulse programme of the French Transport Innovation Agency.
+- [RetroRoads — CTO (2026–present)](https://www.pasquelin.com/en/experience/retroroads/): Alban Pasquelin has been CTO of RetroRoads since May 2026, a consumer app for classic cars whose three parts he architected — a GraphQL API, an admin panel and an Expo mobile app — with content translated into twenty languages.
+- [Ardian — React front-end developer — internal tool rebuild (2025–2026)](https://www.pasquelin.com/en/experience/ardian/): Alban Pasquelin worked at Ardian from July 2025 to January 2026 on the rebuild of a strategic internal tool: stack and user-experience modernisation, a design system, and Figma implementation.
+- [e-TF1 — Lead — Edito CMS rebuild (2024–2025)](https://www.pasquelin.com/en/experience/tf1-edito/): Alban Pasquelin led the rebuild of TF1's Edito CMS from January 2024 to July 2025, migrating the front end from Vue.js to React with end-to-end TypeScript, preserving data integrity throughout and cutting load times by more than 30%.
+- [e-TF1 — IPTV architect — MyTF1 across all platforms (2021–2024)](https://www.pasquelin.com/en/experience/tf1-mytf1/): Alban Pasquelin was IPTV architect at e-TF1 from January 2021 to January 2024, rebuilding MyTF1 across every French operator set-top box from a single codebase — Android TV, WebOS and WPE — with SCTE-35 dynamic ad insertion integrated into the Freewheel stack.
+- [Innso — Senior front-end developer (2019–2020)](https://www.pasquelin.com/en/experience/innso/): Alban Pasquelin was a senior front-end developer at Innso from March 2019 to December 2020, rebuilding the customer-relations platform and building a chatbot design studio.
+- [Molotov TV — Head of TV division, then head of TV & product design advisor (2015–2016)](https://www.pasquelin.com/en/experience/molotov/): Alban Pasquelin was the first head of the TV division at Molotov TV from February 2015 to December 2016, from the startup's early phase through to launch — a service that won Apple App of the Year 2016.
+- [Infopro Digital, Arte, Equidia, Amplement, Business Lab — Earlier work (2005–2019)](https://www.pasquelin.com/en/experience/earlier/): Between 2005 and 2019, Alban Pasquelin worked for Infopro Digital, Arte, Equidia, Staffmatch, Amplement and Business Lab, where he led a team of ten for Peugeot, Leroy Merlin and E.Leclerc, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.
 
 ## Projects
 
-- [AI Desktop Studio](https://pasquelin.com/en/projects/ai-desktop-studio/): AI Desktop Studio is a desktop generative creation studio built solo by Alban Pasquelin: 310 MCP actions across 26 families, seven workspaces covering image, video, 3D, audio, materials and skyboxes, in Electron, React 19, Three.js, PixiJS and SQLite.
-- [map3D](https://pasquelin.com/en/projects/map3d/): map3D is a real-time 3D mapping library for React by Alban Pasquelin: a photorealistic globe on Google 3D Tiles down to street level, DOM markers and clusters, a geospatial drawing editor, an imperative Three.js engine under a declarative surface.
-- [panels](https://pasquelin.com/en/projects/panels/): panels is a React library by Alban Pasquelin providing the chassis of a tool application — icon rails, resizable zones, a free centre with draggable tabs — in 8 kB gzipped, with zero dependencies, MIT licensed.
-- [media-studio](https://pasquelin.com/en/projects/media-studio/): media-studio is a React Native and Expo SDK by Alban Pasquelin for photo and video capture, editing and export on iOS and Android: filters, animated text, stickers, transitions, a timeline and background export, with a fully headless core.
-- [Enigma Cube](https://pasquelin.com/en/projects/enigma-cube/): Enigma Cube is a WebGL puzzle role-playing game built by Alban Pasquelin with its own Three.js engine: hero, non-player characters and their behaviour, a level editor, a map editor and a bank of 43 3D models.
-- [map3D plugins](https://pasquelin.com/en/projects/map3d-plugins/): Alban Pasquelin's map3D plugins form a pnpm monorepo where each geographic data source — IGN, BD TOPO, Géoplateforme, webcams, Windy — becomes an independent package.
-- [Fine-tuning local](https://pasquelin.com/en/projects/local-llm-finetuning/): Alban Pasquelin built a preparation and evaluation harness to specialise a multilingual Qwen model driving AI Desktop Studio, run locally on Apple Silicon inside Tart virtual machines.
+- [AI Desktop Studio](https://www.pasquelin.com/en/projects/ai-desktop-studio/): AI Desktop Studio is a desktop generative creation studio built solo by Alban Pasquelin: 310 MCP actions across 26 families, seven workspaces covering image, video, 3D, audio, materials and skyboxes, in Electron, React 19, Three.js, PixiJS and SQLite.
+- [map3D](https://www.pasquelin.com/en/projects/map3d/): map3D is a real-time 3D mapping library for React by Alban Pasquelin: a photorealistic globe on Google 3D Tiles down to street level, DOM markers and clusters, a geospatial drawing editor, an imperative Three.js engine under a declarative surface.
+- [panels](https://www.pasquelin.com/en/projects/panels/): panels is a React library by Alban Pasquelin providing the chassis of a tool application — icon rails, resizable zones, a free centre with draggable tabs — in 8 kB gzipped, with zero dependencies, MIT licensed.
+- [media-studio](https://www.pasquelin.com/en/projects/media-studio/): media-studio is a React Native and Expo SDK by Alban Pasquelin for photo and video capture, editing and export on iOS and Android: filters, animated text, stickers, transitions, a timeline and background export, with a fully headless core.
+- [Enigma Cube](https://www.pasquelin.com/en/projects/enigma-cube/): Enigma Cube is a WebGL puzzle role-playing game built by Alban Pasquelin with its own Three.js engine: hero, non-player characters and their behaviour, a level editor, a map editor and a bank of 43 3D models.
+- [map3D plugins](https://www.pasquelin.com/en/projects/map3d-plugins/): Alban Pasquelin's map3D plugins form a pnpm monorepo where each geographic data source — IGN, BD TOPO, Géoplateforme, webcams, Windy — becomes an independent package.
+- [Fine-tuning local](https://www.pasquelin.com/en/projects/local-llm-finetuning/): Alban Pasquelin built a preparation and evaluation harness to specialise a multilingual Qwen model driving AI Desktop Studio, run locally on Apple Silicon inside Tart virtual machines.
 
 ## AI
 
-- [Working with AI](https://pasquelin.com/en/ai/): Alban Pasquelin builds software that agents can drive: AI Desktop Studio exposes 310 actions over the MCP protocol across 26 families, and a specialised Qwen model executes them locally on Apple Silicon, measured by an automated evaluation harness.
+- [Working with AI](https://www.pasquelin.com/en/ai/): Alban Pasquelin builds software that agents can drive: AI Desktop Studio exposes 310 actions over the MCP protocol across 26 families, and a specialised Qwen model executes them locally on Apple Silicon, measured by an automated evaluation harness.
 
 ## Elsewhere
 
@@ -42,6 +42,6 @@ Contact: alban.pasquelin@gmail.com
 
 ## Optional
 
-- [Full content, both languages](https://pasquelin.com/llms-full.txt)
-- [Machine-readable CV, JSON Resume schema](https://pasquelin.com/cv.json)
-- [French version](https://pasquelin.com/fr/)
+- [Full content, both languages](https://www.pasquelin.com/llms-full.txt)
+- [Machine-readable CV, JSON Resume schema](https://www.pasquelin.com/cv.json)
+- [French version](https://www.pasquelin.com/fr/)

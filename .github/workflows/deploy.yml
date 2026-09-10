@@ -169,20 +169,20 @@ jobs:
         run: |
           # rsync a déjà réussi à ce stade : un échec ici vient du site, pas d'un
           # aléa réseau. D'où le délai borné et les deux reprises.
-          for url in https://pasquelin.com/fr/ \
-                     https://pasquelin.com/en/ \
-                     https://pasquelin.com/llms.txt \
-                     https://pasquelin.com/sitemap.xml \
-                     https://pasquelin.com/cv.json; do
+          for url in https://www.pasquelin.com/fr/ \
+                     https://www.pasquelin.com/en/ \
+                     https://www.pasquelin.com/llms.txt \
+                     https://www.pasquelin.com/sitemap.xml \
+                     https://www.pasquelin.com/cv.json; do
             code=$(curl -sL -o /dev/null -w '%{http_code}' \
               --max-time 15 --retry 2 --retry-delay 3 "$url")
             echo "$url → $code" >> "$GITHUB_STEP_SUMMARY"
             [ "$code" = "200" ] || { echo "$url répond $code au lieu de 200." >&2; exit 1; }
           done
 
-          # www doit rester une redirection, jamais une seconde copie du site :
-          # le même contenu sous deux adresses en ferait deux sites aux yeux
-          # d'un moteur, et les balises canonical désignent l'apex.
+          # L'apex doit rester une redirection, jamais une seconde copie du
+          # site : le même contenu sous deux adresses en ferait deux sites aux
+          # yeux d'un moteur, et les balises canonical désignent www.
           # -o /dev/null sans -L : on veut le 301 lui-même, pas sa cible.
           #
           # Découpage à la main plutôt que `read` : curl -w n'écrit pas de saut
@@ -191,11 +191,11 @@ jobs:
           for path in / /fr/ /en/projects/map3d/; do
             probe=$(curl -s -o /dev/null \
               -w '%{http_code} %{redirect_url}' --max-time 15 \
-              "https://www.pasquelin.com${path}")
+              "https://pasquelin.com${path}")
             code=${probe%% *}
             target=${probe#* }
-            echo "www.pasquelin.com${path} → $code $target" >> "$GITHUB_STEP_SUMMARY"
-            [ "$code" = "301" ] || { echo "www${path} répond $code au lieu de 301." >&2; exit 1; }
-            [ "$target" = "https://pasquelin.com${path}" ] \
-              || { echo "www${path} redirige vers $target au lieu de https://pasquelin.com${path}." >&2; exit 1; }
+            echo "pasquelin.com${path} → $code $target" >> "$GITHUB_STEP_SUMMARY"
+            [ "$code" = "301" ] || { echo "apex${path} répond $code au lieu de 301." >&2; exit 1; }
+            [ "$target" = "https://www.pasquelin.com${path}" ] \
+              || { echo "apex${path} redirige vers $target au lieu de https://www.pasquelin.com${path}." >&2; exit 1; }
           done

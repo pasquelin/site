@@ -1,7 +1,14 @@
 import type { Lang, Social } from './types'
 
-/** Change this one line the day the domain moves. Everything follows. */
-export const SITE_URL = 'https://pasquelin.com'
+/**
+ * Change this one line the day the domain moves. Everything follows: canonical
+ * tags, hreflang, the sitemap, the JSON-LD graph, llms.txt and cv.json.
+ *
+ * `www` is the canonical host, and the apex redirects to it — the same choice
+ * as aidesktopstudio.com. A site has one address; serving the same pages on
+ * both would split its authority between them.
+ */
+export const SITE_URL = 'https://www.pasquelin.com'
 
 export const LANGS = ['fr', 'en'] as const satisfies readonly Lang[]
 export const DEFAULT_LANG: Lang = 'fr'
