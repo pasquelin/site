@@ -1,0 +1,173 @@
+# pasquelin.com — vérification à chaque commit, déploiement depuis `main`.
+#
+# Même dispositif que la vitrine d'AI Desktop Studio : un job qui bâtit et
+# téléverse un artefact, un job qui le pousse en rsync sur le serveur du bas,
+# derrière une clé enfermée par `command="rrsync -wo <dossier>"`. Deux
+# différences : le rendu est un export statique Next, et l'apex est canonique.
+#
+# Sur une pull request on bâtit sans déployer, pour qu'un site cassé se voie
+# avant la fusion et non après.
+name: Déploiement
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  # 🛑 Un lancement à la main NE DÉPLOIE PAS, sauf à cocher cette case. Sans
+  # elle, un `gh workflow run` depuis une branche pousserait cette branche
+  # telle quelle sur le domaine, et rien ne repeindrait la production avant le
+  # prochain push sur `main`.
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: Déployer sur le serveur, et pas seulement bâtir
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      # Le compilateur avant le rendu : une erreur de types échoue ici plutôt
+      # que de produire un site à moitié juste.
+      - run: npm run typecheck
+      - run: npm run lint
+
+      # `npm run build` enchaîne trois choses : la génération des fichiers
+      # machine (llms.txt, llms-full.txt, cv.json) depuis le cœur de contenu,
+      # l'export statique, puis `verify-crawl` — qui échoue si une page a perdu
+      # son texte dans le HTML servi. Les crawlers d'IA n'exécutent pas de
+      # JavaScript : cette vérification est ce qui garantit qu'ils voient le
+      # site, et elle bloque la fusion, pas seulement le déploiement.
+      - run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        if: >-
+          (github.event_name == 'workflow_dispatch' && inputs.deploy) ||
+          (github.event_name == 'push' && github.ref == 'refs/heads/main')
+        with:
+          name: site
+          path: out
+          retention-days: 1
+
+  deploy:
+    needs: build
+    if: >-
+      (github.event_name == 'workflow_dispatch' && inputs.deploy) ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    # Un seul déploiement à la fois, sans annuler celui en cours : `rsync
+    # --delete` ne supporte pas deux passes concurrentes sur le même dossier.
+    concurrency:
+      group: pasquelin-com
+      cancel-in-progress: false
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: out
+
+      # `--delete` efface du serveur ce que l'artefact ne contient pas : un
+      # artefact vide ou tronqué effacerait donc le site en ligne, sans qu'aucune
+      # étape ne rougisse. On refuse d'aller plus loin.
+      # Tant que les quatre secrets ne sont pas posés, le déploiement est sauté
+      # au lieu d'échouer : un rouge dû à une installation inachevée masquerait
+      # un vrai rouge le jour où il arriverait.
+      - name: Secrets de déploiement présents ?
+        id: guard
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          if [ -z "${KEY:-}" ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "⏭ Aucun secret de déploiement — rien n'a été poussé sur le serveur." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Refuser un rendu vide
+        if: steps.guard.outputs.ready == 'true'
+        run: |
+          test -s out/fr/index.html || { echo "Artefact sans out/fr/index.html — arrêt avant rsync." >&2; exit 1; }
+          test -s out/llms.txt      || { echo "Artefact sans llms.txt — arrêt avant rsync." >&2; exit 1; }
+          # Le rendu compte une centaine de fichiers : 37 routes en deux langues,
+          # les assets Next, le sitemap, robots.txt et les fichiers machine. Le
+          # plancher est bas exprès — il attrape l'artefact vide ou à moitié
+          # téléchargé, pas une page en moins.
+          n=$(find out -type f | wc -l)
+          echo "$n fichiers à déployer"
+          [ "$n" -ge 60 ] || { echo "Seulement $n fichiers, le rendu en produit une centaine." >&2; exit 1; }
+
+      # nginx sert `page.html.gz` à la place de `page.html` quand il le trouve
+      # (`gzip_static on`), sans rien recompresser à chaque requête. Fait ici en
+      # -9, ce que la compression à la volée ne se permet jamais.
+      # Images et polices sont déjà compressées : les gziper les alourdirait.
+      - name: Précompresser
+        if: steps.guard.outputs.ready == 'true'
+        run: |
+          find out -type f \
+            \( -name '*.html' -o -name '*.css' -o -name '*.js' \
+               -o -name '*.svg' -o -name '*.json' -o -name '*.xml' -o -name '*.txt' \) \
+            -exec gzip -9 -k -f {} +
+
+      - name: Clé de déploiement
+        if: steps.guard.outputs.ready == 'true'
+        env:
+          KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KEY"   > ~/.ssh/deploy && chmod 600 ~/.ssh/deploy
+          printf '%s\n' "$KNOWN" > ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts
+
+      # Le `/` distant n'est pas la racine du serveur : la clé est enfermée par
+      # `command="rrsync -wo <dossier>"` dans authorized_keys, et tout chemin est
+      # relatif à ce dossier. Cette clé ne peut donc rien faire d'autre
+      # qu'écrire le site — pas de shell, pas d'autre répertoire.
+      - name: Déployer
+        if: steps.guard.outputs.ready == 'true'
+        env:
+          TARGET: ${{ secrets.DEPLOY_TARGET }}
+          PORT: ${{ secrets.DEPLOY_SSH_PORT }}
+        run: |
+          # Sans --delete-delay les suppressions s'entrelacent aux transferts, et
+          # un visiteur lit une page dont le CSS n'est pas encore arrivé.
+          # L'exclusion protège le challenge ACME le jour où le vhost le servirait
+          # depuis ici plutôt que depuis /var/www/html.
+          rsync -rltz --delete-delay --delay-updates --stats \
+            --exclude '.well-known/' \
+            -e "ssh -p $PORT -i ~/.ssh/deploy -o StrictHostKeyChecking=yes" \
+            out/ "$TARGET:/"
+
+      - name: Vérifier
+        if: steps.guard.outputs.ready == 'true'
+        run: |
+          # rsync a déjà réussi à ce stade : un échec ici vient du site, pas d'un
+          # aléa réseau. D'où le délai borné et les deux reprises.
+          for url in https://pasquelin.com/fr/ https://pasquelin.com/en/ https://pasquelin.com/llms.txt; do
+            code=$(curl -sL -o /dev/null -w '%{http_code}' \
+              --max-time 15 --retry 2 --retry-delay 3 "$url")
+            echo "$url → $code" >> "$GITHUB_STEP_SUMMARY"
+            [ "$code" = "200" ] || { echo "$url répond $code au lieu de 200." >&2; exit 1; }
+          done
