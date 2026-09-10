@@ -184,10 +184,16 @@ jobs:
           # le même contenu sous deux adresses en ferait deux sites aux yeux
           # d'un moteur, et les balises canonical désignent l'apex.
           # -o /dev/null sans -L : on veut le 301 lui-même, pas sa cible.
+          #
+          # Découpage à la main plutôt que `read` : curl -w n'écrit pas de saut
+          # de ligne final, `read` rend donc 1 en fin de flux, et le shell tourne
+          # en `bash -e` — l'étape mourait avant d'afficher quoi que ce soit.
           for path in / /fr/ /en/projects/map3d/; do
-            read -r code target < <(curl -s -o /dev/null \
+            probe=$(curl -s -o /dev/null \
               -w '%{http_code} %{redirect_url}' --max-time 15 \
               "https://www.pasquelin.com${path}")
+            code=${probe%% *}
+            target=${probe#* }
             echo "www.pasquelin.com${path} → $code $target" >> "$GITHUB_STEP_SUMMARY"
             [ "$code" = "301" ] || { echo "www${path} répond $code au lieu de 301." >&2; exit 1; }
             [ "$target" = "https://pasquelin.com${path}" ] \
