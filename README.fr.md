@@ -5,6 +5,7 @@
 **Le site personnel d'Alban Pasquelin — architecte logiciel freelance.**
 Un CV rendu comme une fenêtre d'éditeur, pré-rendu en HTML statique pour qu'un robot qui n'exécute aucun JavaScript en lise quand même chaque mot.
 
+[![Déploiement](https://github.com/pasquelin/site/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/pasquelin/site/actions/workflows/deploy.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-16.3-2b2d30?logo=next.js&logoColor=ffffff)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-19.2-2b2d30?logo=react&logoColor=61dafb)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5%20strict-2b2d30?logo=typescript&logoColor=3178c6)](tsconfig.json)
@@ -96,7 +97,7 @@ Chaque expérience et chaque projet porte une `answer` : une phrase autonome, fa
 
 ## Démarrer
 
-Prérequis : Node 20 ou plus, npm.
+Prérequis : Node **24** (voir [`.nvmrc`](.nvmrc)), npm.
 
 ```bash
 npm install
@@ -128,14 +129,29 @@ components/ui/       Article, bloc réponse, chiffres, inspecteur, vue source, f
 content/             La source unique — tout le site en dérive
 lib/                 Catalogue, i18n, métadonnées SEO, JSON-LD, générateur déterministe
 scripts/             Fichiers machine, document racine, vérification de lisibilité
+.github/workflows/   Vérification à chaque commit, déploiement depuis main
 ```
 
 ## Déploiement
 
-Export statique sur Vercel. `vercel.json` redirige `/` vers `/fr/` et sert les fichiers
-`llms*.txt` en `text/plain; charset=utf-8`. Le domaine tient en une ligne — `SITE_URL` dans
+`main` se déploie tout seul. [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) rejoue
+`typecheck`, `lint` et `build` — ce dernier lance `verify-crawl`, donc une page qui perd son texte
+dans le HTML servi bloque la fusion et pas seulement le déploiement. Une pull request bâtit sans
+déployer, et un lancement manuel ne déploie que si la case est cochée.
+
+L'export part ensuite vers le serveur en `rsync`, derrière une clé enfermée par
+`command="rrsync -wo <dossier>"` : pas de shell, pas d'autre répertoire, écriture seule. Autour :
+un artefact sans `out/fr/index.html`, sans `llms.txt` ou de moins de 60 fichiers est refusé plutôt
+que passé en `--delete` sur le site en ligne ; le HTML, le CSS, le JS, le SVG, le JSON, le XML et
+le texte sont précompressés en `gzip -9` pour le `gzip_static` de nginx ; et après coup, `/fr/`,
+`/en/` et `/llms.txt` doivent tous répondre 200. Tant que les secrets ne sont pas posés, la
+poussée est sautée au lieu d'échouer en rouge.
+
+L'apex est canonique et `www` y redirige. Le domaine tient en une ligne — `SITE_URL` dans
 `content/site.ts` : on le change et les pages, les canoniques, le sitemap, le JSON-LD et les
-fichiers machine suivent.
+fichiers machine suivent. `vercel.json` est conservé pour un déploiement Vercel : il redirige `/`
+vers `/fr/` et sert les fichiers `llms*.txt` en `text/plain; charset=utf-8`. Sur le serveur nginx,
+cette redirection est assurée par le document racine qu'écrit `postbuild`.
 
 Trois interrupteurs relèvent d'une décision commerciale plutôt que technique :
 
