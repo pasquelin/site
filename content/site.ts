@@ -66,11 +66,18 @@ export const COMPANIES = {
 } as const
 
 /**
- * Where the contact form posts. Set `NEXT_PUBLIC_CONTACT_ENDPOINT` to a
- * Formspree or Web3Forms URL to collect submissions; with no endpoint set the
- * form falls back to opening the visitor's mail client, so it works today.
+ * Where the contact form posts.
+ *
+ * Same origin: nginx hands `/api/contact` to a small relay on the server's
+ * loopback, which passes the message to Mailcow. No third party ever sees a
+ * prospect's message.
+ *
+ * Set `NEXT_PUBLIC_CONTACT_ENDPOINT` to an empty string and the form falls
+ * back to opening the visitor's mail client — which is what it did before the
+ * relay existed, and which is worth nothing on a machine with no mail client
+ * configured. The relay is the real answer; the fallback is only a net.
  */
-export const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? ''
+export const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/api/contact'
 
 export const AVAILABILITY = {
   open: true,

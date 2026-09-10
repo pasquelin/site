@@ -5,7 +5,7 @@ import { CONTACT_ENDPOINT, PERSON } from '@/content/site'
 import { UI } from '@/content/ui'
 import type { Lang } from '@/content/types'
 
-type Status = 'idle' | 'sending' | 'sent' | 'failed'
+type Status = 'idle' | 'sending' | 'sent' | 'failed' | 'throttled'
 
 const FIELD =
   'w-full rounded-panel border border-line-soft bg-ink-900 px-3 py-2.5 text-[15px] text-fg-bright caret-amber outline-none transition-colors placeholder:text-fg-muted focus:border-amber/60'
@@ -50,9 +50,23 @@ export function ContactForm({ lang }: { lang: Lang }) {
     try {
       const response = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: data,
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          company: String(data.get('company') ?? '').trim(),
+          // The honeypot travels too: the server is the one that decides.
+          website: String(data.get('website') ?? ''),
+        }),
       })
+
+      // The relay rate-limits per address. Saying so is more useful than a
+      // generic failure, which would have the visitor retry into the same wall.
+      if (response.status === 429) {
+        setStatus('throttled')
+        return
+      }
       if (!response.ok) throw new Error(String(response.status))
       form.reset()
       setStatus('sent')
@@ -146,6 +160,15 @@ export function ContactForm({ lang }: { lang: Lang }) {
           </a>
         </span>
       </div>
+
+      {status === 'throttled' ? (
+        <p role="alert" className="text-[14px] text-amber">
+          {c.throttled[lang]}{' '}
+          <a href={`mailto:${PERSON.email}`} className="underline">
+            {PERSON.email}
+          </a>
+        </p>
+      ) : null}
 
       {status === 'failed' ? (
         <p role="alert" className="text-[14px] text-coral">

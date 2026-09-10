@@ -83,6 +83,10 @@ export const UI = {
     errEmail: { fr: 'Indiquez une adresse email valide.', en: 'Enter a valid email address.' },
     errMessage: { fr: 'Écrivez quelques mots sur votre projet.', en: 'Write a few words about your project.' },
     orDirect: { fr: 'Ou directement', en: 'Or directly' },
+    throttled: {
+      fr: 'Trop de messages envoyés depuis cette connexion. Réessayez dans quelques minutes, ou écrivez à',
+      en: 'Too many messages from this connection. Try again in a few minutes, or write to',
+    },
   },
 
   meta: {
