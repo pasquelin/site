@@ -27,9 +27,13 @@ on:
 permissions:
   contents: read
 
+# 🛑 `cancel-in-progress` seulement sur les pull requests. Sur `main`, deux
+# poussées rapprochées s'annulaient l'une l'autre — la seconde tuait la
+# première, qui était en train de déployer, et le site restait sur la version
+# d'avant sans qu'aucun run ne rougisse.
 concurrency:
-  group: deploy-${{ github.ref }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -37,9 +41,9 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -59,7 +63,7 @@ jobs:
       # site, et elle bloque la fusion, pas seulement le déploiement.
       - run: npm run build
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         if: >-
           (github.event_name == 'workflow_dispatch' && inputs.deploy) ||
           (github.event_name == 'push' && github.ref == 'refs/heads/main')
@@ -83,7 +87,7 @@ jobs:
       cancel-in-progress: false
 
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: site
           path: out
@@ -165,9 +169,27 @@ jobs:
         run: |
           # rsync a déjà réussi à ce stade : un échec ici vient du site, pas d'un
           # aléa réseau. D'où le délai borné et les deux reprises.
-          for url in https://pasquelin.com/fr/ https://pasquelin.com/en/ https://pasquelin.com/llms.txt; do
+          for url in https://pasquelin.com/fr/ \
+                     https://pasquelin.com/en/ \
+                     https://pasquelin.com/llms.txt \
+                     https://pasquelin.com/sitemap.xml \
+                     https://pasquelin.com/cv.json; do
             code=$(curl -sL -o /dev/null -w '%{http_code}' \
               --max-time 15 --retry 2 --retry-delay 3 "$url")
             echo "$url → $code" >> "$GITHUB_STEP_SUMMARY"
             [ "$code" = "200" ] || { echo "$url répond $code au lieu de 200." >&2; exit 1; }
+          done
+
+          # www doit rester une redirection, jamais une seconde copie du site :
+          # le même contenu sous deux adresses en ferait deux sites aux yeux
+          # d'un moteur, et les balises canonical désignent l'apex.
+          # -o /dev/null sans -L : on veut le 301 lui-même, pas sa cible.
+          for path in / /fr/ /en/projects/map3d/; do
+            read -r code target < <(curl -s -o /dev/null \
+              -w '%{http_code} %{redirect_url}' --max-time 15 \
+              "https://www.pasquelin.com${path}")
+            echo "www.pasquelin.com${path} → $code $target" >> "$GITHUB_STEP_SUMMARY"
+            [ "$code" = "301" ] || { echo "www${path} répond $code au lieu de 301." >&2; exit 1; }
+            [ "$target" = "https://pasquelin.com${path}" ] \
+              || { echo "www${path} redirige vers $target au lieu de https://pasquelin.com${path}." >&2; exit 1; }
           done
