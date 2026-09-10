@@ -1,36 +1,159 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# pasquelin.com
 
-First, run the development server:
+**The personal site of Alban Pasquelin — freelance software architect.**
+A CV rendered as an editor window, pre-rendered to static HTML so that a crawler running no JavaScript still reads every word.
+
+[![Next.js](https://img.shields.io/badge/Next.js-16.3-2b2d30?logo=next.js&logoColor=ffffff)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19.2-2b2d30?logo=react&logoColor=61dafb)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5%20strict-2b2d30?logo=typescript&logoColor=3178c6)](tsconfig.json)
+[![three.js](https://img.shields.io/badge/three.js-0.186-2b2d30?logo=three.js&logoColor=ffffff)](https://threejs.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-2b2d30?logo=tailwindcss&logoColor=38bdf8)](https://tailwindcss.com)
+[![Static export](https://img.shields.io/badge/output-static%20export-2b2d30?logo=vercel&logoColor=ffffff)](next.config.ts)
+[![License](https://img.shields.io/badge/code-MIT%20%C2%B7%20content%20reserved-2b2d30)](LICENSE)
+
+**[Live site ↗](https://pasquelin.com)** · **[Documentation 🇫🇷](README.fr.md)** · **[llms.txt ↗](https://pasquelin.com/llms.txt)** · **[cv.json ↗](https://pasquelin.com/cv.json)** · **[→ AI Desktop Studio](https://www.aidesktopstudio.com/)**
+
+</div>
+
+---
+
+## What this repository is
+
+The site behind **pasquelin.com**, in French and English. It is a CV, and it is built for two
+readers at once.
+
+**A human** gets an editor window: activity bar, tabs, status bar, a terminal that answers real
+commands and a `⌘K` palette. Whoever does not want any of that types `mode humain` and the
+whole editor treatment falls away, leaving a plain, readable CV.
+
+**A machine** gets complete HTML. GPTBot, ClaudeBot, PerplexityBot and CCBot do not run scripts:
+whatever is not in the served file does not exist to them. So every route is pre-rendered
+(`output: 'export'`), carries a JSON-LD identity graph, and is doubled by files written for
+models rather than for people — `llms.txt`, `llms-full.txt`, `cv.json`. `npm run verify:crawl`
+fails the build if a page's own words are missing from its HTML, so the property cannot be lost
+by accident.
+
+## Content is the source
+
+Everything the site produces comes from `content/`. Pages, JSON-LD, `llms.txt`, `llms-full.txt`,
+`cv.json` and the sitemap are all derived from the same modules, so nothing is written twice and
+nothing can drift.
+
+| Module | What it holds |
+| --- | --- |
+| `content/site.ts` | Domain, languages, identity, social profiles, availability, rates, feature switches |
+| `content/profile.ts` | Headline, pitch, the sentence a model should quote, metrics, awards, education |
+| `content/experience.ts` | 8 missions — GoSecure, RetroRoads, Ardian, e-TF1 (Edito and MyTF1), Innso, Molotov TV, earlier work |
+| `content/projects.ts` | 7 projects — AI Desktop Studio, map3D, panels, media-studio, Enigma Cube, map3D plugins, local LLM fine-tuning |
+| `content/ai.ts` | The "Working with AI" page |
+| `content/scenes.ts` | Titles and written captions for the seven 3D scenes |
+| `content/nav.ts`, `content/ui.ts` | Navigation entries and interface strings |
+| `content/types.ts` | The content contract every module above satisfies |
+| `content/MISSING.md` | CV facts still missing, stated rather than approximated |
+
+Each experience and project carries an `answer`: one self-contained, factual, dated sentence,
+written so it survives being lifted out of the page on its own. That is the sentence a language
+model quotes.
+
+## The shell
+
+- **Terminal** — `aide`, `ls`, `open <name>`, `cv`, `contact`, `mode humain|dev`, `lang fr|en`,
+  `clear`. Several sessions, each with its own scrollback, and a draggable divider.
+- **Command palette** — `⌘K` / `Ctrl K`.
+- **One catalogue** — the terminal, the palette and the tab bar all read `lib/catalog.ts`, so a
+  new page appears in the three of them at once.
+- **Seven Three.js scenes**, one per mission or project: converging code streams, an alert
+  propagating to responders, a Vue → React migration with the availability bar never moving, the
+  310-action MCP constellation. Each mounts only when it is on screen, and never when motion is
+  reduced or the screen is small. Every scene's caption sits in the DOM before any WebGL loads,
+  so a crawler, a screen reader and a reduced-motion visitor all get the diagram in words.
+
+## Routes
+
+40 content pages — 20 per language, each declaring its counterpart with `hreflang`.
+
+| Route | What it is |
+| --- | --- |
+| `/` | Points at `/fr/` and declares it canonical (redirect in `vercel.json`, static fallback from `postbuild`) |
+| `/{fr,en}/` | Profile |
+| `/{fr,en}/experience/` and `/experience/[slug]/` | The 8 missions |
+| `/{fr,en}/projects/` and `/projects/[slug]/` | The 7 projects |
+| `/{fr,en}/ai/` | Working with AI |
+| `/{fr,en}/contact/` | Contact form |
+
+## Written for machines
+
+| File | Written by | What it is |
+| --- | --- | --- |
+| `public/llms.txt` | `scripts/generate-machine-files.ts` | The short index: who, what, links |
+| `public/llms-full.txt` | same | Full content, both languages, in one file |
+| `public/cv.json` | same | The CV as structured data |
+| `sitemap.xml` | `app/sitemap.ts` | Every page, in both languages, with its alternates |
+| `robots.txt` | `app/robots.ts` | Explicitly **allows** 16 AI crawlers rather than blocking them |
+| JSON-LD | `lib/jsonld.ts` | `Person`, `ProfilePage`, `Article`, `SoftwareApplication`, `FAQPage`, `BreadcrumbList` — `sameAs` ties every profile to one entity |
+
+## Getting started
+
+Requirements: Node 20 or above, npm.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev       # http://localhost:3000 → /fr/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run build     # generates the machine files, exports to out/, then verifies crawlability
+npm start         # serves out/ locally
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script | What it does |
+| --- | --- |
+| `dev` | Next dev server |
+| `prebuild` | Writes `llms.txt`, `llms-full.txt` and `cv.json` from `content/` |
+| `build` | Static export to `out/` |
+| `postbuild` | Writes the root document, then runs the crawlability check |
+| `verify:crawl` | Fails if a page's own words are absent from its served HTML |
+| `typecheck` | `tsc --noEmit` |
+| `lint` | ESLint (`eslint-config-next`) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure
 
-## Learn More
+```
+app/[lang]/          Routes, one folder per section; robots.ts and sitemap.ts alongside
+components/ide/      Editor shell: title bar, tabs, activity bar, tool rail, terminal, palette
+components/three/    Scene mounting and the seven scenes
+components/ui/       Article, answer block, metrics, inspector, source view, contact form
+content/             The single source of truth — the whole site derives from here
+lib/                 Catalogue, i18n helpers, SEO metadata, JSON-LD, deterministic rng
+scripts/             Machine files, root document, crawlability check
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Static export on Vercel. `vercel.json` redirects `/` to `/fr/` and serves the `llms*.txt` files as
+`text/plain; charset=utf-8`. The domain lives in one line — `SITE_URL` in `content/site.ts`;
+change it and pages, canonicals, sitemap, JSON-LD and machine files all follow.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Three switches are business decisions rather than technical ones:
 
-## Deploy on Vercel
+| Switch | Where | Effect |
+| --- | --- | --- |
+| `SHOW_PHONE` | `content/site.ts` | Publishes the mobile number, or removes it everywhere |
+| `SHOW_RATES` | `content/site.ts` | Publishes the day rates, or removes them everywhere |
+| `NEXT_PUBLIC_CONTACT_ENDPOINT` | environment | Formspree/Web3Forms URL; with none set, the form falls back to the visitor's mail client |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Known gaps
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `lib/seo.ts` points Open Graph and Twitter cards at `/og.png`, which is **not** in `public/`.
+  Social previews resolve to a missing image until it is added.
+- `content/MISSING.md` lists the CV facts still unknown: the year of the Grand prix Stratégies du
+  digital, RetroRoads results (private beta), and a thin Ardian entry.
+- No test suite. `verify:crawl` is the only automated guard, and it covers crawlability alone.
+
+## License
+
+Source code under the **MIT licence**. The editorial content — the texts in `content/`, the CV
+data, the personal details and the files generated from them — is **© Alban Pasquelin, all rights
+reserved**. See [LICENSE](LICENSE).
