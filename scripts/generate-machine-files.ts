@@ -6,6 +6,7 @@
  * change to an experience updates the site and everything a language model
  * reads in the same commit. Nothing here is maintained by hand.
  */
+import { execFileSync } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { AI_ANSWER, AI_BODY, AI_METRICS, AI_TITLE } from '../content/ai.ts'
@@ -186,7 +187,46 @@ function cvJson(): string {
   )
 }
 
+/**
+ * Date du dernier commit ayant touché un fichier, pour le `lastmod` du
+ * sitemap. Sans historique — un checkout superficiel — on ne renvoie rien
+ * plutôt qu'une date inventée : le champ disparaît alors du sitemap.
+ */
+function lastCommit(file: string): string | undefined {
+  try {
+    const out = execFileSync('git', ['log', '-1', '--format=%cI', '--', file], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim()
+    return out || undefined
+  } catch {
+    return undefined
+  }
+}
+
+function writeLastmod(): void {
+  const sources: Record<string, string> = {
+    '': 'content/profile.ts',
+    experience: 'content/experience.ts',
+    projects: 'content/projects.ts',
+    ai: 'content/ai.ts',
+    contact: 'content/ui.ts',
+  }
+  for (const e of EXPERIENCE) sources[`experience/${e.slug}`] = 'content/experience.ts'
+  for (const p of PROJECTS) sources[`projects/${p.slug}`] = 'content/projects.ts'
+
+  const dates: Record<string, string> = {}
+  for (const [path, file] of Object.entries(sources)) {
+    const date = lastCommit(file)
+    if (date) dates[path] = date
+  }
+  writeFileSync(join(process.cwd(), 'content', '.lastmod.json'), JSON.stringify(dates, null, 2), 'utf8')
+  const known = Object.keys(dates).length
+  console.log(known > 0 ? `lastmod : ${known} chemins datés depuis git` : 'lastmod : aucun historique, champ omis')
+}
+
 mkdirSync(PUBLIC_DIR, { recursive: true })
+writeLastmod()
 writeFileSync(join(PUBLIC_DIR, 'llms.txt'), llmsTxt(), 'utf8')
 writeFileSync(join(PUBLIC_DIR, 'llms-full.txt'), llmsFullTxt(), 'utf8')
 writeFileSync(join(PUBLIC_DIR, 'cv.json'), cvJson(), 'utf8')

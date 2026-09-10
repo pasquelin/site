@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     lang,
     path: 'contact',
     title: UI.contact.title[lang],
-    description: UI.contact.intro[lang],
+    description: UI.contact.description[lang],
   })
 }
 

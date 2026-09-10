@@ -41,7 +41,12 @@ jobs:
     timeout-minutes: 10
 
     steps:
+      # Historique complet : le sitemap date chaque page d'après le dernier
+      # commit qui l'a touchée. Un checkout superficiel les daterait toutes du
+      # même jour, et le champ serait omis plutôt que faux.
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v5
         with:
@@ -199,3 +204,36 @@ jobs:
             [ "$target" = "https://www.pasquelin.com${path}" ] \
               || { echo "apex${path} redirige vers $target au lieu de https://www.pasquelin.com${path}." >&2; exit 1; }
           done
+
+      # IndexNow prévient les moteurs qu'une page a changé, au lieu d'attendre
+      # leur prochain passage. Bing, Yandex, Seznam et Naver le respectent ;
+      # Google ne l'a jamais adopté. Une requête par déploiement.
+      #
+      # L'échec est toléré : un moteur indisponible ne doit pas faire rougir un
+      # déploiement par ailleurs vérifié.
+      - name: Notifier IndexNow
+        if: steps.guard.outputs.ready == 'true'
+        continue-on-error: true
+        run: |
+          key=$(basename "$(ls out/*.txt | grep -E '/[0-9a-f]{32}\.txt$' | head -1)" .txt)
+          if [ -z "$key" ]; then echo "Aucune clé IndexNow dans le rendu, étape ignorée."; exit 0; fi
+
+          # Les URL viennent du sitemap : une seule source, donc rien à
+          # resynchroniser quand une page apparaît.
+          urls=$(grep -oE '<loc>[^<]+</loc>' out/sitemap.xml | sed 's|</\?loc>||g' | jq -R . | jq -sc .)
+          count=$(echo "$urls" | jq 'length')
+
+          body=$(jq -nc \
+            --arg host www.pasquelin.com \
+            --arg key "$key" \
+            --arg loc "https://www.pasquelin.com/$key.txt" \
+            --argjson urlList "$urls" \
+            '{host: $host, key: $key, keyLocation: $loc, urlList: $urlList}')
+
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 \
+            -X POST https://api.indexnow.org/indexnow \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "$body")
+          echo "IndexNow : $count URL soumises → $code" >> "$GITHUB_STEP_SUMMARY"
+          # 200 accepté, 202 accepté et en attente de validation de la clé.
+          case "$code" in 200|202) ;; *) echo "IndexNow a répondu $code." >&2 ;; esac

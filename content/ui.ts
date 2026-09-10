@@ -66,6 +66,10 @@ export const UI = {
       fr: "Décrivez le besoin en quelques lignes. Je réponds sous 24 heures ouvrées.",
       en: 'Describe the need in a few lines. I reply within one working day.',
     },
+    description: {
+      fr: "Contacter Alban Pasquelin, architecte logiciel et lead tech freelance : formulaire, email et téléphone, disponibilité immédiate, tarifs et zones d'intervention — Paris, Suisse romande, remote Europe.",
+      en: 'Contact Alban Pasquelin, freelance software architect and tech lead: form, email and phone, immediate availability, rates and coverage — Paris, French-speaking Switzerland, remote across Europe.',
+    },
     name: { fr: 'Votre nom', en: 'Your name' },
     email: { fr: 'Votre email', en: 'Your email' },
     company: { fr: 'Société (facultatif)', en: 'Company (optional)' },
@@ -96,9 +100,17 @@ export const UI = {
       fr: 'Les missions et les entreprises, avec ce qui en est sorti.',
       en: 'The engagements and the companies, and what came out of them.',
     },
+    experienceDescription: {
+      fr: "Vingt ans de missions d'Alban Pasquelin : cofondateur et CTO de GoSecure, CTO de RetroRoads, architecte IPTV de MyTF1 chez e-TF1, responsable de la refonte du CMS Edito, premier responsable du pôle TV de Molotov TV.",
+      en: 'Twenty years of engagements by Alban Pasquelin: co-founder and CTO of GoSecure, CTO of RetroRoads, IPTV architect of MyTF1 at e-TF1, lead on the Edito CMS rebuild, first head of the TV division at Molotov TV.',
+    },
     projectsIntro: {
       fr: 'Des produits complets, construits seul, du moteur jusqu’à l’interface.',
       en: 'Whole products, built solo, from the engine up to the interface.',
+    },
+    projectsDescription: {
+      fr: "Les produits qu'Alban Pasquelin construit seul, du moteur temps réel jusqu'à l'interface : AI Desktop Studio et ses 310 actions pilotables par un agent, la librairie de cartographie 3D map3D, le châssis d'application panels en 8 ko, et un SDK mobile de capture vidéo.",
+      en: 'The products Alban Pasquelin builds solo, from the real-time engine up to the interface: AI Desktop Studio with its 310 agent-drivable actions, the map3D 3D mapping library, the 8 kB panels application chassis, and a mobile video capture SDK.',
     },
   },
 } as const

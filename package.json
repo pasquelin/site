@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/generate-machine-files.ts",
+    "prebuild": "node scripts/generate-machine-files.ts && node scripts/generate-og.ts",
     "build": "next build",
-    "postbuild": "node scripts/postbuild.ts && node scripts/verify-crawl.ts",
+    "postbuild": "node scripts/postbuild.ts && node scripts/verify-crawl.ts && node scripts/verify-seo.ts",
     "start": "npx serve out",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "verify:crawl": "node scripts/verify-crawl.ts"
+    "verify:crawl": "node scripts/verify-crawl.ts",
+    "verify:seo": "node scripts/verify-seo.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.8",
@@ -28,6 +29,7 @@
     "@types/three": "^0.185.4",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

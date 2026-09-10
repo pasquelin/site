@@ -22,6 +22,19 @@ export const ANSWER: I18n = {
   en: 'Alban Pasquelin is a freelance software architect and tech lead with twenty years of product engineering across web, mobile, desktop and embedded systems. Co-founder and CTO of GoSecure since 2017 and CTO of RetroRoads, he was the IPTV architect of MyTF1 at e-TF1 and the first head of the TV division at Molotov TV, winner of Apple App of the Year 2016.',
 }
 
+/**
+ * La description qui s'affiche dans un résultat de recherche.
+ *
+ * Distincte de `ANSWER`, et volontairement : celle-ci doit donner envie de
+ * cliquer en une ligne et demie, quand `ANSWER` est la phrase qu'un modèle
+ * reprendra pour répondre « qui est-ce ». La première vend, la seconde
+ * définit ; les confondre rend l'une trop longue et l'autre trop plate.
+ */
+export const META_DESCRIPTION: I18n = {
+  fr: "Architecte logiciel et lead tech freelance, vingt ans d'ingénierie produit. Cofondateur et CTO de GoSecure, CTO de RetroRoads, architecte de MyTF1 chez e-TF1. Disponible — Paris, Suisse romande, remote.",
+  en: 'Freelance software architect and tech lead, twenty years of product engineering. Co-founder and CTO of GoSecure, CTO of RetroRoads, architect of MyTF1 at e-TF1. Available — Paris, Switzerland, remote.',
+}
+
 /** Where he is heading, stated plainly. */
 export const DIRECTION: I18n = {
   fr: "Je monte aujourd'hui sur l'ingénierie de produits appuyés sur des modèles génératifs. Pas la recherche : l'industrialisation — gestion d'assets, performance, reprise après erreur, état persistant.",

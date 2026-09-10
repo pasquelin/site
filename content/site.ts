@@ -72,6 +72,17 @@ export const CV = {
   en: '/cv/CV-Alban-Pasquelin-EN.pdf',
 } as const
 
+/**
+ * Clé IndexNow. Le fichier `public/<clé>.txt` en contient la valeur : c'est
+ * ainsi qu'un moteur vérifie que celui qui le notifie possède bien le domaine.
+ *
+ * IndexNow est le seul mécanisme qui prévient activement un moteur qu'une page
+ * a changé, au lieu d'attendre son prochain passage. Bing, Yandex, Seznam et
+ * Naver le respectent ; Google ne l'a jamais adopté. Le coût est d'une requête
+ * par déploiement, donc on le fait.
+ */
+export const INDEXNOW_KEY = 'b952d2aeb1b6ba46b214b0021dc81a08'
+
 export const COMPANIES = {
   gosecure: { name: 'GoSecure', url: 'https://gosecure.fr' },
   retroroads: { name: 'RetroRoads', url: 'https://retroroads.fr' },

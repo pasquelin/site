@@ -67,6 +67,11 @@ export interface Project {
   /** Rendered as the TypeScript signature in dev mode. */
   readonly fn: string
   readonly answer: I18n
+  /**
+   * Description pour les résultats de recherche, quand `answer` est trop
+   * longue pour ce rôle. Sans elle, `answer` sert des deux.
+   */
+  readonly meta?: I18n
   readonly body: I18nList
   /** One statement per paragraph of `body`, in order. */
   readonly code?: readonly string[]

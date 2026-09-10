@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     lang,
     path: 'experience',
     title: UI.headings.experience[lang],
-    description: UI.meta.experienceIntro[lang],
+    description: UI.meta.experienceDescription[lang],
   })
 }
 

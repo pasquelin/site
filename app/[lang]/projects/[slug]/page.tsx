@@ -34,7 +34,7 @@ export async function generateMetadata({
     lang,
     path: `projects/${slug}`,
     title: `${project.name} — ${project.tagline[lang]}`,
-    description: project.answer[lang],
+    description: (project.meta ?? project.answer)[lang],
   })
 }
 

@@ -14,6 +14,10 @@ export const PROJECTS: readonly Project[] = [
       fr: "AI Desktop Studio est un studio de création générative pour ordinateur de bureau, construit seul par Alban Pasquelin : 310 actions MCP réparties en 26 familles, sept espaces de travail pour l'image, la vidéo, la 3D, l'audio, les matières et les ciels, en Electron, React 19, Three.js, PixiJS et SQLite.",
       en: 'AI Desktop Studio is a desktop generative creation studio built solo by Alban Pasquelin: 310 MCP actions across 26 families, seven workspaces covering image, video, 3D, audio, materials and skyboxes, in Electron, React 19, Three.js, PixiJS and SQLite.',
     },
+    meta: {
+      fr: "Un studio de création générative sur le bureau, construit seul : 310 actions pilotables par un agent via MCP, sept espaces de travail, et des modèles qui tournent en local. Electron, React 19, Three.js.",
+      en: 'A generative creation studio on the desktop, built solo: 310 agent-drivable actions over MCP, seven workspaces, and models that run locally. Electron, React 19, Three.js.',
+    },
     body: {
       fr: [
         "Une application de bureau où l'on génère et retravaille des images, des vidéos, des scènes 3D, du son, des matières et des ciels, sans quitter la fenêtre. Les modèles peuvent tourner en local, sur la machine, plutôt que dans un service distant.",

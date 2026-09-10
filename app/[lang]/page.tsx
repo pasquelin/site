@@ -6,7 +6,6 @@ import { Metrics } from '@/components/ui/Metrics'
 import { EXPERIENCE } from '@/content/experience'
 import { PROJECTS } from '@/content/projects'
 import {
-  ANSWER,
   AWARDS,
   CLIENTS,
   DIRECTION,
@@ -14,6 +13,7 @@ import {
   EDGE,
   HEADLINE,
   HEADLINE_METRICS,
+  META_DESCRIPTION,
   PITCH,
   SKILLS,
   SUBHEAD,
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return pageMeta({
     lang,
     title: `${PERSON.name} — ${HEADLINE[lang]}`,
-    description: ANSWER[lang],
+    description: META_DESCRIPTION[lang],
   })
 }
 
