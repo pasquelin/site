@@ -30,6 +30,7 @@ export const UI = {
   actions: {
     contact: { fr: 'Me contacter', en: 'Get in touch' },
     downloadCv: { fr: 'Télécharger le CV', en: 'Download CV' },
+    cvPdf: { fr: 'CV en PDF', en: 'CV as PDF' },
     viewSource: { fr: 'Voir le code source', en: 'View source' },
     liveDemo: { fr: 'Démo en ligne', en: 'Live demo' },
     openScene: { fr: 'Visualiser', en: 'Visualise' },
@@ -49,6 +50,7 @@ export const UI = {
     results: { fr: 'Résultats', en: 'Results' },
     elsewhere: { fr: 'Ailleurs', en: 'Elsewhere' },
     inspector: { fr: 'Inspecteur', en: 'Inspector' },
+    cv: { fr: 'CV', en: 'CV' },
     links: { fr: 'Liens', en: 'Links' },
     availability: { fr: 'Disponibilité', en: 'Availability' },
     rates: { fr: 'Tarifs', en: 'Rates' },

@@ -44,4 +44,6 @@ Contact: alban.pasquelin@gmail.com
 
 - [Full content, both languages](https://www.pasquelin.com/llms-full.txt)
 - [Machine-readable CV, JSON Resume schema](https://www.pasquelin.com/cv.json)
+- [CV as PDF, English](https://www.pasquelin.com/cv/CV-Alban-Pasquelin-EN.pdf)
+- [CV en PDF, français](https://www.pasquelin.com/cv/CV-Alban-Pasquelin-FR.pdf)
 - [French version](https://www.pasquelin.com/fr/)

@@ -78,6 +78,26 @@ export function InspectorTags({ items }: { items: readonly string[] }) {
   )
 }
 
+/**
+ * Un téléchargement, pas un lien sortant : même origine, attribut `download`,
+ * et une flèche vers le bas plutôt qu'en diagonale. L'icône dit ce qui va se
+ * passer avant qu'on clique.
+ */
+export function InspectorDownload({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a
+      href={href}
+      download
+      className="flex items-center justify-between gap-3 py-1.5 font-mono text-[13px] text-amber transition-colors hover:text-fg-bright"
+    >
+      {children}
+      <svg viewBox="0 0 24 24" aria-hidden className="size-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M12 4v12m0 0-4-4m4 4 4-4M5 20h14" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </a>
+  )
+}
+
 export function InspectorLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <a

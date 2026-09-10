@@ -2,6 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { CV } from '@/content/site'
 import type { CatalogItem } from '@/lib/catalog'
 import { useIde, type Line } from './ide-context'
 
@@ -34,7 +35,7 @@ const COPY = {
       'aide            cette liste',
       'ls              lister les pages',
       'open <nom>      ouvrir une page',
-      'cv              télécharger le CV',
+      'cv [fr|en]      télécharger le CV en PDF',
       'contact         écrire à Alban',
       'mode humain|dev changer la présentation',
       'lang fr|en      changer de langue',
@@ -53,7 +54,7 @@ const COPY = {
       'help            this list',
       'ls              list pages',
       'open <name>     open a page',
-      'cv              download the CV',
+      'cv [fr|en]      download the CV as PDF',
       'contact         write to Alban',
       'mode human|dev  change presentation',
       'lang fr|en      change language',
@@ -156,8 +157,11 @@ export function Terminal({
         )
       }
       if (v === 'cv') {
-        push([{ kind: 'ok', text: lang === 'fr' ? 'Téléchargement du CV' : 'Downloading CV' }])
-        window.open('/cv.json', '_blank', 'noopener')
+        // Le PDF, pas le JSON : quelqu'un qui tape `cv` veut le document,
+        // pas sa version pour machines — celle-ci reste sur /cv.json.
+        const wanted = arg.toLowerCase().startsWith('en') ? 'en' : arg.toLowerCase().startsWith('fr') ? 'fr' : lang
+        push([{ kind: 'ok', text: `${lang === 'fr' ? 'Téléchargement' : 'Downloading'} ${CV[wanted].split('/').pop()}` }])
+        window.open(CV[wanted], '_blank', 'noopener')
         return
       }
       if (v === 'mode') {

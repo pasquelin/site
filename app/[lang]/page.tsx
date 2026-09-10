@@ -18,7 +18,7 @@ import {
   SKILLS,
   SUBHEAD,
 } from '@/content/profile'
-import { AVAILABILITY, LANGS, PERSON } from '@/content/site'
+import { AVAILABILITY, CV, LANGS, PERSON } from '@/content/site'
 import { UI } from '@/content/ui'
 import type { Lang } from '@/content/types'
 import { isLang } from '@/lib/i18n'
@@ -83,6 +83,15 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               >
                 {UI.headings.experience[lang]}
               </Link>
+              {/* Le PDF est ce qu'un recruteur transfère à son client. Il doit
+                  être atteignable dès le premier écran, sans chercher. */}
+              <a
+                href={CV[lang]}
+                download
+                className="rounded-panel px-4 py-2.5 font-mono text-[13px] text-fg-muted underline decoration-line underline-offset-4 transition-colors hover:text-fg-bright hover:decoration-amber"
+              >
+                {UI.actions.downloadCv[lang]}
+              </a>
             </div>
 
             <div className="mt-12">

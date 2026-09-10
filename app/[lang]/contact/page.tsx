@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { Article, Section } from '@/components/ui/Article'
 import { ContactForm } from '@/components/ui/ContactForm'
 import {
+  InspectorDownload,
   InspectorLink,
   InspectorPanel,
   InspectorRow,
@@ -11,6 +12,7 @@ import {
 import { SERVICES } from '@/content/profile'
 import {
   AVAILABILITY,
+  CV,
   LANGS,
   PERSON,
   RATES,
@@ -64,6 +66,11 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
               ))}
             </InspectorSection>
           ) : null}
+
+          <InspectorSection label={UI.headings.cv[lang]}>
+            <InspectorDownload href={CV.fr}>Français — PDF</InspectorDownload>
+            <InspectorDownload href={CV.en}>English — PDF</InspectorDownload>
+          </InspectorSection>
 
           <InspectorSection label={UI.headings.elsewhere[lang]}>
             {SOCIALS.map((social) => (

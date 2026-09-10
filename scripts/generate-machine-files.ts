@@ -61,6 +61,8 @@ function llmsTxt(): string {
   lines.push('')
   lines.push(`- [Full content, both languages](${SITE_URL}/llms-full.txt)`)
   lines.push(`- [Machine-readable CV, JSON Resume schema](${SITE_URL}/cv.json)`)
+  lines.push(`- [CV as PDF, English](${SITE_URL}/cv/CV-Alban-Pasquelin-EN.pdf)`)
+  lines.push(`- [CV en PDF, français](${SITE_URL}/cv/CV-Alban-Pasquelin-FR.pdf)`)
   lines.push(`- [French version](${url('fr')})`)
   lines.push('')
 

@@ -60,6 +60,18 @@ export const SOCIALS: readonly Social[] = [
   { id: 'aids', label: 'AI Desktop Studio', url: 'https://www.aidesktopstudio.com', sameAs: true },
 ]
 
+/**
+ * Le CV en PDF, par langue.
+ *
+ * C'est le fichier qu'un chasseur de têtes transfère réellement à son client :
+ * il compte autant que le site lui-même. `cv.json` sert les machines, ces
+ * deux-là servent les gens.
+ */
+export const CV = {
+  fr: '/cv/CV-Alban-Pasquelin-FR.pdf',
+  en: '/cv/CV-Alban-Pasquelin-EN.pdf',
+} as const
+
 export const COMPANIES = {
   gosecure: { name: 'GoSecure', url: 'https://gosecure.fr' },
   retroroads: { name: 'RetroRoads', url: 'https://retroroads.fr' },
