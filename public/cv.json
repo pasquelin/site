@@ -1,0 +1,276 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Alban Pasquelin",
+    "label": "Software Architect & Tech Lead",
+    "image": "https://avatars.githubusercontent.com/u/74621260?v=4",
+    "email": "alban.pasquelin@gmail.com",
+    "url": "https://pasquelin.com",
+    "summary": "Alban Pasquelin is a freelance software architect and tech lead with twenty years of product engineering across web, mobile, desktop and embedded systems. Co-founder and CTO of GoSecure since 2017 and CTO of RetroRoads, he was the IPTV architect of MyTF1 at e-TF1 and the first head of the TV division at Molotov TV, winner of Apple App of the Year 2016.",
+    "location": {
+      "city": "La Chapelle-Réanville",
+      "countryCode": "FR"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "url": "https://github.com/pasquelin"
+      },
+      {
+        "network": "LinkedIn",
+        "url": "https://www.linkedin.com/in/alban-pasquelin/"
+      },
+      {
+        "network": "Malt",
+        "url": "https://www.malt.fr/profile/albanpasquelin"
+      },
+      {
+        "network": "X",
+        "url": "https://x.com/wubart"
+      },
+      {
+        "network": "AI Desktop Studio",
+        "url": "https://www.aidesktopstudio.com"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "GoSecure",
+      "position": "Co-founder and CTO",
+      "url": "https://gosecure.fr",
+      "startDate": "2017",
+      "summary": "Alban Pasquelin is co-founder and CTO of GoSecure, a public-safety platform in production since 2017 with companies, local authorities and transport operators, selected by the 2026 Propulse programme of the French Transport Innovation Agency.",
+      "highlights": [
+        "2017 in production since",
+        "9 years running without a break",
+        "2026 Propulse programme"
+      ]
+    },
+    {
+      "name": "RetroRoads",
+      "position": "CTO",
+      "url": "https://retroroads.fr",
+      "startDate": "2026",
+      "summary": "Alban Pasquelin has been CTO of RetroRoads since May 2026, a consumer app for classic cars whose three parts he architected — a GraphQL API, an admin panel and an Expo mobile app — with content translated into twenty languages.",
+      "highlights": [
+        "3 systems architected",
+        "20 languages",
+        "1 source of truth"
+      ]
+    },
+    {
+      "name": "Ardian",
+      "position": "React front-end developer — internal tool rebuild",
+      "startDate": "2025",
+      "endDate": "2026",
+      "summary": "Alban Pasquelin worked at Ardian from July 2025 to January 2026 on the rebuild of a strategic internal tool: stack and user-experience modernisation, a design system, and Figma implementation.",
+      "highlights": []
+    },
+    {
+      "name": "e-TF1",
+      "position": "Lead — Edito CMS rebuild",
+      "startDate": "2024",
+      "endDate": "2025",
+      "summary": "Alban Pasquelin led the rebuild of TF1's Edito CMS from January 2024 to July 2025, migrating the front end from Vue.js to React with end-to-end TypeScript, preserving data integrity throughout and cutting load times by more than 30%.",
+      "highlights": [
+        "30 % faster load times",
+        "0 days of editorial freeze"
+      ]
+    },
+    {
+      "name": "e-TF1",
+      "position": "IPTV architect — MyTF1 across all platforms",
+      "startDate": "2021",
+      "endDate": "2024",
+      "summary": "Alban Pasquelin was IPTV architect at e-TF1 from January 2021 to January 2024, rebuilding MyTF1 across every French operator set-top box from a single codebase — Android TV, WebOS and WPE — with SCTE-35 dynamic ad insertion integrated into the Freewheel stack.",
+      "highlights": [
+        "1 codebase",
+        "3 set-top box systems",
+        "SCTE-35 dynamic ad insertion"
+      ]
+    },
+    {
+      "name": "Innso",
+      "position": "Senior front-end developer",
+      "startDate": "2019",
+      "endDate": "2020",
+      "summary": "Alban Pasquelin was a senior front-end developer at Innso from March 2019 to December 2020, rebuilding the customer-relations platform and building a chatbot design studio.",
+      "highlights": []
+    },
+    {
+      "name": "Molotov TV",
+      "position": "Head of TV division, then head of TV & product design advisor",
+      "startDate": "2015",
+      "endDate": "2016",
+      "summary": "Alban Pasquelin was the first head of the TV division at Molotov TV from February 2015 to December 2016, from the startup's early phase through to launch — a service that won Apple App of the Year 2016.",
+      "highlights": [
+        "2016 Apple App of the Year",
+        "6 platforms shipped"
+      ]
+    },
+    {
+      "name": "Infopro Digital, Arte, Equidia, Amplement, Business Lab",
+      "position": "Earlier work",
+      "startDate": "2005",
+      "endDate": "2019",
+      "summary": "Between 2005 and 2019, Alban Pasquelin worked for Infopro Digital, Arte, Equidia, Staffmatch, Amplement and Business Lab, where he led a team of ten for Peugeot, Leroy Merlin and E.Leclerc, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.",
+      "highlights": [
+        "10 people led",
+        "3 awards"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "AI Desktop Studio",
+      "description": "AI Desktop Studio is a desktop generative creation studio built solo by Alban Pasquelin: 310 MCP actions across 26 families, seven workspaces covering image, video, 3D, audio, materials and skyboxes, in Electron, React 19, Three.js, PixiJS and SQLite.",
+      "url": "https://www.aidesktopstudio.com",
+      "keywords": [
+        "Electron",
+        "React 19",
+        "Three.js",
+        "PixiJS",
+        "SQLite",
+        "TypeScript",
+        "MCP",
+        "llama.cpp"
+      ]
+    },
+    {
+      "name": "map3D",
+      "description": "map3D is a real-time 3D mapping library for React by Alban Pasquelin: a photorealistic globe on Google 3D Tiles down to street level, DOM markers and clusters, a geospatial drawing editor, an imperative Three.js engine under a declarative surface.",
+      "url": "https://pasquelin.github.io/map3D/",
+      "keywords": [
+        "TypeScript",
+        "React 19",
+        "Three.js",
+        "WebGL",
+        "Google 3D Tiles",
+        "Cesium ion",
+        "GeoJSON"
+      ]
+    },
+    {
+      "name": "panels",
+      "description": "panels is a React library by Alban Pasquelin providing the chassis of a tool application — icon rails, resizable zones, a free centre with draggable tabs — in 8 kB gzipped, with zero dependencies, MIT licensed.",
+      "url": "https://pasquelin.github.io/panels/",
+      "keywords": [
+        "TypeScript",
+        "React",
+        "Headless UI"
+      ]
+    },
+    {
+      "name": "media-studio",
+      "description": "media-studio is a React Native and Expo SDK by Alban Pasquelin for photo and video capture, editing and export on iOS and Android: filters, animated text, stickers, transitions, a timeline and background export, with a fully headless core.",
+      "url": "https://github.com/pasquelin/media-studio",
+      "keywords": [
+        "React Native",
+        "Expo",
+        "Skia",
+        "FFmpeg",
+        "TypeScript",
+        "Turborepo"
+      ]
+    },
+    {
+      "name": "Enigma Cube",
+      "description": "Enigma Cube is a WebGL puzzle role-playing game built by Alban Pasquelin with its own Three.js engine: hero, non-player characters and their behaviour, a level editor, a map editor and a bank of 43 3D models.",
+      "url": "https://github.com/pasquelin/enigma-cube",
+      "keywords": [
+        "Three.js",
+        "WebGL",
+        "JavaScript",
+        "PHP",
+        "MySQL",
+        "Voxel"
+      ]
+    },
+    {
+      "name": "map3D plugins",
+      "description": "Alban Pasquelin's map3D plugins form a pnpm monorepo where each geographic data source — IGN, BD TOPO, Géoplateforme, webcams, Windy — becomes an independent package.",
+      "url": "https://github.com/pasquelin/plugingsMap3D",
+      "keywords": [
+        "TypeScript",
+        "React 19",
+        "Three.js",
+        "pnpm",
+        "IGN",
+        "WFS"
+      ]
+    },
+    {
+      "name": "Fine-tuning local",
+      "description": "Alban Pasquelin built a preparation and evaluation harness to specialise a multilingual Qwen model driving AI Desktop Studio, run locally on Apple Silicon inside Tart virtual machines.",
+      "url": "https://github.com/pasquelin/ai-desktop-studio-finetuning",
+      "keywords": [
+        "Qwen",
+        "Apple Silicon",
+        "Tart",
+        "Node.js",
+        "TypeScript",
+        "Vitest"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Engineering",
+      "keywords": [
+        "TypeScript",
+        "React",
+        "React Native",
+        "Three.js",
+        "WebGL",
+        "Electron",
+        "GraphQL",
+        "Node.js",
+        "Software architecture",
+        "Zero-downtime migration",
+        "Android TV",
+        "SCTE-35",
+        "Model Context Protocol",
+        "Local large language models",
+        "Real-time systems",
+        "Geospatial software"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Apple — Application de l'année",
+      "awarder": "Apple · Molotov TV",
+      "date": "2016"
+    },
+    {
+      "title": "Propulse",
+      "awarder": "Agence Innovation pour les Transports · GoSecure",
+      "date": "2026"
+    },
+    {
+      "title": "TOPCOM d'Or",
+      "awarder": "TOPCOM · peugeot.com",
+      "date": "2013"
+    },
+    {
+      "title": "TOPCOM d'Or",
+      "awarder": "TOPCOM · Peugeot 4008",
+      "date": "2012"
+    },
+    {
+      "title": "Grand prix Stratégies du digital",
+      "awarder": "Stratégies"
+    }
+  ],
+  "languages": [
+    {
+      "language": "French",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Professional working proficiency"
+    }
+  ]
+}

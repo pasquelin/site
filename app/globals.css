@@ -1,26 +1,171 @@
 @import "tailwindcss";
 
+/*
+  Design tokens.
+
+  The palette is an editor theme rather than a brand colour plus neutrals:
+  the syntax family *is* the accent system. Each hue carries one meaning and
+  never borrows another's job — amber is the person and the primary action,
+  cyan is reserved exclusively for agent and AI activity, and the remaining
+  hues belong to code. No component hard-codes a colour.
+*/
+@theme {
+  /*
+    Ground — a cool graphite, deliberately not black. Each surface of the
+    editor gets its own step so the chrome reads as separate panels rather
+    than as one dark sheet: the rail and the status bar sit above the page,
+    the terminal sits below it.
+  */
+  --color-ink-950: #0b0e14;
+  --color-ink-900: #0e1219;
+  --color-ink-850: #12161e;
+  --color-ink-800: #1a2029;
+  --color-ink-700: #232a36;
+  --color-line: #2a3342;
+  --color-line-soft: #1d2530;
+
+  /* Semantic surfaces — components name the panel, never the shade. */
+  --color-rail: #171d26;
+  --color-terminal: #0e1219;
+  --color-editor: #12161e;
+
+  /*
+    Comment colour. The prose of a page lives inside comments, so this one
+    has to read as a comment *and* be comfortable for several paragraphs —
+    it sits well above the usual dimmed-grey an editor would use.
+  */
+  --color-comment: #93a79f;
+  --color-comment-mark: #5c7069;
+
+  /* Gutter — legible on its own, never louder than the line it numbers. */
+  --color-gutter: #4d5a69;
+  --color-gutter-rule: #232b39;
+
+  /* Text */
+  --color-fg: #c6cfdb;
+  --color-fg-bright: #eef2f7;
+  --color-fg-muted: #6c7a8d;
+  --color-fg-faint: #47536280;
+
+  /* Syntax family */
+  --color-amber: #f5a742;
+  --color-amber-dim: #b0762c;
+  --color-violet: #b48cff;
+  --color-green: #7ec699;
+  --color-coral: #ff7b6b;
+  --color-cyan: #4fd1e0;
+  --color-blue: #6aa9f5;
+
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+
+  /* The IDE chrome is built on a fixed rhythm, like a real editor. */
+  --spacing-rail: 3rem;
+  --spacing-tabbar: 2.375rem;
+  --spacing-statusbar: 1.625rem;
+
+  --radius-panel: 0.375rem;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --terminal-height: 13.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-ink-950);
+  scrollbar-color: var(--color-ink-700) transparent;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink-950);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Prose measure: never wider than a comfortable line. */
+.measure {
+  max-width: 68ch;
+}
+
+/* Editor gutter — line numbers sit on a fixed-width column so digits align. */
+.gutter-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+  Tailwind v4 resets buttons to the default arrow. Anything clickable here
+  says so, including the rail item that is already active.
+*/
+button:not(:disabled),
+summary,
+[role='button'],
+a[href] {
+  cursor: pointer;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-amber) 32%, transparent);
+  color: var(--color-fg-bright);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Thin scrollbars, editor style. */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-ink-700);
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 6px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-line);
+  background-clip: content-box;
+}
+
+/* The caret that follows the terminal's last character. */
+@keyframes caret {
+  0%, 45% { opacity: 1; }
+  55%, 100% { opacity: 0; }
+}
+.caret {
+  animation: caret 1.06s steps(1) infinite;
+}
+
+@keyframes sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(400%); }
+}
+
+/*
+  One orchestrated entrance, on the hero only. Everything else appears
+  because the visitor asked for it.
+*/
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to { opacity: 1; transform: none; }
+}
+.rise {
+  animation: riseIn 0.5s cubic-bezier(0.16, 0.84, 0.44, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -1,0 +1,537 @@
+# Alban Pasquelin — Software Architect & Tech Lead (en)
+
+Alban Pasquelin is a freelance software architect and tech lead with twenty years of product engineering across web, mobile, desktop and embedded systems. Co-founder and CTO of GoSecure since 2017 and CTO of RetroRoads, he was the IPTV architect of MyTF1 at e-TF1 and the first head of the TV division at Molotov TV, winner of Apple App of the Year 2016.
+
+Twenty years of product engineering — web, mobile, desktop, embedded environments. I take on front-end and cross-platform architecture, heavy migrations that must not interrupt service, and real-time 3D.
+
+Location: La Chapelle-Réanville, France. Email: alban.pasquelin@gmail.com.
+Availability: Paris and Île-de-France — on site or hybrid · Rouen · French-speaking Switzerland — Swiss invoicing in place · Remote across Europe.
+Awards: Apple — Application de l'année (2016), Propulse (2026), TOPCOM d'Or (2013), TOPCOM d'Or (2012), Grand prix Stratégies du digital.
+Clients: TF1, Molotov TV, Arte, Ardian, Equidia, Infopro Digital, Peugeot, Leroy Merlin, E.Leclerc, Staffmatch.
+Skills: TypeScript, React, React Native, Three.js, WebGL, Electron, GraphQL, Node.js, Software architecture, Zero-downtime migration, Android TV, SCTE-35, Model Context Protocol, Local large language models, Real-time systems, Geospatial software.
+
+## Method
+
+- Strict TypeScript, never `any`. The compiler catches what tests let through.
+- Headless core, replaceable UI. Business logic never knows which framework renders it.
+- Colours are tokens, never values written inside a component. A theme changes in one line.
+- Heavy migrations ship without taking production down.
+
+## Experience
+
+### GoSecure — Co-founder and CTO (2017–present)
+
+https://pasquelin.com/en/experience/gosecure/
+
+Alban Pasquelin is co-founder and CTO of GoSecure, a public-safety platform in production since 2017 with companies, local authorities and transport operators, selected by the 2026 Propulse programme of the French Transport Innovation Agency.
+
+GoSecure connects a person in danger to the teams who can reach them. A geolocated alert leaves the phone, carrying a photo or a video, and lands on a console where an operator receives it, assesses it and coordinates the response.
+
+I designed the whole architecture, from the mobile app to the real-time backend, and have kept it in production for nine years. The hard part is not sending a message: it is guaranteeing that it arrives every single time, on a poor network, at three in the morning.
+
+The platform plugs into the systems a client already runs through APIs, and reports into management dashboards. It is deployed with companies, local authorities and transport operators, and was selected in 2026 by the Propulse programme of the French Transport Innovation Agency.
+
+Results: 2017 in production since · 9 years running without a break · 2026 Propulse programme.
+
+Technologies: React Native, React, Node.js, Temps réel, SaaS.
+
+### RetroRoads — CTO (2026–present)
+
+https://pasquelin.com/en/experience/retroroads/
+
+Alban Pasquelin has been CTO of RetroRoads since May 2026, a consumer app for classic cars whose three parts he architected — a GraphQL API, an admin panel and an Expo mobile app — with content translated into twenty languages.
+
+RetroRoads is a consumer app for classic-car enthusiasts, currently in private beta. Three parts: an API, an admin panel and a mobile app.
+
+The GraphQL schema is the source of truth. Clients do not write their own types: they consume a mirror generated from that schema. When the API changes, the apps find out at compile time rather than when a user hits an empty screen.
+
+Who can see which content, and when, is decided by a single service instead of being scattered across every query. A privacy rule changes in one place. Content is translated into twenty languages.
+
+The mobile app carries native maps, GPS route recording, CarPlay and Android Auto — because a road log gets read at the wheel, not on foot.
+
+Results: 3 systems architected · 20 languages · 1 source of truth.
+
+Technologies: Express 5, Apollo, TypeGraphQL, TypeORM, MySQL, Redis, RabbitMQ, Expo SDK 57.
+
+### Ardian — React front-end developer — internal tool rebuild (2025–2026)
+
+https://pasquelin.com/en/experience/ardian/
+
+Alban Pasquelin worked at Ardian from July 2025 to January 2026 on the rebuild of a strategic internal tool: stack and user-experience modernisation, a design system, and Figma implementation.
+
+Ardian is an investment firm. The rebuilt tool is used daily by the business teams: it could not become slower or less reliable while changing its skin.
+
+I contributed to the front-end architecture, built the design system, implemented the Figma designs and wired up the existing REST APIs. Modernising the stack without making users lose their bearings is half the job.
+
+Technologies: React, Tailwind CSS, DaisyUI, REST, Figma.
+
+### e-TF1 — Lead — Edito CMS rebuild (2024–2025)
+
+https://pasquelin.com/en/experience/tf1-edito/
+
+Alban Pasquelin led the rebuild of TF1's Edito CMS from January 2024 to July 2025, migrating the front end from Vue.js to React with end-to-end TypeScript, preserving data integrity throughout and cutting load times by more than 30%.
+
+Edito is the tool TF1's editorial teams use to build what viewers see. It cannot stop: a newsroom publishes every day.
+
+So the Vue.js-to-React migration ran incrementally, old and new living side by side in the same application. Nobody had to wait for a big-bang switchover, and data integrity held throughout.
+
+Moving to end-to-end TypeScript sharply cut production regressions: a structural mistake shows up at compile time, not on a Sunday night. Client-server exchange goes through GraphQL with schema validation, and the interface is built from atomic components.
+
+Load times dropped by more than thirty percent. For a newsroom publishing all day, that is time handed back to people.
+
+Results: 30 % faster load times · 0 days of editorial freeze.
+
+Technologies: React, TypeScript, GraphQL, Apollo, Tailwind CSS, Vue.js.
+
+### e-TF1 — IPTV architect — MyTF1 across all platforms (2021–2024)
+
+https://pasquelin.com/en/experience/tf1-mytf1/
+
+Alban Pasquelin was IPTV architect at e-TF1 from January 2021 to January 2024, rebuilding MyTF1 across every French operator set-top box from a single codebase — Android TV, WebOS and WPE — with SCTE-35 dynamic ad insertion integrated into the Freewheel stack.
+
+The TF1 app has to run on the set-top boxes of every French operator. Each box has its own system, its own remote and its own horsepower — some are ten years old. The usual answer is one app per system, then maintaining them separately.
+
+I rebuilt all of it into a single codebase deployed on Android TV, WebOS and WPE. A fix is written once and lands everywhere. A feature ships on the same day across the whole fleet.
+
+White-label sites for the group's thematic channels are generated automatically from that same codebase: a new channel no longer means a new project.
+
+Advertising is inserted into the live stream using SCTE-35, integrated with the Freewheel stack: the feed carries markers saying where a spot belongs, and each viewer receives their own without the picture ever stuttering.
+
+Results: 1 codebase · 3 set-top box systems · SCTE-35 dynamic ad insertion.
+
+Technologies: React Native, React Native Web, Android TV, WebOS, WPE, SCTE-35, Freewheel.
+
+### Innso — Senior front-end developer (2019–2020)
+
+https://pasquelin.com/en/experience/innso/
+
+Alban Pasquelin was a senior front-end developer at Innso from March 2019 to December 2020, rebuilding the customer-relations platform and building a chatbot design studio.
+
+A rebuild of the customer-relations platform: front-end architecture, plus a studio where non-technical teams draw chatbot journeys instead of having them coded.
+
+The application is cross-platform, iOS and Android from the same codebase.
+
+Technologies: Vue.js, Vuex, Vuetify, iOS, Android.
+
+### Molotov TV — Head of TV division, then head of TV & product design advisor (2015–2016)
+
+https://pasquelin.com/en/experience/molotov/
+
+Alban Pasquelin was the first head of the TV division at Molotov TV from February 2015 to December 2016, from the startup's early phase through to launch — a service that won Apple App of the Year 2016.
+
+Molotov was reinventing television in France. I joined at the beginning and built the TV division: the team, the product backlog, the development method.
+
+I designed and built a DRM-capable HTML5 video player, the precondition for streaming protected channels in a browser. Then the connected-TV apps — Apple TV, LG, Samsung — alongside iPhone, iPad and desktop.
+
+I owned the experience and the interface across every platform. The service won Apple App of the Year 2016.
+
+Results: 2016 Apple App of the Year · 6 platforms shipped.
+
+Technologies: React, JavaScript ES6, HTML5 video, DRM, Apple TV, Smart TV.
+
+### Infopro Digital, Arte, Equidia, Amplement, Business Lab — Earlier work (2005–2019)
+
+https://pasquelin.com/en/experience/earlier/
+
+Between 2005 and 2019, Alban Pasquelin worked for Infopro Digital, Arte, Equidia, Staffmatch, Amplement and Business Lab, where he led a team of ten for Peugeot, Leroy Merlin and E.Leclerc, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.
+
+Infopro Digital — a real-time webinar platform. Arte — the Apple TV app. Equidia — an information-system rebuild, via DonkeyCode. Staffmatch.
+
+Amplement — R&D and product strategy director.
+
+Business Lab — lead developer, then technical project manager, heading a team of ten for Peugeot, Leroy Merlin and the E.Leclerc price comparator. Two TOPCOM d'Or awards, in 2013 for peugeot.com and in 2012 for the Peugeot 4008, plus the Grand prix Stratégies du digital.
+
+Results: 10 people led · 3 awards.
+
+Technologies: Vue.js, OpenTok, tvOS, PHP, JavaScript.
+
+## Projects
+
+### AI Desktop Studio — A generative creation studio that runs on your own machine
+
+https://pasquelin.com/en/projects/ai-desktop-studio/
+
+AI Desktop Studio is a desktop generative creation studio built solo by Alban Pasquelin: 310 MCP actions across 26 families, seven workspaces covering image, video, 3D, audio, materials and skyboxes, in Electron, React 19, Three.js, PixiJS and SQLite.
+
+A desktop application where you generate and rework images, video, 3D scenes, audio, materials and skyboxes without leaving the window. Models can run locally, on your own machine, rather than in a remote service.
+
+It is also drivable by an agent: 310 actions exposed over the MCP protocol, grouped into 26 families. An AI can open a project, generate a texture, apply it to a 3D object and export the result, with no human touching the mouse.
+
+The hard part of an AI product is never the model call. It is the ninety percent around it: the indexed catalogue, the image editor, a video timeline that actually decodes, recovery when something fails.
+
+Results: 310 agent-drivable actions · 26 action families · 7 workspaces.
+
+Technologies: Electron, React 19, Three.js, PixiJS, SQLite, TypeScript, MCP, llama.cpp. Repository: https://github.com/pasquelin/AIDesktopStudio.
+
+### map3D — Real-time 3D mapping for React
+
+https://pasquelin.com/en/projects/map3d/
+
+map3D is a real-time 3D mapping library for React by Alban Pasquelin: a photorealistic globe on Google 3D Tiles down to street level, DOM markers and clusters, a geospatial drawing editor, an imperative Three.js engine under a declarative surface.
+
+A photorealistic globe you can travel from orbit to pavement without a seam. The buildings are the real buildings, textured from Google 3D Tiles.
+
+You place markers on it, they cluster automatically when they overlap, and you can drop into pedestrian mode. You draw on top of it the way you would in Figma: shapes, measurements, geolocated annotations, with GeoJSON import and export.
+
+Underneath, an imperative and heavily optimised Three.js engine. On top, a declarative React API made of components. The developer never sees the engine unless they need it.
+
+Results: React 19 declarative API · MIL-STD-2525D symbology supported.
+
+Technologies: TypeScript, React 19, Three.js, WebGL, Google 3D Tiles, Cesium ion, GeoJSON. Repository: https://github.com/pasquelin/map3D.
+
+### panels — The chassis of a tool application, in 8 kB
+
+https://pasquelin.com/en/projects/panels/
+
+panels is a React library by Alban Pasquelin providing the chassis of a tool application — icon rails, resizable zones, a free centre with draggable tabs — in 8 kB gzipped, with zero dependencies, MIT licensed.
+
+Every tool application looks the same: icon rails down the sides, panels you resize, and tabbed documents in the middle that you drag around. Everyone rewrites it, badly, on every project.
+
+panels supplies that chassis once and for all. It is headless: the mechanics come with it, the appearance stays yours.
+
+8 kB gzipped, zero dependencies, MIT. The weight is a design decision, not an accident.
+
+Results: 8 kB gzipped · 0 dependencies · MIT licence.
+
+Technologies: TypeScript, React, Headless UI. Repository: https://github.com/pasquelin/panels.
+
+### media-studio — Capture, editing and video export on mobile
+
+https://pasquelin.com/en/projects/media-studio/
+
+media-studio is a React Native and Expo SDK by Alban Pasquelin for photo and video capture, editing and export on iOS and Android: filters, animated text, stickers, transitions, a timeline and background export, with a fully headless core.
+
+Everything a mobile app user expects in 2026: shoot, cut, add animated text, stickers, transitions, then export — without the app freezing during the render.
+
+The core is headless. A team plugs their own design on top instead of inheriting the SDK's.
+
+Results: iOS + Android one codebase.
+
+Technologies: React Native, Expo, Skia, FFmpeg, TypeScript, Turborepo. Repository: https://github.com/pasquelin/media-studio.
+
+### Enigma Cube — A WebGL puzzle RPG, engine included
+
+https://pasquelin.com/en/projects/enigma-cube/
+
+Enigma Cube is a WebGL puzzle role-playing game built by Alban Pasquelin with its own Three.js engine: hero, non-player characters and their behaviour, a level editor, a map editor and a bank of 43 3D models.
+
+A world made of cubes where you solve puzzles. The engine, the level editor, the map editor and the 3D models were all built for it.
+
+Making a game teaches what no business application ever will: holding sixty frames a second, managing memory, and designing a tool you use yourself every day.
+
+Results: 43 3D models · 60 fps target held.
+
+Technologies: Three.js, WebGL, JavaScript, PHP, MySQL, Voxel. Repository: https://github.com/pasquelin/enigma-cube.
+
+### map3D plugins — The official map3D ecosystem
+
+https://pasquelin.com/en/projects/map3d-plugins/
+
+Alban Pasquelin's map3D plugins form a pnpm monorepo where each geographic data source — IGN, BD TOPO, Géoplateforme, webcams, Windy — becomes an independent package.
+
+One plugin, one package. You install the data you need — French land registry, webcams, weather — and nothing else.
+
+This is the proof a library is well split: if capabilities can be added from the outside without touching it, the boundaries were drawn correctly.
+
+Technologies: TypeScript, React 19, Three.js, pnpm, IGN, WFS. Repository: https://github.com/pasquelin/plugingsMap3D.
+
+### Fine-tuning local — Training and evaluating an assistant that runs offline
+
+https://pasquelin.com/en/projects/local-llm-finetuning/
+
+Alban Pasquelin built a preparation and evaluation harness to specialise a multilingual Qwen model driving AI Desktop Studio, run locally on Apple Silicon inside Tart virtual machines.
+
+A general model cannot drive a specific application. This one is specialised to understand the 310 actions of AI Desktop Studio, across several languages.
+
+Everything happens on the machine: data preparation, training, then an automated evaluation measuring whether the new version genuinely beats the old one. Without that measurement you are not fine-tuning, you are practising superstition.
+
+Results: 100 % run locally.
+
+Technologies: Qwen, Apple Silicon, Tart, Node.js, TypeScript, Vitest. Repository: https://github.com/pasquelin/ai-desktop-studio-finetuning.
+
+## Working with AI
+
+https://pasquelin.com/en/ai/
+
+Alban Pasquelin builds software that agents can drive: AI Desktop Studio exposes 310 actions over the MCP protocol across 26 families, and a specialised Qwen model executes them locally on Apple Silicon, measured by an automated evaluation harness.
+
+Plenty of companies bolt a chat box onto their product and call it AI. That is not the same thing as making a product genuinely drivable.
+
+AI Desktop Studio is built the other way round: everything a human can do in the application, an agent can do too. Three hundred and ten actions, exposed over the MCP protocol and grouped into twenty-six families. An agent opens a project, generates a texture, applies it to a 3D object and exports the result, with no hand on the mouse.
+
+The model that runs them lives on the machine, not in a remote service. It was specialised to understand those exact actions across several languages, and it is re-measured on every version: a new one ships only when the evaluation proves it beats the old one. Without that measurement, tuning a model is not engineering, it is superstition.
+
+The hard part of an AI product is never the model call. It is the ninety percent around it: deciding what the agent is allowed to do, recording what it did, and recovering cleanly the moment it gets something wrong.
+
+Results: 310 actions exposed to an agent · 26 action families · 100 % runnable offline.
+
+---
+
+# Alban Pasquelin — Architecte & Lead Tech (fr)
+
+Alban Pasquelin est architecte et lead tech freelance, avec vingt ans d'ingénierie produit sur le web, le mobile, le desktop et l'embarqué. Cofondateur et CTO de GoSecure depuis 2017 et CTO de RetroRoads, il a été architecte IPTV de MyTF1 chez e-TF1 et premier responsable du pôle TV de Molotov TV, lauréat du prix Apple Application de l'année 2016.
+
+Vingt ans d'ingénierie produit — web, mobile, desktop, environnements embarqués. J'interviens sur l'architecture front et cross-platform, sur les migrations lourdes qui ne doivent rien interrompre, et sur la 3D temps réel.
+
+Location: La Chapelle-Réanville, France. Email: alban.pasquelin@gmail.com.
+Availability: Paris et Île-de-France — sur site ou hybride · Rouen · Suisse romande — facturation suisse en place · Remote Europe.
+Awards: Apple — Application de l'année (2016), Propulse (2026), TOPCOM d'Or (2013), TOPCOM d'Or (2012), Grand prix Stratégies du digital.
+Clients: TF1, Molotov TV, Arte, Ardian, Equidia, Infopro Digital, Peugeot, Leroy Merlin, E.Leclerc, Staffmatch.
+Skills: TypeScript, React, React Native, Three.js, WebGL, Electron, GraphQL, Node.js, Software architecture, Zero-downtime migration, Android TV, SCTE-35, Model Context Protocol, Local large language models, Real-time systems, Geospatial software.
+
+## Method
+
+- TypeScript strict, jamais d'`any`. Le compilateur attrape ce que les tests laissent passer.
+- Un cœur sans interface, une interface remplaçable. La logique métier ne connaît pas le framework qui l'affiche.
+- Les couleurs sont des jetons, jamais des valeurs écrites dans un composant. Un thème se change en une ligne.
+- Les migrations lourdes se font sans jamais couper la production.
+
+## Experience
+
+### GoSecure — Cofondateur et CTO (2017–present)
+
+https://pasquelin.com/fr/experience/gosecure/
+
+Alban Pasquelin est cofondateur et CTO de GoSecure, une plateforme de sécurité citoyenne en production depuis 2017 chez des entreprises, des collectivités et des opérateurs de transport, lauréate 2026 du programme Propulse de l'Agence Innovation pour les Transports.
+
+GoSecure relie une personne en danger aux équipes capables d'intervenir. Une alerte géolocalisée part du téléphone, avec photo ou vidéo, et arrive sur une console où un opérateur reçoit, qualifie et coordonne la réponse.
+
+J'en ai conçu l'architecture d'ensemble, du mobile jusqu'au backend temps réel, et je la tiens en production depuis neuf ans. La difficulté n'est pas d'envoyer un message : c'est de garantir qu'il arrive, à chaque fois, même sur un mauvais réseau, même à trois heures du matin.
+
+La plateforme se branche par API sur les systèmes que le client utilise déjà, et remonte des tableaux de bord de pilotage. Elle est déployée chez des entreprises, des collectivités et des opérateurs de transport, et a été retenue en 2026 par le programme Propulse de l'Agence Innovation pour les Transports.
+
+Results: 2017 en production depuis · 9 ans d'exploitation continue · 2026 lauréate Propulse.
+
+Technologies: React Native, React, Node.js, Temps réel, SaaS.
+
+### RetroRoads — CTO (2026–present)
+
+https://pasquelin.com/fr/experience/retroroads/
+
+Alban Pasquelin est CTO de RetroRoads depuis mai 2026, une application grand public dédiée à l'automobile de collection dont il a architecturé les trois briques — API GraphQL, panel d'administration et application mobile Expo — avec un contenu traduit en vingt langues.
+
+RetroRoads est une application grand public pour les passionnés d'automobile de collection, actuellement en bêta privée. Trois briques : une API, un panel d'administration et une application mobile.
+
+Le schéma GraphQL est la source de vérité. Les clients n'écrivent pas leurs propres types : ils consomment un miroir généré depuis ce schéma. Quand l'API change, les applications le savent à la compilation, pas au moment où un utilisateur tombe sur un écran vide.
+
+La visibilité de chaque contenu — qui voit quoi, et quand — est décidée par un service unique plutôt que dispersée dans chaque requête. Une règle de confidentialité se change à un seul endroit. Le contenu est traduit en vingt langues.
+
+L'application mobile embarque des cartes natives, l'enregistrement GPS des parcours, CarPlay et Android Auto — parce qu'un carnet de route se consulte au volant, pas en marchant.
+
+Results: 3 briques architecturées · 20 langues · 1 source de vérité.
+
+Technologies: Express 5, Apollo, TypeGraphQL, TypeORM, MySQL, Redis, RabbitMQ, Expo SDK 57.
+
+### Ardian — Développeur front-end React — refonte applicative (2025–2026)
+
+https://pasquelin.com/fr/experience/ardian/
+
+Alban Pasquelin est intervenu chez Ardian de juillet 2025 à janvier 2026 sur la refonte d'un outil métier stratégique : modernisation de la stack et de l'expérience utilisateur, design system et intégration des maquettes Figma.
+
+Ardian est une société d'investissement. L'outil refondu est utilisé quotidiennement par les équipes métier : il ne pouvait pas devenir plus lent ni moins fiable en changeant de peau.
+
+J'ai participé à l'architecture front, monté le design system, intégré les maquettes Figma et branché les APIs REST existantes. Moderniser la stack sans faire perdre leurs repères aux utilisateurs est la moitié du travail.
+
+Technologies: React, Tailwind CSS, DaisyUI, REST, Figma.
+
+### e-TF1 — Responsable de la refonte du CMS Edito (2024–2025)
+
+https://pasquelin.com/fr/experience/tf1-edito/
+
+Alban Pasquelin a piloté la refonte du CMS Edito de TF1 de janvier 2024 à juillet 2025, migrant le front de Vue.js vers React avec un TypeScript intégral, sans rupture d'intégrité des données et avec plus de 30 % de temps de chargement gagnés.
+
+Edito est l'outil avec lequel les équipes éditoriales de TF1 fabriquent ce que voient les téléspectateurs. Il ne peut pas s'arrêter : une rédaction publie tous les jours.
+
+La migration de Vue.js vers React s'est donc faite progressivement, l'ancien et le nouveau cohabitant dans la même application. Personne n'a eu à attendre une grande bascule, et l'intégrité des données a été préservée d'un bout à l'autre.
+
+Le passage à TypeScript intégral a fait chuter les régressions en production : une erreur de structure se voit à la compilation, pas un dimanche soir. Les échanges client-serveur passent par GraphQL avec validation de schéma, et l'interface est construite en composants atomiques.
+
+Les temps de chargement ont baissé de plus de trente pour cent. Pour une rédaction qui publie toute la journée, c'est du temps rendu aux gens.
+
+Results: 30 % de temps de chargement gagnés · 0 jour de gel éditorial.
+
+Technologies: React, TypeScript, GraphQL, Apollo, Tailwind CSS, Vue.js.
+
+### e-TF1 — Architecte IPTV — MyTF1 multi-plateformes (2021–2024)
+
+https://pasquelin.com/fr/experience/tf1-mytf1/
+
+Alban Pasquelin a été architecte IPTV chez e-TF1 de janvier 2021 à janvier 2024, refondant MyTF1 sur l'ensemble des box opérateurs françaises depuis une seule base de code — Android TV, WebOS et WPE — avec publicité dynamique SCTE-35 intégrée à l'écosystème Freewheel.
+
+L'application TF1 doit tourner sur les box de tous les opérateurs français. Chaque box a son système, sa télécommande et sa puissance — certaines ont dix ans. La réponse habituelle est d'écrire une application par système, puis de les maintenir séparément.
+
+J'ai refondu l'ensemble en une seule base de code, déployée sur Android TV, WebOS et WPE. Une correction est écrite une fois et arrive partout. Une fonctionnalité sort le même jour sur tout le parc.
+
+Les sites en marque blanche des chaînes thématiques du groupe sont générés automatiquement depuis la même base : une nouvelle chaîne ne demande plus un nouveau projet.
+
+La publicité est insérée dans le direct au standard SCTE-35, intégré à l'écosystème Freewheel : le flux porte des marqueurs indiquant où placer un spot, et chaque spectateur reçoit le sien sans que l'image ne saute.
+
+Results: 1 base de code · 3 systèmes de box · SCTE-35 publicité dynamique.
+
+Technologies: React Native, React Native Web, Android TV, WebOS, WPE, SCTE-35, Freewheel.
+
+### Innso — Développeur front senior (2019–2020)
+
+https://pasquelin.com/fr/experience/innso/
+
+Alban Pasquelin a été développeur front senior chez Innso de mars 2019 à décembre 2020, refondant la plateforme de relation client et construisant un studio de conception de chatbots.
+
+Refonte de la plateforme de relation client : architecture front, et un studio dans lequel des équipes non techniques dessinent des parcours de chatbot au lieu de les faire coder.
+
+L'application est cross-platform, iOS et Android depuis la même base.
+
+Technologies: Vue.js, Vuex, Vuetify, iOS, Android.
+
+### Molotov TV — Responsable du pôle TV, puis Head of TV & product design advisor (2015–2016)
+
+https://pasquelin.com/fr/experience/molotov/
+
+Alban Pasquelin a été le premier responsable du pôle TV de Molotov TV de février 2015 à décembre 2016, de la phase de démarrage jusqu'à la sortie du service, qui a reçu le prix Apple Application de l'année 2016.
+
+Molotov réinventait la télévision en France. Je suis arrivé au démarrage et j'ai structuré le pôle TV : l'équipe, le backlog produit, la méthode de développement.
+
+J'ai conçu et développé un lecteur vidéo HTML5 compatible DRM, la condition pour diffuser des chaînes protégées dans un navigateur. Puis les applications de télévision connectée — Apple TV, LG, Samsung — en plus d'iPhone, d'iPad et du bureau.
+
+J'ai dirigé l'expérience et l'interface sur l'ensemble des plateformes. Le service a reçu le prix Apple de l'Application de l'année 2016.
+
+Results: 2016 Apple Application de l'année · 6 plateformes livrées.
+
+Technologies: React, JavaScript ES6, HTML5 video, DRM, Apple TV, Smart TV.
+
+### Infopro Digital, Arte, Equidia, Amplement, Business Lab — Missions précédentes (2005–2019)
+
+https://pasquelin.com/fr/experience/earlier/
+
+Entre 2005 et 2019, Alban Pasquelin a travaillé pour Infopro Digital, Arte, Equidia, Staffmatch, Amplement et Business Lab, où il a dirigé une équipe de dix personnes pour Peugeot, Leroy Merlin et E.Leclerc, remportant deux TOPCOM d'Or et le Grand prix Stratégies du digital.
+
+Infopro Digital — une plateforme de webinars en temps réel. Arte — l'application Apple TV. Equidia — la refonte du système d'information, via DonkeyCode. Staffmatch.
+
+Amplement — directeur R&D et stratégie produit.
+
+Business Lab — lead développeur puis chef de projet technique, à la tête d'une équipe de dix personnes, pour Peugeot, Leroy Merlin et le comparateur de prix d'E.Leclerc. Deux TOPCOM d'Or, en 2013 pour peugeot.com et en 2012 pour la Peugeot 4008, et le Grand prix Stratégies du digital.
+
+Results: 10 personnes encadrées · 3 distinctions.
+
+Technologies: Vue.js, OpenTok, tvOS, PHP, JavaScript.
+
+## Projects
+
+### AI Desktop Studio — Un studio de création générative qui tourne sur votre machine
+
+https://pasquelin.com/fr/projects/ai-desktop-studio/
+
+AI Desktop Studio est un studio de création générative pour ordinateur de bureau, construit seul par Alban Pasquelin : 310 actions MCP réparties en 26 familles, sept espaces de travail pour l'image, la vidéo, la 3D, l'audio, les matières et les ciels, en Electron, React 19, Three.js, PixiJS et SQLite.
+
+Une application de bureau où l'on génère et retravaille des images, des vidéos, des scènes 3D, du son, des matières et des ciels, sans quitter la fenêtre. Les modèles peuvent tourner en local, sur la machine, plutôt que dans un service distant.
+
+Elle est aussi pilotable par un agent : 310 actions exposées via le protocole MCP, groupées en 26 familles. Une IA peut ouvrir un projet, générer une texture, l'appliquer sur un objet 3D et exporter le résultat — sans qu'un humain touche la souris.
+
+La partie difficile d'un produit d'IA n'est jamais l'appel au modèle. Ce sont les quatre-vingt-dix pour cent autour : le catalogue indexé, l'éditeur d'image, la timeline vidéo qui décode réellement, la reprise après erreur.
+
+Results: 310 actions pilotables par agent · 26 familles d'actions · 7 espaces de travail.
+
+Technologies: Electron, React 19, Three.js, PixiJS, SQLite, TypeScript, MCP, llama.cpp. Repository: https://github.com/pasquelin/AIDesktopStudio.
+
+### map3D — Cartographie 3D temps réel pour React
+
+https://pasquelin.com/fr/projects/map3d/
+
+map3D est une bibliothèque de cartographie 3D temps réel pour React, écrite par Alban Pasquelin : globe photoréaliste sur les tuiles 3D Google jusqu'au niveau de la rue, marqueurs et regroupements en DOM, éditeur de dessin géospatial, moteur Three.js impératif sous une surface déclarative.
+
+Un globe photoréaliste que l'on traverse de l'orbite jusqu'au trottoir, sans coupure. Les bâtiments sont les vrais bâtiments, texturés depuis les tuiles 3D de Google.
+
+On y pose des marqueurs, on les regroupe automatiquement quand ils se chevauchent, et on descend en mode piéton. On dessine dessus comme dans Figma : formes, mesures, annotations géolocalisées, avec import et export GeoJSON.
+
+Dessous, un moteur Three.js impératif et optimisé. Dessus, une API React déclarative où l'on écrit des composants. Le développeur ne voit jamais le moteur, sauf s'il en a besoin.
+
+Results: React 19 API déclarative · MIL-STD-2525D symbologie supportée.
+
+Technologies: TypeScript, React 19, Three.js, WebGL, Google 3D Tiles, Cesium ion, GeoJSON. Repository: https://github.com/pasquelin/map3D.
+
+### panels — Le châssis d'une application outil, en 8 kB
+
+https://pasquelin.com/fr/projects/panels/
+
+panels est une bibliothèque React d'Alban Pasquelin qui fournit le châssis d'une application outil — rails d'icônes, zones redimensionnables, centre libre avec onglets déplaçables — en 8 kB compressés, sans aucune dépendance, sous licence MIT.
+
+Toutes les applications outil se ressemblent : des barres d'icônes sur les côtés, des panneaux que l'on redimensionne, et au centre des documents en onglets que l'on déplace. Tout le monde le réécrit, mal, à chaque projet.
+
+panels fournit ce châssis une fois pour toutes. Il est sans interface imposée : la mécanique est fournie, l'apparence reste la vôtre.
+
+8 kB compressés, zéro dépendance, MIT. Le poids est un choix de conception, pas un accident.
+
+Results: 8 kB compressé · 0 dépendance · MIT licence.
+
+Technologies: TypeScript, React, Headless UI. Repository: https://github.com/pasquelin/panels.
+
+### media-studio — Capture, montage et export vidéo sur mobile
+
+https://pasquelin.com/fr/projects/media-studio/
+
+media-studio est un SDK React Native et Expo d'Alban Pasquelin pour la capture photo et vidéo, le montage et l'export sur iOS et Android : filtres, textes animés, autocollants, transitions, timeline et export en tâche de fond, avec un cœur entièrement sans interface.
+
+Tout ce qu'attend un utilisateur d'application mobile en 2026 : filmer, couper, ajouter du texte animé, des autocollants, des transitions, puis exporter — sans que l'application ne bloque pendant le rendu.
+
+Le cœur est sans interface. Une équipe branche son propre design par-dessus au lieu de subir celui du SDK.
+
+Results: iOS + Android une seule base de code.
+
+Technologies: React Native, Expo, Skia, FFmpeg, TypeScript, Turborepo. Repository: https://github.com/pasquelin/media-studio.
+
+### Enigma Cube — Un RPG-puzzle en WebGL, moteur compris
+
+https://pasquelin.com/fr/projects/enigma-cube/
+
+Enigma Cube est un jeu de rôle et de réflexion en WebGL construit par Alban Pasquelin, avec son propre moteur Three.js : héros, personnages non joueurs et leur intelligence, éditeur de niveaux, éditeur de cartes et banque de 43 modèles 3D.
+
+Un monde fait de cubes, où l'on résout des énigmes. Le moteur, l'éditeur de niveaux, l'éditeur de cartes et les modèles 3D ont été construits pour l'occasion.
+
+Faire un jeu apprend ce qu'aucune application métier n'enseigne : tenir soixante images par seconde, gérer la mémoire, et concevoir un outil que l'on utilise soi-même tous les jours.
+
+Results: 43 modèles 3D · 60 fps cible tenue.
+
+Technologies: Three.js, WebGL, JavaScript, PHP, MySQL, Voxel. Repository: https://github.com/pasquelin/enigma-cube.
+
+### map3D plugins — L'écosystème officiel de map3D
+
+https://pasquelin.com/fr/projects/map3d-plugins/
+
+Les plugins map3D d'Alban Pasquelin forment un monorepo pnpm où chaque source de données géographiques — IGN, BD TOPO, Géoplateforme, webcams, Windy — devient un paquet indépendant.
+
+Un plugin, un paquet. On installe la donnée dont on a besoin — cadastre français, webcams, météo — et rien d'autre.
+
+C'est la preuve qu'une bibliothèque est bien découpée : si l'on peut lui ajouter des capacités depuis l'extérieur sans la modifier, les frontières étaient justes.
+
+Technologies: TypeScript, React 19, Three.js, pnpm, IGN, WFS. Repository: https://github.com/pasquelin/plugingsMap3D.
+
+### Fine-tuning local — Entraîner et évaluer un assistant qui tourne hors ligne
+
+https://pasquelin.com/fr/projects/local-llm-finetuning/
+
+Alban Pasquelin a construit un harnais de préparation et d'évaluation pour spécialiser un modèle Qwen multilingue destiné à piloter AI Desktop Studio, exécuté localement sur Apple Silicon dans des machines virtuelles Tart.
+
+Un modèle généraliste ne sait pas piloter une application précise. Celui-ci est spécialisé pour comprendre les 310 actions d'AI Desktop Studio, dans plusieurs langues.
+
+Tout se passe sur la machine : préparation des données, entraînement, puis évaluation automatisée qui mesure si la nouvelle version fait réellement mieux que l'ancienne. Sans cette mesure, on ne fait pas du fine-tuning, on fait de la superstition.
+
+Results: 100 % exécution locale.
+
+Technologies: Qwen, Apple Silicon, Tart, Node.js, TypeScript, Vitest. Repository: https://github.com/pasquelin/ai-desktop-studio-finetuning.
+
+## Travailler avec l'IA
+
+https://pasquelin.com/fr/ai/
+
+Alban Pasquelin construit des logiciels pilotables par des agents : AI Desktop Studio expose 310 actions via le protocole MCP, réparties en 26 familles, et un modèle Qwen spécialisé les exécute localement sur Apple Silicon, mesuré par un harnais d'évaluation automatisé.
+
+Beaucoup d'entreprises ajoutent une zone de discussion à leur produit et appellent cela de l'IA. Ce n'est pas la même chose que rendre un produit réellement pilotable.
+
+AI Desktop Studio est construit dans l'autre sens : chaque chose qu'un humain peut faire dans l'application, un agent peut la faire aussi. Trois cent dix actions, exposées par le protocole MCP et regroupées en vingt-six familles. Un agent ouvre un projet, génère une texture, l'applique sur un objet 3D et exporte le résultat, sans qu'une main touche la souris.
+
+Le modèle qui les exécute tourne sur la machine, pas dans un service distant. Il a été spécialisé pour comprendre ces actions précises, en plusieurs langues, et il est réévalué à chaque version : une nouvelle version n'est adoptée que si la mesure prouve qu'elle fait mieux que l'ancienne. Sans cette mesure, le réglage d'un modèle n'est pas de l'ingénierie, c'est de la superstition.
+
+La partie difficile d'un produit d'IA n'est jamais l'appel au modèle. Ce sont les quatre-vingt-dix pour cent autour : décider ce que l'agent a le droit de faire, tracer ce qu'il a fait, et rattraper proprement le moment où il se trompe.
+
+Results: 310 actions exposées à un agent · 26 familles d'actions · 100 % exécutable hors ligne.
+
+---
