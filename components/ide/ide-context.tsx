@@ -10,6 +10,7 @@ import {
   useState,
   type ReactNode,
 } from 'react'
+import { useEggs } from '@/lib/useEggs'
 import type { Lang } from '@/content/types'
 
 export type LineKind = 'cmd' | 'tool' | 'out' | 'ok' | 'err' | 'ai'
@@ -50,6 +51,13 @@ interface IdeValue {
   setTerminalOpen: (v: boolean) => void
   readonly paletteOpen: boolean
   setPaletteOpen: (v: boolean) => void
+  /** Commandes cachées trouvées, et le total à trouver. */
+  readonly eggsFound: number
+  readonly eggsTotal: number
+  discoverEgg: (id: string) => void
+  /** Vrai pendant qu'une commande cachée bloque la saisie. */
+  readonly frozen: boolean
+  setFrozen: (v: boolean) => void
 }
 
 const Ctx = createContext<IdeValue | null>(null)
@@ -77,6 +85,8 @@ export function IdeProvider({ lang, children }: { lang: Lang; children: ReactNod
   const [mode, setModeState] = useState<Mode>('dev')
   const [terminalOpen, setTerminalOpen] = useState(true)
   const [paletteOpen, setPaletteOpen] = useState(false)
+  const [frozen, setFrozen] = useState(false)
+  const { count: eggsFound, total: eggsTotal, discover: discoverEgg } = useEggs()
   const nextId = useRef(0)
   const nextSessionId = useRef(1)
 
@@ -174,6 +184,11 @@ export function IdeProvider({ lang, children }: { lang: Lang; children: ReactNod
       setTerminalOpen,
       paletteOpen,
       setPaletteOpen,
+      eggsFound,
+      eggsTotal,
+      discoverEgg,
+      frozen,
+      setFrozen,
     }),
     [
       sessions,
@@ -189,6 +204,10 @@ export function IdeProvider({ lang, children }: { lang: Lang; children: ReactNod
       lang,
       terminalOpen,
       paletteOpen,
+      eggsFound,
+      eggsTotal,
+      discoverEgg,
+      frozen,
     ],
   )
 

@@ -12,7 +12,7 @@ import { useIde } from './ide-context'
  * the page. Everything else moved up to the title bar.
  */
 export function StatusBar({ catalog }: { catalog: readonly CatalogItem[] }) {
-  const { lang, mode, terminalOpen, setTerminalOpen, setPaletteOpen } = useIde()
+  const { lang, mode, terminalOpen, setTerminalOpen, setPaletteOpen, eggsFound, eggsTotal } = useIde()
   const pathname = usePathname()
 
   const stripped = pathname.replace(/^\/(fr|en)\/?/, '').replace(/\/$/, '')
@@ -29,6 +29,14 @@ export function StatusBar({ catalog }: { catalog: readonly CatalogItem[] }) {
       <span className="flex-1" />
 
       <span className="hidden text-green sm:inline">0 errors</span>
+
+      {/* Il n'apparaît qu'une fois la première trouvée : sinon c'est une
+          consigne, et une chasse annoncée n'est plus une chasse. */}
+      {eggsFound > 0 ? (
+        <span className="hidden text-amber md:inline" title={lang === 'fr' ? 'Commandes cachées trouvées' : 'Hidden commands found'}>
+          {eggsFound}/{eggsTotal}
+        </span>
+      ) : null}
 
       <button
         type="button"

@@ -121,7 +121,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
         <section className="mt-12">
           <h2 className="mb-4 font-mono text-[12px] text-fg-muted">{UI.headings.experience[lang]}</h2>
-          <ul className="divide-y divide-line-soft border-y border-line-soft">
+          <ul data-rm-target="experience" className="divide-y divide-line-soft border-y border-line-soft">
             {EXPERIENCE.map((e) => (
               <li key={e.slug}>
                 <Link
@@ -145,7 +145,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
         <section className="mt-12">
           <h2 className="mb-4 font-mono text-[12px] text-fg-muted">{UI.headings.projects[lang]}</h2>
-          <ul className="grid gap-3 sm:grid-cols-2">
+          <ul data-rm-target="projects" className="grid gap-3 sm:grid-cols-2">
             {PROJECTS.slice(0, 4).map((p) => (
               <li key={p.slug}>
                 <Link

@@ -96,7 +96,10 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
       ) : null}
 
       <Section title={UI.headings.services[lang]}>
-        <ul className="measure grid gap-x-8 gap-y-2 text-[14px] text-fg sm:grid-cols-2">
+        <ul
+          data-rm-target="contact"
+          className="measure grid gap-x-8 gap-y-2 text-[14px] text-fg sm:grid-cols-2"
+        >
           {SERVICES[lang].map((service) => (
             <li key={service}>{service}</li>
           ))}

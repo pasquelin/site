@@ -31,7 +31,7 @@ export default async function ProjectsIndex({ params }: { params: Promise<{ lang
     <Article file="projects/" title={UI.headings.projects[lang]}>
       <p className="measure text-[15px] leading-[1.7] text-fg">{UI.meta.projectsIntro[lang]}</p>
 
-      <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+      <ul data-rm-target="projects" className="mt-8 grid gap-3 sm:grid-cols-2">
         {PROJECTS.map((p) => (
           <li key={p.slug}>
             <Link

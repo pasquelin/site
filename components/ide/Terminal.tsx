@@ -4,6 +4,8 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { CV } from '@/content/site'
 import type { CatalogItem } from '@/lib/catalog'
+import { matchEgg } from './easter-eggs'
+import { countSection, playEgg, waitForSection } from './play'
 import { TERMINAL_COPY } from './terminal-copy'
 import { useIde, type Line } from './ide-context'
 
@@ -59,6 +61,11 @@ export function Terminal({
     setActiveSession,
     addSession,
     closeSession,
+    discoverEgg,
+    eggsFound,
+    eggsTotal,
+    frozen,
+    setFrozen,
   } = useIde()
   const pathname = usePathname()
   const router = useRouter()
@@ -81,12 +88,57 @@ export function Terminal({
       setHistIndex(-1)
       push([{ kind: 'cmd', text: cmd }])
 
+      const egg = matchEgg(cmd)
+      if (egg) {
+        void (async () => {
+          // `rm` agit sur un chemin, pas sur ce qu'on a sous les yeux : viser
+          // une section absente de la page courante ouvre d'abord cette page,
+          // au lieu de répondre qu'elle n'existe pas.
+          if (egg.section && countSection(egg.section) === 0) {
+            router.push(`/${lang}/${egg.section}/`)
+            const arrived = await waitForSection(egg.section)
+            if (!arrived) {
+              push([{ kind: 'err', text: `rm: /${egg.section}: No such file or directory` }])
+              return
+            }
+          }
+
+          push(
+            egg.egg.before(lang, {
+              target: egg.section,
+              count: egg.section ? countSection(egg.section) : undefined,
+            }),
+          )
+
+          const result = await playEgg(egg.egg.animation, { push, setFrozen }, egg.section)
+          if (!result.played) {
+            push([{ kind: 'err', text: `rm: /${egg.section}: No such file or directory` }])
+            return
+          }
+          push(egg.egg.after(lang))
+          if (egg.egg.counts !== false) discoverEgg(egg.egg.id)
+        })()
+        return
+      }
+
       const [verb, ...rest] = cmd.split(/\s+/)
       const arg = rest.join(' ')
       const v = verb.toLowerCase()
 
       if (v === 'clear') return void setTimeout(clear, 60)
-      if (v === 'help' || v === 'aide') return push(c.help.map((text) => ({ kind: 'out' as const, text })))
+      if (v === 'help' || v === 'aide') {
+        return push([
+          ...c.help.map((text) => ({ kind: 'out' as const, text })),
+          { kind: 'out' as const, text: '' },
+          {
+            kind: 'ai' as const,
+            text:
+              lang === 'fr'
+                ? `?               ${eggsTotal} commandes cachées. Vous en avez trouvé ${eggsFound}.`
+                : `?               ${eggsTotal} hidden commands. You have found ${eggsFound}.`,
+          },
+        ])
+      }
       if (v === 'ls') {
         return push(
           catalog
@@ -126,13 +178,29 @@ export function Terminal({
       }
       push([{ kind: 'err', text: c.unknown(cmd) }, { kind: 'out', text: c.helpHint }])
     },
-    [catalog, push, clear, router, pathname, setMode, lang, c],
+    [
+      catalog,
+      push,
+      clear,
+      router,
+      pathname,
+      setMode,
+      lang,
+      c,
+      discoverEgg,
+      eggsFound,
+      eggsTotal,
+      setFrozen,
+    ],
   )
 
   if (!terminalOpen) return null
 
   return (
-    <div className="flex h-full flex-col bg-terminal font-mono text-[12.5px] leading-[1.65]">
+    <div
+      data-rm-terminal
+      className="flex h-full flex-col bg-terminal font-mono text-[12.5px] leading-[1.65]"
+    >
       {/* Session tabs, the way an editor's terminal panel carries them. */}
       <div className="flex h-9 shrink-0 items-center gap-1 border-b border-line-soft bg-rail px-2">
         <span className="shrink-0 pr-2 text-[12px] font-medium text-fg-bright">{c.label}</span>
@@ -229,6 +297,7 @@ export function Terminal({
         </span>
         <input
           value={input}
+          disabled={frozen}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === 'ArrowUp') {
@@ -247,7 +316,7 @@ export function Terminal({
           }}
           data-focus-ring="none"
           className="min-w-0 flex-1 bg-transparent text-fg-bright caret-amber outline-none placeholder:text-fg-muted"
-          placeholder={c.hint}
+          placeholder={frozen ? ':q!  :q!  :q!' : c.hint}
           aria-label={c.label}
           autoComplete="off"
           spellCheck={false}

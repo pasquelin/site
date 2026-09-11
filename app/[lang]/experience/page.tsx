@@ -31,7 +31,7 @@ export default async function ExperienceIndex({ params }: { params: Promise<{ la
     <Article file="experience/" title={UI.headings.experience[lang]}>
       <p className="measure text-[15px] leading-[1.7] text-fg">{UI.meta.experienceIntro[lang]}</p>
 
-      <ul className="mt-8 divide-y divide-line-soft border-y border-line-soft">
+      <ul data-rm-target="experience" className="mt-8 divide-y divide-line-soft border-y border-line-soft">
         {EXPERIENCE.map((e) => (
           <li key={e.slug}>
             <Link href={`/${lang}/experience/${e.slug}/`} className="group block py-5 transition-colors hover:bg-ink-900/60">

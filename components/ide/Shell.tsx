@@ -113,7 +113,7 @@ function Layout({ catalog, lang, children }: { catalog: readonly CatalogItem[]; 
   }, [])
 
   return (
-    <div className="flex h-dvh flex-col overflow-hidden">
+    <div data-rm-root className="flex h-dvh flex-col overflow-hidden">
       <TitleBar />
       <div className="flex min-h-0 flex-1">
         <ToolRail lang={lang} />

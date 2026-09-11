@@ -184,3 +184,318 @@ a[href] {
     scroll-behavior: auto !important;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Commandes cachées du terminal.
+
+   Aucune de ces animations ne retire un nœud du DOM : elles ne posent que des
+   transformations, retirées par un `finally` doublé d'une minuterie de
+   sécurité. Une blague ne doit pas pouvoir laisser un site cassé.
+
+   `--rm-x`, `--rm-r` et `--rm-d` sont posées par élément au moment de jouer.
+   ────────────────────────────────────────────────────────────────────────── */
+
+/*
+  L'effondrement.
+
+  Les éléments ne glissent pas vers le bas : ils basculent dans l'espace. La
+  perspective est posée sur la racine, chacun reçoit ses trois rotations et une
+  profondeur, et part en tournant. C'est ce qui sépare une translation d'une
+  chute — on voit les faces tourner, donc on croit au volume.
+*/
+[data-rm-root].rm-space {
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+}
+[data-rm-root].rm-space main,
+[data-rm-root].rm-space header,
+[data-rm-root].rm-space nav {
+  transform-style: preserve-3d;
+}
+
+@keyframes rm-fall {
+  0% {
+    transform: none;
+    filter: none;
+  }
+  12% {
+    /* Le sursaut : tout se soulève d'un cran avant de céder. */
+    transform: translate3d(0, -14px, 60px) rotateX(-4deg);
+  }
+  100% {
+    transform: translate3d(var(--rm-x, 0), 130vh, var(--rm-z, -600px))
+      rotateX(var(--rm-rx, 60deg)) rotateY(var(--rm-ry, 40deg)) rotateZ(var(--rm-r, 30deg));
+    filter: blur(3px);
+    opacity: 0.7;
+  }
+}
+.rm-fall {
+  animation: rm-fall 1.35s cubic-bezier(0.42, 0, 0.85, 0.6) var(--rm-d, 0ms) forwards;
+  will-change: transform, filter;
+  backface-visibility: hidden;
+}
+
+@keyframes rm-restore {
+  0% {
+    transform: translate3d(var(--rm-x, 0), 130vh, var(--rm-z, -600px))
+      rotateX(var(--rm-rx, 60deg)) rotateY(var(--rm-ry, 40deg)) rotateZ(var(--rm-r, 30deg));
+    filter: blur(3px);
+  }
+  70% {
+    filter: blur(0);
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+.rm-restore {
+  animation: rm-restore 0.78s cubic-bezier(0.2, 1.12, 0.4, 1) var(--rm-d, 0ms) both;
+  backface-visibility: hidden;
+}
+
+/* L'onde de choc part du terminal — c'est lui qui a refusé la commande. */
+@keyframes rm-shock {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0.9; border-width: 3px; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; border-width: 1px; }
+}
+.rm-shockwave {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  width: 240vmax;
+  height: 240vmax;
+  margin-left: -120vmax;
+  margin-bottom: -120vmax;
+  border: 3px solid var(--color-amber);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 70;
+  animation: rm-shock 1.1s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+}
+
+/* Le fond s'assombrit pendant que la page s'écroule : le regard reste au centre. */
+@keyframes rm-vignette {
+  0%, 100% { opacity: 0; }
+  25%, 72% { opacity: 1; }
+}
+.rm-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 55%, transparent 30%, rgb(0 0 0 / 0.75) 100%);
+  animation: rm-vignette 2.4s ease-in-out forwards;
+}
+
+/*
+  La dissolution, pour `rm -rf node_modules`.
+
+  En deux temps, sans jamais rien encadrer : l'élément perd d'abord sa couleur
+  et sa netteté — il est encore là, mais éteint — puis il s'efface en glissant
+  vers le terminal. L'IDE y passe aussi : rails, onglets, barre de titre.
+
+  Le contour rouge d'une première version désignait « module introuvable », mais
+  ajoutait une forme là où l'animation doit en retirer.
+*/
+@keyframes rm-dissolve {
+  0% {
+    opacity: 1;
+    filter: none;
+  }
+  35% {
+    opacity: 0.45;
+    filter: grayscale(1) blur(0.6px);
+  }
+  100% {
+    opacity: 0;
+    filter: grayscale(1) blur(4px);
+    transform: translate3d(var(--rm-x, 0), 40vh, -300px) scale(0.6);
+  }
+}
+.rm-dissolve {
+  animation: rm-dissolve 1.2s cubic-bezier(0.5, 0, 0.75, 0.4) var(--rm-d, 0ms) forwards;
+}
+@keyframes rm-install {
+  0% {
+    opacity: 0;
+    filter: grayscale(1) blur(4px);
+    transform: translate3d(var(--rm-x, 0), 40vh, -300px) scale(0.6);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+.rm-install {
+  animation: rm-install 0.55s cubic-bezier(0.2, 1.1, 0.4, 1) var(--rm-d, 0ms) both;
+}
+
+
+@keyframes rm-levitate {
+  to {
+    transform: translate(var(--rm-x, 0), -110vh) rotate(calc(var(--rm-r, 0deg) / 3));
+    opacity: 0.6;
+  }
+}
+.rm-levitate {
+  animation: rm-levitate 1.3s cubic-bezier(0.4, 0, 0.6, 1) var(--rm-d, 0ms) forwards;
+}
+@keyframes rm-land {
+  from {
+    transform: translate(var(--rm-x, 0), -110vh);
+  }
+  to {
+    transform: none;
+  }
+}
+.rm-land {
+  animation: rm-land 0.75s cubic-bezier(0.16, 0.84, 0.44, 1) var(--rm-d, 0ms) both;
+}
+
+/* Le vortex : on part vers le centre de la fenêtre, en tournant et en
+   rétrécissant. `--rm-cx` et `--rm-cy` portent la distance à parcourir. */
+@keyframes rm-vortex {
+  to {
+    transform: translate(var(--rm-cx, 0), var(--rm-cy, 0)) rotate(900deg) scale(0.02);
+    opacity: 0;
+  }
+}
+.rm-vortex {
+  animation: rm-vortex 1.25s cubic-bezier(0.7, 0, 0.9, 0.4) var(--rm-d, 0ms) forwards;
+}
+@keyframes rm-unvortex {
+  from {
+    transform: translate(var(--rm-cx, 0), var(--rm-cy, 0)) rotate(900deg) scale(0.02);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.rm-unvortex {
+  animation: rm-unvortex 0.7s cubic-bezier(0.16, 0.84, 0.44, 1) var(--rm-d, 0ms) both;
+}
+
+/* La suppression ligne par ligne : l'entrée glisse, se barre, puis s'écrase. */
+@keyframes rm-wipe {
+  0% { transform: none; opacity: 1; }
+  35% { transform: translateX(-14px); opacity: 0.5; filter: grayscale(1); }
+  100% { transform: translateX(-14px) scaleY(0); opacity: 0; filter: grayscale(1); }
+}
+.rm-wipe {
+  animation: rm-wipe 0.42s ease-in var(--rm-d, 0ms) forwards;
+  transform-origin: top;
+  text-decoration: line-through;
+  text-decoration-color: var(--color-coral);
+}
+@keyframes rm-unwipe {
+  from { transform: translateX(-14px) scaleY(0); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.rm-unwipe {
+  animation: rm-unwipe 0.38s cubic-bezier(0.16, 0.84, 0.44, 1) var(--rm-d, 0ms) both;
+  transform-origin: top;
+}
+
+/* Le glitch : séparation des couches rouge et cyan, plus des sauts. */
+@keyframes rm-glitch {
+  0%, 100% { transform: none; filter: none; }
+  10% { transform: translate(-3px, 1px); filter: drop-shadow(3px 0 var(--color-coral)) drop-shadow(-3px 0 var(--color-cyan)); }
+  22% { transform: translate(4px, -2px) skewX(-1.5deg); filter: drop-shadow(-4px 0 var(--color-coral)) drop-shadow(4px 0 var(--color-cyan)); }
+  38% { transform: translate(-2px, 2px); filter: drop-shadow(2px 0 var(--color-cyan)); }
+  55% { transform: translate(3px, 0) skewX(1deg); filter: drop-shadow(-3px 0 var(--color-coral)); }
+  72% { transform: translate(-1px, -1px); filter: none; }
+  86% { transform: translate(2px, 1px); filter: drop-shadow(2px 0 var(--color-coral)); }
+}
+.rm-glitch {
+  animation: rm-glitch 1.05s steps(1, end) 1;
+}
+
+/* Le tremblement, pour un `push --force` un vendredi. */
+@keyframes rm-shake {
+  0%, 100% { transform: none; }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-7px) rotate(-0.35deg); }
+  20%, 40%, 60%, 80% { transform: translateX(7px) rotate(0.35deg); }
+}
+.rm-shake {
+  animation: rm-shake 0.62s ease-in-out 1;
+}
+
+/* Le désordre : chacun prend quelques degrés, puis se redresse. */
+@keyframes rm-tilt {
+  0% { transform: none; }
+  18%, 80% { transform: rotate(var(--rm-r, 2deg)) translateY(var(--rm-x, 0)); }
+  100% { transform: none; }
+}
+.rm-tilt {
+  animation: rm-tilt 2.1s cubic-bezier(0.34, 1.3, 0.64, 1) var(--rm-d, 0ms) both;
+}
+
+/* Plein écran : le flash rouge de `sudo`, le noir de `kill -9 1`. */
+.rm-flash,
+.rm-blackout {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+}
+@keyframes rm-flash-in {
+  0% { background: rgb(255 123 107 / 0); }
+  18% { background: rgb(255 123 107 / 0.34); }
+  100% { background: rgb(255 123 107 / 0); }
+}
+.rm-flash {
+  animation: rm-flash-in 0.62s ease-out 1;
+}
+@keyframes rm-blackout-in {
+  0% { background: rgb(0 0 0 / 0); }
+  22%, 68% { background: rgb(0 0 0 / 0.97); }
+  100% { background: rgb(0 0 0 / 0); }
+}
+.rm-blackout {
+  animation: rm-blackout-in 1.5s ease-in-out 1;
+  z-index: 95;
+}
+
+/* Les fantômes de la fork bomb : des copies de contour qui se multiplient.
+   Ce sont des nœuds jetables, dans leur propre calque, jamais le vrai DOM. */
+.rm-ghosts {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  overflow: hidden;
+}
+@keyframes rm-ghost {
+  from { transform: none; opacity: 0.75; }
+  to { transform: translate(var(--rm-x, 0), var(--rm-r, 0)) scale(0.82); opacity: 0; }
+}
+.rm-ghost {
+  position: absolute;
+  border: 1px solid var(--color-amber);
+  border-radius: 4px;
+  background: rgb(245 167 66 / 0.05);
+  animation: rm-ghost 1.15s ease-out var(--rm-d, 0ms) forwards;
+}
+
+/* Le terminal qui se referme sur `exit`, puis se rouvre. */
+@keyframes rm-exit {
+  0% { transform: none; opacity: 1; }
+  40%, 62% { transform: scaleY(0.02); opacity: 0.25; }
+  100% { transform: none; opacity: 1; }
+}
+.rm-exit {
+  animation: rm-exit 1.5s cubic-bezier(0.5, 0, 0.2, 1) 1;
+  transform-origin: bottom;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rm-fall, .rm-restore, .rm-levitate, .rm-land, .rm-vortex, .rm-unvortex,
+  .rm-wipe, .rm-unwipe, .rm-glitch, .rm-shake, .rm-tilt, .rm-flash,
+  .rm-blackout, .rm-ghost, .rm-exit {
+    animation: none !important;
+  }
+}

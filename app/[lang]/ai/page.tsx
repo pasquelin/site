@@ -67,7 +67,7 @@ export default async function AiPage({ params }: { params: Promise<{ lang: strin
       </div>
 
       <Section title={UI.headings.doctrine[lang]}>
-        <ul className="measure space-y-3 text-[15px] leading-[1.7] text-fg">
+        <ul data-rm-target="ai" className="measure space-y-3 text-[15px] leading-[1.7] text-fg">
           {AI_PRINCIPLES[lang].map((p) => (
             <li key={p.slice(0, 30)} className="border-l-2 border-cyan/40 pl-4">
               {p}
