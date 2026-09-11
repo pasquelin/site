@@ -2,11 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import type { CatalogItem } from '@/lib/catalog'
+import { useIsDesktop } from '@/lib/useIsDesktop'
 import type { Lang } from '@/content/types'
 import { MobileTabBar } from './ActivityBar'
 import { ToolRail } from './ToolRail'
 import { CommandPalette } from './CommandPalette'
 import { IdeProvider, useIde } from './ide-context'
+import { Narrator } from './Narrator'
 import { StatusBar } from './StatusBar'
 import { TabBar } from './TabBar'
 import { TitleBar } from './TitleBar'
@@ -53,10 +55,11 @@ function TerminalDivider({ onResize }: { onResize: (height: number) => void }) {
 function MobileTerminal({ catalog }: { catalog: readonly CatalogItem[] }) {
   const { lang } = useIde()
   const [open, setOpen] = useState(false)
+  const isDesktop = useIsDesktop()
 
   return (
     <div className="md:hidden">
-      {open ? (
+      {open && !isDesktop ? (
         <div className="h-[42vh] border-t border-line-soft">
           <Terminal catalog={catalog} onCollapse={() => setOpen(false)} />
         </div>
@@ -89,6 +92,7 @@ function MobileTerminal({ catalog }: { catalog: readonly CatalogItem[] }) {
 
 function Layout({ catalog, lang, children }: { catalog: readonly CatalogItem[]; lang: Lang; children: ReactNode }) {
   const { terminalOpen } = useIde()
+  const isDesktop = useIsDesktop()
   const [height, setHeight] = useState(216)
 
   // Restore the height the visitor chose, per visit.
@@ -118,7 +122,10 @@ function Layout({ catalog, lang, children }: { catalog: readonly CatalogItem[]; 
           <main id="content" className="flex-1 overflow-y-auto bg-ink-850">
             {children}
           </main>
-          {terminalOpen ? (
+          {/* `hidden md:flex` ne fait que masquer : la vue resterait montée
+              sous md, et ouvrir la feuille mobile en donnerait deux. Une seule
+              surface existe à la fois. */}
+          {terminalOpen && isDesktop ? (
             <div className="hidden md:flex md:flex-col">
               <TerminalDivider onResize={resize} />
               <div style={{ height }} className="shrink-0">
@@ -128,6 +135,8 @@ function Layout({ catalog, lang, children }: { catalog: readonly CatalogItem[]; 
           ) : null}
         </div>
       </div>
+      {/* Monté une fois, quel que soit le nombre de terminaux affichés. */}
+      <Narrator catalog={catalog} />
       <StatusBar catalog={catalog} />
       <MobileTerminal catalog={catalog} />
       <MobileTabBar lang={lang} />

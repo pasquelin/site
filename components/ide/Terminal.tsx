@@ -4,6 +4,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { CV } from '@/content/site'
 import type { CatalogItem } from '@/lib/catalog'
+import { TERMINAL_COPY } from './terminal-copy'
 import { useIde, type Line } from './ide-context'
 
 const KIND_CLASS: Record<Line['kind'], string> = {
@@ -24,46 +25,6 @@ const GLYPH: Record<Line['kind'], string> = {
   ai: '✻',
 }
 
-const COPY = {
-  fr: {
-    read: 'Lecture',
-    ready: 'prêt',
-    unknown: (c: string) => `commande inconnue : ${c}`,
-    helpHint: 'tapez « aide »',
-    hint: 'Tapez une commande. « aide » pour la liste.',
-    help: [
-      'aide            cette liste',
-      'ls              lister les pages',
-      'open <nom>      ouvrir une page',
-      'cv [fr|en]      télécharger le CV en PDF',
-      'contact         écrire à Alban',
-      'mode humain|dev changer la présentation',
-      'lang fr|en      changer de langue',
-      'clear           vider le terminal',
-    ],
-    label: 'Terminal',
-    collapse: 'Réduire le terminal',
-  },
-  en: {
-    read: 'Read',
-    ready: 'ready',
-    unknown: (c: string) => `unknown command: ${c}`,
-    helpHint: 'type "help"',
-    hint: 'Type a command. "help" for the list.',
-    help: [
-      'help            this list',
-      'ls              list pages',
-      'open <name>     open a page',
-      'cv [fr|en]      download the CV as PDF',
-      'contact         write to Alban',
-      'mode human|dev  change presentation',
-      'lang fr|en      change language',
-      'clear           empty the terminal',
-    ],
-    label: 'Terminal',
-    collapse: 'Collapse terminal',
-  },
-} as const
 
 /** Loose match so `open tf1`, `open map3d` and `open Parcours` all work. */
 function findItem(catalog: readonly CatalogItem[], query: string): CatalogItem | undefined {
@@ -105,30 +66,7 @@ export function Terminal({
   const [history, setHistory] = useState<string[]>([])
   const [histIndex, setHistIndex] = useState(-1)
   const scroller = useRef<HTMLDivElement>(null)
-  const lastPath = useRef<string | null>(null)
-  const c = COPY[lang]
-
-  // The terminal narrates every navigation — this is what makes it the voice
-  // of the site rather than a decoration sitting at the bottom of the screen.
-  useEffect(() => {
-    if (lastPath.current === pathname) return
-    const first = lastPath.current === null
-    lastPath.current = pathname
-
-    const stripped = pathname.replace(/^\/(fr|en)\/?/, '').replace(/\/$/, '')
-    const item = catalog.find((i) => i.path === stripped)
-    const file = item?.file ?? 'whoami.ts'
-    const ms = 120 + Math.floor(Math.random() * 260)
-
-    push([
-      ...(first
-        ? [{ kind: 'ai' as const, text: lang === 'fr' ? 'Session ouverte — pasquelin.com' : 'Session open — pasquelin.com' }]
-        : []),
-      { kind: 'cmd', text: `alban open ${item?.path || 'whoami'}` },
-      { kind: 'tool', text: `${c.read}(${file})`, ...(item?.note ? { detail: item.note } : {}) },
-      { kind: 'ok', text: `${c.ready} · ${ms} ms` },
-    ])
-  }, [pathname, catalog, push, lang, c.read, c.ready])
+  const c = TERMINAL_COPY[lang]
 
   useEffect(() => {
     const el = scroller.current
@@ -279,7 +217,7 @@ export function Terminal({
       </div>
 
       <form
-        className="flex items-center gap-2 border-t border-line-soft px-3 py-2"
+        className="flex items-center gap-2 border-t border-line-soft px-3 py-2 transition-colors focus-within:border-amber/50 focus-within:bg-amber/[0.04]"
         onSubmit={(e) => {
           e.preventDefault()
           run(input)
@@ -307,6 +245,7 @@ export function Terminal({
               setInput(i >= 0 ? history[i] : '')
             }
           }}
+          data-focus-ring="none"
           className="min-w-0 flex-1 bg-transparent text-fg-bright caret-amber outline-none placeholder:text-fg-muted"
           placeholder={c.hint}
           aria-label={c.label}

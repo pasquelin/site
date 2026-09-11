@@ -117,6 +117,21 @@ a[href] {
   border-radius: 2px;
 }
 
+/*
+  Un champ pleine largeur porte mal l'anneau : à 2 px avec 2 px de décalage, il
+  passe par-dessus le texte en cours de frappe. Un élément qui signale son focus
+  autrement s'en exclut — la ligne de commande du terminal le fait par sa
+  bordure, son fond et son curseur ambre.
+
+  L'exclusion vit ici, hors couche, et non en utilitaire Tailwind : une règle
+  hors couche l'emporte sur toute règle en couche, quelle que soit la
+  spécificité. `focus-visible:outline-none` posé sur le champ perdait donc
+  contre la règle ci-dessus.
+*/
+[data-focus-ring='none']:focus-visible {
+  outline: none;
+}
+
 /* Thin scrollbars, editor style. */
 *::-webkit-scrollbar {
   width: 10px;
