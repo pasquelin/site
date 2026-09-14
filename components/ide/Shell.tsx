@@ -67,6 +67,8 @@ function MobileTerminal({ catalog }: { catalog: readonly CatalogItem[] }) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
+        data-analytics-action="mobile_terminal_toggle"
+        data-analytics-target={open ? 'close' : 'open'}
         aria-expanded={open}
         className="flex w-full items-center gap-2 border-t border-line-soft bg-rail px-3 py-2 text-left font-mono text-[12px] text-fg-muted"
       >

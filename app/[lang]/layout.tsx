@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Instrument_Sans } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import '../globals.css'
 import { Shell } from '@/components/ide/Shell'
+import { Analytics } from '@/components/Analytics'
 import { ANSWER, HEADLINE } from '@/content/profile'
 import { LANGS, PERSON, SITE_URL } from '@/content/site'
 import type { Lang } from '@/content/types'
@@ -74,6 +75,9 @@ export default async function LangLayout({
   return (
     <html lang={lang} className={`${mono.variable} ${sans.variable} h-full`}>
       <head>
+        <script id="google-consent" dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});` }} />
         {/* Keep Google's supplied bootstrap in the initial HTML head. */}
         {/* eslint-disable-next-line @next/next/next-script-for-ga */}
         <script
@@ -106,6 +110,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <Shell lang={lang} catalog={catalog}>
           {children}
         </Shell>
+        <Analytics lang={lang} />
         <script
           type="application/ld+json"
           // The identity graph. Static, so crawlers that never run JS still read it.

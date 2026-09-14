@@ -73,6 +73,8 @@ model quotes.
 
 ## Routes
 
+The [analytics guide (French)](docs/analytics.md) documents consent, terminal and presentation-mode events, and report dimensions.
+
 40 content pages — 20 per language, each declaring its counterpart with `hreflang`.
 
 | Route | What it is |

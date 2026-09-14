@@ -10,6 +10,7 @@
     "start": "npx serve out",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test:analytics": "node --test lib/analytics.test.ts",
     "verify:crawl": "node scripts/verify-crawl.ts",
     "verify:seo": "node scripts/verify-seo.ts"
   },

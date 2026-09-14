@@ -5,6 +5,7 @@ import { PERSON } from '@/content/site'
 import { UI } from '@/content/ui'
 import type { CatalogItem } from '@/lib/catalog'
 import { useIde } from './ide-context'
+import { AnalyticsSettings } from '@/components/Analytics'
 
 /**
  * The foot of the window. Its left half is the breadcrumb — where you are —
@@ -20,13 +21,14 @@ export function StatusBar({ catalog }: { catalog: readonly CatalogItem[] }) {
   const leaf = item ? (mode === 'dev' ? item.file : item.label) : 'whoami.ts'
 
   return (
-    <footer className="flex h-statusbar shrink-0 items-center gap-2 border-t border-line-soft bg-rail px-3 font-mono text-[11px] text-fg-muted">
+    <footer data-analytics-area="footer" className="flex h-statusbar shrink-0 items-center gap-2 border-t border-line-soft bg-rail px-3 font-mono text-[11px] text-fg-muted">
       <span className="truncate">
         {PERSON.name} <span className="text-fg-faint">—</span>{' '}
         <span className="text-fg">{leaf}</span>
       </span>
 
       <span className="flex-1" />
+      <AnalyticsSettings />
 
       <span className="hidden text-green sm:inline">0 errors</span>
 
@@ -41,6 +43,7 @@ export function StatusBar({ catalog }: { catalog: readonly CatalogItem[] }) {
       <button
         type="button"
         onClick={() => setPaletteOpen(true)}
+        data-analytics-action="palette_open"
         className="hidden rounded px-1.5 py-0.5 transition-colors hover:bg-ink-800 hover:text-fg-bright md:inline"
       >
         ⌘K
@@ -49,6 +52,8 @@ export function StatusBar({ catalog }: { catalog: readonly CatalogItem[] }) {
       <button
         type="button"
         onClick={() => setTerminalOpen(!terminalOpen)}
+        data-analytics-action="terminal_toggle"
+        data-analytics-target={terminalOpen ? 'close' : 'open'}
         aria-pressed={terminalOpen}
         className="hidden rounded px-1.5 py-0.5 transition-colors hover:bg-ink-800 hover:text-fg-bright md:inline"
       >

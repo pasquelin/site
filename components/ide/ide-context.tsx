@@ -11,6 +11,7 @@ import {
   type ReactNode,
 } from 'react'
 import { useEggs } from '@/lib/useEggs'
+import { track } from '@/lib/analytics'
 import type { Lang } from '@/content/types'
 
 export type LineKind = 'cmd' | 'tool' | 'out' | 'ok' | 'err' | 'ai'
@@ -89,6 +90,14 @@ export function IdeProvider({ lang, children }: { lang: Lang; children: ReactNod
   const { count: eggsFound, total: eggsTotal, discover: discoverEgg } = useEggs()
   const nextId = useRef(0)
   const nextSessionId = useRef(1)
+  const previousTools = useRef({ terminalOpen, paletteOpen })
+
+  useEffect(() => {
+    const previous = previousTools.current
+    if (previous.terminalOpen !== terminalOpen) track('tool_toggle', { target: 'terminal', action: terminalOpen ? 'open' : 'close', area: 'tools' })
+    if (previous.paletteOpen !== paletteOpen) track('tool_toggle', { target: 'palette', action: paletteOpen ? 'open' : 'close', area: 'tools' })
+    previousTools.current = { terminalOpen, paletteOpen }
+  }, [terminalOpen, paletteOpen])
 
   // The chosen presentation follows the visitor between pages and visits.
   useEffect(() => {
@@ -104,13 +113,15 @@ export function IdeProvider({ lang, children }: { lang: Lang; children: ReactNod
   }, [])
 
   const setMode = useCallback((m: Mode) => {
+    if (m === mode) return
+    track('mode_change', { target: m, area: 'presentation', display_mode: m })
     setModeState(m)
     try {
       window.localStorage.setItem(MODE_KEY, m)
     } catch {
       /* nothing to recover from: the mode still applies for this visit */
     }
-  }, [])
+  }, [mode])
 
   /**
    * Lines land one after another rather than all at once, so the terminal

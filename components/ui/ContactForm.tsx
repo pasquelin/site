@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { readConsent, track } from '@/lib/analytics'
 import { CONTACT_ENDPOINT, PERSON } from '@/content/site'
 import { UI } from '@/content/ui'
 import type { Lang } from '@/content/types'
@@ -16,14 +17,18 @@ export function ContactForm({ lang }: { lang: Lang }) {
   const c = UI.contact
   const [status, setStatus] = useState<Status>('idle')
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const started = useRef(false)
+  const sending = useRef(false)
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (sending.current) return
     const form = event.currentTarget
     const data = new FormData(form)
 
     // Bots fill every field they find; people never see this one.
     if (data.get('website')) return
+    track('form_submit_attempt', { target: 'contact', area: 'contact_form' })
 
     const name = String(data.get('name') ?? '').trim()
     const email = String(data.get('email') ?? '').trim()
@@ -34,11 +39,15 @@ export function ContactForm({ lang }: { lang: Lang }) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) next.email = c.errEmail[lang]
     if (message.length < 10) next.message = c.errMessage[lang]
     setErrors(next)
-    if (Object.keys(next).length > 0) return
+    if (Object.keys(next).length > 0) {
+      track('form_error', { action: 'validation', target: 'contact', area: 'contact_form' })
+      return
+    }
 
     // With no endpoint configured the form still works: it hands the message
     // to the visitor's mail client rather than failing silently.
     if (!CONTACT_ENDPOINT) {
+      track('contact_click', { target: 'email', area: 'contact_form' })
       const subject = encodeURIComponent(`${lang === 'fr' ? 'Projet' : 'Project'} — ${name}`)
       const body = encodeURIComponent(`${message}\n\n—\n${name}\n${email}\n${data.get('company') ?? ''}`)
       window.location.href = `mailto:${PERSON.email}?subject=${subject}&body=${body}`
@@ -47,6 +56,7 @@ export function ContactForm({ lang }: { lang: Lang }) {
     }
 
     setStatus('sending')
+    sending.current = true
     try {
       const response = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
@@ -64,14 +74,19 @@ export function ContactForm({ lang }: { lang: Lang }) {
       // The relay rate-limits per address. Saying so is more useful than a
       // generic failure, which would have the visitor retry into the same wall.
       if (response.status === 429) {
+        track('form_error', { action: 'rate_limited', target: 'contact', area: 'contact_form' })
         setStatus('throttled')
         return
       }
       if (!response.ok) throw new Error(String(response.status))
       form.reset()
+      track('generate_lead', { target: 'contact', area: 'contact_form' })
       setStatus('sent')
     } catch {
+      track('form_error', { action: 'request_failed', target: 'contact', area: 'contact_form' })
       setStatus('failed')
+    } finally {
+      sending.current = false
     }
   }
 
@@ -84,7 +99,9 @@ export function ContactForm({ lang }: { lang: Lang }) {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="measure space-y-5">
+    <form onSubmit={onSubmit} noValidate data-analytics-area="contact_form" onFocusCapture={() => {
+      if (!started.current && readConsent() === 'granted') { started.current = true; track('form_start', { target: 'contact', area: 'contact_form' }) }
+    }} className="measure space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className={LABEL}>
@@ -148,6 +165,7 @@ export function ContactForm({ lang }: { lang: Lang }) {
       <div className="flex flex-wrap items-center gap-4">
         <button
           type="submit"
+          data-analytics-action="contact_submit"
           disabled={status === 'sending'}
           className="rounded-panel bg-amber px-4 py-2.5 font-mono text-[13px] font-medium text-ink-950 transition-colors hover:bg-amber/85 disabled:opacity-60"
         >

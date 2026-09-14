@@ -268,6 +268,8 @@ export function SourceView({
             <button
               type="button"
               onClick={onOpenScene}
+              data-analytics-action="scene_toggle"
+              data-analytics-target={scene}
               title={sceneLabel}
               className={`group rounded px-0.5 ${TONE.fn} underline decoration-amber/30 decoration-dashed underline-offset-4 transition-colors hover:bg-amber/10 hover:decoration-amber`}
             >

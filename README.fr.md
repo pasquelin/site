@@ -73,6 +73,8 @@ Chaque expérience et chaque projet porte une `answer` : une phrase autonome, fa
 
 ## Routes
 
+Le [guide des statistiques](docs/analytics.md) décrit le suivi Analytics, les événements du terminal et des modes, les filtres des rapports et le consentement.
+
 40 pages de contenu — 20 par langue, chacune déclarant sa jumelle en `hreflang`.
 
 | Route | Rôle |

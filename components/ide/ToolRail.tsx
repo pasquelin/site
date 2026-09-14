@@ -36,12 +36,14 @@ export function ToolRail({ lang }: { lang: Lang }) {
 
   return (
     <nav
+      data-analytics-area="tools"
       aria-label={lang === 'fr' ? 'Outils' : 'Tools'}
       className="hidden w-rail shrink-0 flex-col items-center gap-1 border-r border-line-soft bg-rail py-2 md:flex"
     >
       <button
         type="button"
         onClick={() => setPaletteOpen(true)}
+        data-analytics-action="palette_open"
         title={`${lang === 'fr' ? 'Aller à…' : 'Go to…'} (⌘K)`}
         className={item(false)}
       >
@@ -52,6 +54,8 @@ export function ToolRail({ lang }: { lang: Lang }) {
       <button
         type="button"
         onClick={() => setTerminalOpen(!terminalOpen)}
+        data-analytics-action="terminal_toggle"
+        data-analytics-target={terminalOpen ? 'close' : 'open'}
         aria-pressed={terminalOpen}
         title={terminalOpen ? UI.actions.closeTerminal[lang] : UI.actions.openTerminal[lang]}
         className={item(terminalOpen)}

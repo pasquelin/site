@@ -59,6 +59,7 @@ jobs:
       # que de produire un site à moitié juste.
       - run: npm run typecheck
       - run: npm run lint
+      - run: npm run test:analytics
 
       # `npm run build` enchaîne trois choses : la génération des fichiers
       # machine (llms.txt, llms-full.txt, cv.json) depuis le cœur de contenu,

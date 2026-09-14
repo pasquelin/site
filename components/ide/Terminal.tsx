@@ -1,5 +1,7 @@
 'use client'
 
+import { safeUrl, track } from '@/lib/analytics'
+
 import { usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { CV } from '@/content/site'
@@ -89,6 +91,8 @@ export function Terminal({
       push([{ kind: 'cmd', text: cmd }])
 
       const egg = matchEgg(cmd)
+      const command = cmd.split(/\s+/)[0].toLowerCase()
+      track('terminal_command', { action: egg ? 'easter_egg' : ['help', 'aide', 'clear', 'ls', 'cv', 'mode', 'lang', 'whoami', 'sudo', 'open', 'cd'].includes(command) ? command : 'other', target: egg?.egg.id ?? '', area: 'terminal' })
       if (egg) {
         void (async () => {
           // `rm` agit sur un chemin, pas sur ce qu'on a sous les yeux : viser
@@ -116,6 +120,7 @@ export function Terminal({
             return
           }
           push(egg.egg.after(lang))
+          track('easter_egg', { action: 'played', target: egg.egg.id, area: 'terminal' })
           if (egg.egg.counts !== false) discoverEgg(egg.egg.id)
         })()
         return
@@ -152,6 +157,7 @@ export function Terminal({
         const wanted = arg.toLowerCase().startsWith('en') ? 'en' : arg.toLowerCase().startsWith('fr') ? 'fr' : lang
         push([{ kind: 'ok', text: `${lang === 'fr' ? 'Téléchargement' : 'Downloading'} ${CV[wanted].split('/').pop()}` }])
         window.open(CV[wanted], '_blank', 'noopener')
+        track('file_download', { target: safeUrl(CV[wanted], location.href), area: 'terminal' })
         return
       }
       if (v === 'mode') {
@@ -161,6 +167,7 @@ export function Terminal({
       }
       if (v === 'lang') {
         const target = arg.toLowerCase().startsWith('e') ? 'en' : 'fr'
+        track('language_change', { target, area: 'terminal' })
         router.push(pathname.replace(/^\/(fr|en)/, `/${target}`))
         return
       }
@@ -173,6 +180,7 @@ export function Terminal({
 
       const target = v === 'open' || v === 'cd' ? findItem(catalog, arg) : findItem(catalog, cmd)
       if (target) {
+        track('navigation_click', { target: safeUrl(target.href, location.href), area: 'terminal' })
         router.push(target.href)
         return
       }
@@ -199,6 +207,7 @@ export function Terminal({
   return (
     <div
       data-rm-terminal
+      data-analytics-area="terminal"
       className="flex h-full flex-col bg-terminal font-mono text-[12.5px] leading-[1.65]"
     >
       {/* Session tabs, the way an editor's terminal panel carries them. */}
@@ -215,13 +224,14 @@ export function Terminal({
                   active ? 'bg-ink-700 text-fg-bright' : 'text-fg-muted hover:text-fg'
                 }`}
               >
-                <button type="button" role="tab" aria-selected={active} onClick={() => setActiveSession(session.id)}>
+                <button type="button" data-analytics-action="terminal_session_select" role="tab" aria-selected={active} onClick={() => setActiveSession(session.id)}>
                   {session.name}
                 </button>
                 {sessions.length > 1 ? (
                   <button
                     type="button"
                     onClick={() => closeSession(session.id)}
+                    data-analytics-action="terminal_session_close"
                     aria-label={`${lang === 'fr' ? 'Fermer' : 'Close'} ${session.name}`}
                     className="flex size-4 items-center justify-center rounded text-fg-muted opacity-0 transition-opacity hover:bg-ink-800 hover:text-fg-bright focus-visible:opacity-100 group-hover:opacity-100"
                   >
@@ -238,6 +248,7 @@ export function Terminal({
         <button
           type="button"
           onClick={addSession}
+          data-analytics-action="terminal_session_add"
           aria-label={lang === 'fr' ? 'Nouvelle session' : 'New session'}
           className="flex size-6 shrink-0 items-center justify-center rounded text-fg-muted transition-colors hover:bg-ink-700 hover:text-fg-bright"
         >
@@ -251,6 +262,7 @@ export function Terminal({
         <button
           type="button"
           onClick={() => (onCollapse ? onCollapse() : setTerminalOpen(false))}
+          data-analytics-action="terminal_close"
           aria-label={c.collapse}
           title={c.collapse}
           className="flex size-6 shrink-0 items-center justify-center rounded text-fg-muted transition-colors hover:bg-ink-700 hover:text-fg-bright"

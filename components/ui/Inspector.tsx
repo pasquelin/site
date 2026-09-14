@@ -35,6 +35,8 @@ export function InspectorSection({
         <button
           type="button"
           onClick={() => setOpen(!open)}
+          data-analytics-action="inspector_toggle"
+          data-analytics-target={label}
           aria-expanded={open}
           className="flex w-full items-center gap-1.5 px-3 py-2 text-left font-mono text-[11px] uppercase tracking-wide text-fg-muted transition-colors hover:text-fg-bright"
         >

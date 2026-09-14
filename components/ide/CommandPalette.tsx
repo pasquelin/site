@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 import type { CatalogItem } from '@/lib/catalog'
 import { useIde } from './ide-context'
+import { track } from '@/lib/analytics'
 
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
 
@@ -48,6 +49,7 @@ function Dialog({ catalog }: { catalog: readonly CatalogItem[] }) {
 
   const go = (item: CatalogItem | undefined) => {
     if (!item) return
+    track('palette_select', { target: item.path || 'profile', area: 'palette' })
     setPaletteOpen(false)
     router.push(item.href)
   }
@@ -59,6 +61,7 @@ function Dialog({ catalog }: { catalog: readonly CatalogItem[] }) {
     >
       <div
         role="dialog"
+        data-analytics-area="palette"
         aria-modal="true"
         aria-label={lang === 'fr' ? 'Aller à' : 'Go to'}
         className="w-full max-w-xl overflow-hidden rounded-panel border border-line bg-ink-850 shadow-2xl shadow-ink-950/60"
@@ -94,6 +97,8 @@ function Dialog({ catalog }: { catalog: readonly CatalogItem[] }) {
             <li key={item.id}>
               <button
                 type="button"
+                data-analytics-action="palette_select"
+                data-analytics-target={item.path || 'profile'}
                 onMouseEnter={() => setIndex(i)}
                 onClick={() => go(item)}
                 className={`flex w-full items-baseline gap-3 px-4 py-2 text-left font-mono text-[13px] transition-colors ${

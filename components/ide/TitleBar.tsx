@@ -27,7 +27,7 @@ export function TitleBar() {
     path ? pathname.startsWith(`/${lang}/${path}`) : pathname === `/${lang}/`
 
   return (
-    <header className="flex h-11 shrink-0 items-center gap-3 border-b border-line-soft bg-rail px-3">
+    <header data-analytics-area="header" className="flex h-11 shrink-0 items-center gap-3 border-b border-line-soft bg-rail px-3">
       <span aria-hidden className="hidden shrink-0 items-center gap-2 pr-1 sm:flex">
         <span className="size-3 rounded-full bg-coral/80" />
         <span className="size-3 rounded-full bg-amber/80" />
@@ -74,6 +74,8 @@ export function TitleBar() {
               key={m}
               type="button"
               onClick={() => setMode(m)}
+              data-analytics-action="mode_select"
+              data-analytics-target={m}
               aria-pressed={mode === m}
               className={`px-2 py-1 transition-colors ${
                 mode === m ? 'bg-amber/15 text-amber' : 'hover:text-fg-bright'

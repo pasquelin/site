@@ -39,6 +39,7 @@ export function TabBar({ catalog }: { catalog: readonly CatalogItem[] }) {
   return (
     <div
       role="tablist"
+      data-analytics-area="tabs"
       aria-label={lang === 'fr' ? 'Pages ouvertes' : 'Open pages'}
       className="flex h-tabbar shrink-0 items-stretch overflow-x-auto border-b border-line-soft bg-ink-900 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
@@ -60,6 +61,8 @@ export function TabBar({ catalog }: { catalog: readonly CatalogItem[] }) {
             <button
               type="button"
               onClick={() => close(item)}
+              data-analytics-action="tab_close"
+              data-analytics-target={item.path || 'profile'}
               aria-label={`${lang === 'fr' ? 'Fermer' : 'Close'} ${item.label}`}
               className="flex size-5 items-center justify-center rounded text-fg-muted opacity-0 transition-opacity hover:bg-ink-700 hover:text-fg-bright focus-visible:opacity-100 group-hover:opacity-100"
             >
