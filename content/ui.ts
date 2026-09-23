@@ -109,8 +109,8 @@ export const UI = {
       en: 'Whole products, built solo, from the engine up to the interface.',
     },
     projectsDescription: {
-      fr: "Les produits qu'Alban Pasquelin construit seul, du moteur temps réel jusqu'à l'interface : AI Desktop Studio et ses 310 actions pilotables par un agent, la librairie de cartographie 3D map3D, le châssis d'application panels en 8 ko, et un SDK mobile de capture vidéo.",
-      en: 'The products Alban Pasquelin builds solo, from the real-time engine up to the interface: AI Desktop Studio with its 310 agent-drivable actions, the map3D 3D mapping library, the 8 kB panels application chassis, and a mobile video capture SDK.',
+      fr: "Les produits qu'Alban Pasquelin construit seul, du moteur temps réel à l'interface : AI Desktop Studio et ses 310 actions pilotables par agent, le moteur de rendu web Trillion3D, la cartographie 3D map3D, le châssis panels en 8 ko et un SDK mobile de capture vidéo.",
+      en: 'The products Alban Pasquelin builds solo, from the real-time engine up to the interface: AI Desktop Studio with its 310 agent-drivable actions, the Trillion3D web rendering engine, the map3D 3D mapping library, the 8 kB panels application chassis, and a mobile video capture SDK.',
     },
   },
 } as const

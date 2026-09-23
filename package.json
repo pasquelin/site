@@ -12,7 +12,8 @@
     "typecheck": "tsc --noEmit",
     "test:analytics": "node --test lib/analytics.test.ts lib/consent-shared.test.ts",
     "verify:crawl": "node scripts/verify-crawl.ts",
-    "verify:seo": "node scripts/verify-seo.ts"
+    "verify:seo": "node scripts/verify-seo.ts",
+    "cv": "node scripts/generate-cv.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.8",

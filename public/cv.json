@@ -31,6 +31,10 @@
       {
         "network": "AI Desktop Studio",
         "url": "https://www.aidesktopstudio.com"
+      },
+      {
+        "network": "Trillion3D",
+        "url": "https://www.trillion3d.com"
       }
     ]
   },
@@ -135,6 +139,19 @@
         "TypeScript",
         "MCP",
         "llama.cpp"
+      ]
+    },
+    {
+      "name": "Trillion3D",
+      "description": "Trillion3D is a real-time rendering engine for the web built by Alban Pasquelin: a native Rust compiler splits 3D models into clusters of 128 triangles, and a WebGPU engine in TypeScript, with a WebGL2 fallback, streams them under a fixed memory budget with GPU-driven culling, temporal antialiasing and dynamic lighting.",
+      "url": "https://www.trillion3d.com",
+      "keywords": [
+        "Rust",
+        "TypeScript",
+        "WebGPU",
+        "WebGL2",
+        "WebAssembly",
+        "Playwright"
       ]
     },
     {

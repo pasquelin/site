@@ -47,6 +47,50 @@ export const PROJECTS: readonly Project[] = [
     scene: 'mcpConstellation',
   },
   {
+    slug: 'trillion3d',
+    name: 'Trillion3D',
+    since: { fr: 'depuis septembre 2026', en: 'since September 2026' },
+    tagline: {
+      fr: 'La géométrie virtualisée des moteurs de jeu, dans le navigateur',
+      en: 'Game-engine virtualized geometry, in the browser',
+    },
+    fn: 'function createWorld(canvas: HTMLCanvasElement): World',
+    answer: {
+      fr: "Trillion3D est un moteur de rendu temps réel pour le web construit par Alban Pasquelin : un compilateur natif en Rust découpe les modèles 3D en grappes de 128 triangles, et un moteur WebGPU en TypeScript, avec repli WebGL2, les diffuse sous un budget mémoire fixe, avec tri par la carte graphique, antialiasing temporel et éclairage dynamique.",
+      en: 'Trillion3D is a real-time rendering engine for the web built by Alban Pasquelin: a native Rust compiler splits 3D models into clusters of 128 triangles, and a WebGPU engine in TypeScript, with a WebGL2 fallback, streams them under a fixed memory budget with GPU-driven culling, temporal antialiasing and dynamic lighting.',
+    },
+    meta: {
+      fr: "Un moteur de rendu web qui affiche des scènes massives sous un budget mémoire fixe : compilateur natif en Rust, moteur WebGPU en TypeScript, chaque chiffre prouvé par un banc de mesure.",
+      en: 'A web rendering engine that draws massive scenes under a fixed memory budget: a native Rust compiler, a WebGPU engine in TypeScript, every number proven by a bench.',
+    },
+    body: {
+      fr: [
+        "Les meilleurs moteurs de jeu savent afficher des scènes de milliards de triangles : la géométrie est découpée en petites grappes, et à chaque image on ne charge et on ne dessine que ce qui se voit vraiment. Rien de cela n'existait pour le navigateur. Trillion3D le construit pour les contraintes du web — pas de lancer de rayons matériel, une mémoire graphique bornée, une seule image à la fois — à partir de la seule littérature publiée.",
+        "Le travail est coupé en deux. Un compilateur natif en Rust lit les formats du métier — glTF, FBX, OBJ, USD, Alembic, Blender, Maya, Unity — et les découpe une fois pour toutes en pages compressées. Dans le navigateur, un moteur WebGPU choisit à chaque image le niveau de détail, élimine ce qui est caché, et dessine toute la scène en six commandes au plus.",
+        "Aucun chiffre n'est affirmé sans mesure. Un banc automatisé compare chaque version à la précédente, et au même rendu fait avec Three.js seul, sur les mêmes points de vue et le même budget. Une caméra immobile ne redessine aucune page : c'est mesuré, pas supposé.",
+      ],
+      en: [
+        'The best game engines can draw scenes of billions of triangles: geometry is split into small clusters, and each frame only what is actually visible is loaded and drawn. None of that existed for the browser. Trillion3D builds it for the web\'s constraints — no hardware ray tracing, bounded GPU memory, one frame at a time — from the published literature alone.',
+        'The work is split in two. A native Rust compiler reads the industry formats — glTF, FBX, OBJ, USD, Alembic, Blender, Maya, Unity — and cuts them once and for all into compressed pages. In the browser, a WebGPU engine picks the level of detail every frame, discards what is hidden, and draws the whole scene in six commands at most.',
+        'No number is claimed without a measurement. An automated bench compares each version with the previous one, and with the same render done in plain Three.js, from the same viewpoints and under the same budget. A still camera redraws zero pages: measured, not assumed.',
+      ],
+    },
+    code: [
+      'const pages = await compiler.prepare(source) // Rust: 128-triangle clusters, one DAG',
+      'gpu.cull(frustum, hiZ).drawIndirect({ maxCommands: 6 }).resolve(taa)',
+      'bench.compare(before, after, threeJs) // no claim outlives its measurement',
+    ],
+    metrics: [
+      { value: '128', label: { fr: 'triangles par grappe', en: 'triangles per cluster' } },
+      { value: '6', label: { fr: 'commandes de dessin par image, au plus', en: 'draw commands per frame, at most' } },
+      { value: '0', label: { fr: 'page redessinée caméra immobile', en: 'pages redrawn with a still camera' } },
+    ],
+    stack: ['Rust', 'TypeScript', 'WebGPU', 'WebGL2', 'WebAssembly', 'Playwright'],
+    repo: 'https://github.com/pasquelin/Trillion3D',
+    demo: 'https://www.trillion3d.com',
+    license: 'PolyForm Noncommercial 1.0.0',
+  },
+  {
     slug: 'map3d',
     name: 'map3D',
     since: { fr: 'depuis juillet 2026', en: 'since July 2026' },

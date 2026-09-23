@@ -21,6 +21,7 @@ Contact: alban.pasquelin@gmail.com
 ## Projects
 
 - [AI Desktop Studio](https://www.pasquelin.com/en/projects/ai-desktop-studio/): AI Desktop Studio is a desktop generative creation studio built solo by Alban Pasquelin: 310 MCP actions across 26 families, seven workspaces covering image, video, 3D, audio, materials and skyboxes, in Electron, React 19, Three.js, PixiJS and SQLite.
+- [Trillion3D](https://www.pasquelin.com/en/projects/trillion3d/): Trillion3D is a real-time rendering engine for the web built by Alban Pasquelin: a native Rust compiler splits 3D models into clusters of 128 triangles, and a WebGPU engine in TypeScript, with a WebGL2 fallback, streams them under a fixed memory budget with GPU-driven culling, temporal antialiasing and dynamic lighting.
 - [map3D](https://www.pasquelin.com/en/projects/map3d/): map3D is a real-time 3D mapping library for React by Alban Pasquelin: a photorealistic globe on Google 3D Tiles down to street level, DOM markers and clusters, a geospatial drawing editor, an imperative Three.js engine under a declarative surface.
 - [panels](https://www.pasquelin.com/en/projects/panels/): panels is a React library by Alban Pasquelin providing the chassis of a tool application — icon rails, resizable zones, a free centre with draggable tabs — in 8 kB gzipped, with zero dependencies, MIT licensed.
 - [media-studio](https://www.pasquelin.com/en/projects/media-studio/): media-studio is a React Native and Expo SDK by Alban Pasquelin for photo and video capture, editing and export on iOS and Android: filters, animated text, stickers, transitions, a timeline and background export, with a fully headless core.
@@ -39,6 +40,7 @@ Contact: alban.pasquelin@gmail.com
 - [Malt](https://www.malt.fr/profile/albanpasquelin)
 - [X](https://x.com/wubart)
 - [AI Desktop Studio](https://www.aidesktopstudio.com)
+- [Trillion3D](https://www.trillion3d.com)
 
 ## Optional
 

@@ -58,6 +58,7 @@ export const SOCIALS: readonly Social[] = [
   { id: 'malt', label: 'Malt', url: 'https://www.malt.fr/profile/albanpasquelin', sameAs: true },
   { id: 'x', label: 'X', url: 'https://x.com/wubart', sameAs: true },
   { id: 'aids', label: 'AI Desktop Studio', url: 'https://www.aidesktopstudio.com', sameAs: true },
+  { id: 'trillion3d', label: 'Trillion3D', url: 'https://www.trillion3d.com', sameAs: true },
 ]
 
 /**
