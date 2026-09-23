@@ -55,6 +55,46 @@ Aucun nom, e-mail, message, entreprise, recherche de palette ou texte libre du t
 
 Ces statistiques décrivent les visites consenties et non bloquées par le navigateur. Elles ne constituent ni une identification nominative des visiteurs ni un enregistrement de leur écran. Les paliers de défilement indiquent du contenu atteint, pas une preuve de lecture.
 
+## Les autres sites
+
+`public/shared/consent.v1.js` est le bandeau de consentement et le chargeur Google Analytics des
+autres sites, en un seul fichier. Il est publié par le déploiement de ce dépôt, à
+[https://www.pasquelin.com/shared/consent.v1.js](https://www.pasquelin.com/shared/consent.v1.js),
+et chacun des quatre autres ne porte qu'une ligne :
+
+```html
+<script defer src="https://www.pasquelin.com/shared/consent.v1.js" data-ga="G-XXXXXXXXXX"></script>
+```
+
+| Site | Propriété GA4 | Où est posée la ligne |
+| --- | --- | --- |
+| [www.aidesktopstudio.com](https://www.aidesktopstudio.com/) | `G-YRFNHZLMJH` | `site/template.html` du dépôt `AIDesktopStudio` |
+| [www.trillion3d.com](https://www.trillion3d.com/) | `G-488KCZW3JQ` | injectée au build par `scripts/docs/measurement.ts` du dépôt `Trillion3D` |
+| [pasquelin.github.io/map3D](https://pasquelin.github.io/map3D/) | `G-X64BG5H958` | `site/template.html` du dépôt `map3D` |
+| [pasquelin.github.io/panels](https://pasquelin.github.io/panels/) | `G-SZ5H3MS3D4` | `site/template.html` du dépôt `panels` |
+
+Les quatre propriétés vivent dans le compte Analytics **Site perso**, celui de `pasquelin.com`.
+L'identifiant de mesure n'est pas un secret : toute page qui le porte le montre à qui lit sa
+source. Il n'y a donc ni secret de dépôt ni variable d'environnement dans ce dispositif.
+
+Ce que ce fichier garantit, et que `lib/consent-shared.test.ts` vérifie à chaque déploiement :
+rien n'est demandé à Google avant un accord explicite — le mode Consentement est armé sur
+`denied` et `gtag.js` n'est même pas téléchargé —, refuser efface les cookies `_ga` déjà posés,
+et un identifiant absent ou mal formé ne déclenche rien du tout. Le panneau parle la langue de
+la page parmi quinze, et emprunte ses couleurs, sa police et ses arrondis au site qui l'accueille
+plutôt que d'imposer les siens ; un site peut passer outre avec les variables CSS `--consent-bg`,
+`--consent-fg`, `--consent-accent`, `--consent-border`, `--consent-radius`, ou les attributs
+`data-bg`, `data-fg`, `data-accent`, `data-border`, `data-radius` sur la balise. N'importe quel
+élément portant `data-consent-settings` rouvre le panneau, comme le fait « Cookies » ici.
+
+Ces sites ne mesurent que les pages vues, le défilement, les clics sortants et les
+téléchargements, par les **mesures améliorées** du flux GA4 — aucun événement explicite, aucune
+dimension personnalisée. Le dispositif complet décrit plus haut reste propre à `pasquelin.com`.
+
+Le nom du fichier porte sa version. Une évolution qui change ce contrat devient `consent.v2.js`
+et les sites migrent un par un ; le comportement de la `v1` ne change jamais en place, puisque
+quatre sites déjà en ligne la chargent sans que rien ne les prévienne.
+
 ## Vérification et maintenance
 
 `npm run test:analytics` vérifie la classification, le consentement et la suppression des données sensibles. Il est exécuté dans le workflow de production avec le typage, le lint, la compilation et les vérifications de contenu/SEO.
