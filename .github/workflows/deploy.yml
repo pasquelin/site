@@ -175,11 +175,15 @@ jobs:
         run: |
           # rsync a déjà réussi à ce stade : un échec ici vient du site, pas d'un
           # aléa réseau. D'où le délai borné et les deux reprises.
+          # `shared/consent.v1.js` n'est pas une page de ce site : c'est le bandeau de
+          # consentement que chargent aidesktopstudio.com, trillion3d.com, map3D et panels.
+          # Une 404 ici les prive de mesure sans que rien ne rougisse chez eux.
           for url in https://www.pasquelin.com/fr/ \
                      https://www.pasquelin.com/en/ \
                      https://www.pasquelin.com/llms.txt \
                      https://www.pasquelin.com/sitemap.xml \
-                     https://www.pasquelin.com/cv.json; do
+                     https://www.pasquelin.com/cv.json \
+                     https://www.pasquelin.com/shared/consent.v1.js; do
             code=$(curl -sL -o /dev/null -w '%{http_code}' \
               --max-time 15 --retry 2 --retry-delay 3 "$url")
             echo "$url → $code" >> "$GITHUB_STEP_SUMMARY"
