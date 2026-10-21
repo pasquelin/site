@@ -2,7 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Article } from '@/components/ui/Article'
+import { BrandLogo } from '@/components/ui/BrandLogo'
+import { BRANDS } from '@/content/brands'
 import { EXPERIENCE } from '@/content/experience'
+import { formatPeriod } from '@/lib/period'
 import { LANGS } from '@/content/site'
 import { UI } from '@/content/ui'
 import { isLang } from '@/lib/i18n'
@@ -35,16 +38,24 @@ export default async function ExperienceIndex({ params }: { params: Promise<{ la
         {EXPERIENCE.map((e) => (
           <li key={e.slug}>
             <Link href={`/${lang}/experience/${e.slug}/`} className="group block py-5 transition-colors hover:bg-ink-900/60">
-              <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                <span className="text-[16px] font-medium text-fg-bright group-hover:text-amber">{e.company}</span>
-                <span className="text-[14px] text-fg-muted">{e.role[lang]}</span>
-                {e.period ? (
-                  <span className="ml-auto font-mono text-[12px] tabular-nums text-fg-muted">
-                    {e.period.from}–{e.period.to === 'present' ? (lang === 'fr' ? "aujourd'hui" : 'now') : e.period.to}
-                  </span>
-                ) : null}
+              <div className="flex gap-x-4">
+                {/* Même case fixe que sur l'accueil : les textes partent tous du même bord. */}
+                <span aria-hidden className="hidden h-8 w-24 shrink-0 items-center justify-center sm:flex">
+                  {e.brand && BRANDS[e.brand] ? <BrandLogo brand={BRANDS[e.brand]} size={30} className="opacity-90" /> : null}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                    <span className="text-[16px] font-medium text-fg-bright group-hover:text-amber">{e.company}</span>
+                    <span className="text-[14px] text-fg-muted">{e.role[lang]}</span>
+                    {e.period ? (
+                      <span className="ml-auto whitespace-nowrap font-mono text-[12px] tabular-nums text-fg-muted">
+                        {formatPeriod(e.period, lang)}
+                      </span>
+                    ) : null}
+                  </div>
+                  <p className="measure mt-2 text-[14px] leading-relaxed text-fg">{e.answer[lang]}</p>
+                </div>
               </div>
-              <p className="measure mt-2 text-[14px] leading-relaxed text-fg">{e.answer[lang]}</p>
             </Link>
           </li>
         ))}

@@ -13,12 +13,15 @@ import type { ReactNode } from 'react'
 export function Article({
   file,
   eyebrow,
+  logo,
   title,
   inspector,
   children,
 }: {
   file: string
   eyebrow?: string
+  /** The company's logo, above the eyebrow, on a mission page. */
+  logo?: ReactNode
   title: string
   /** Facts panel. One grid cell: a sticky right column on wide screens, and
    *  the block right after the prose on everything narrower. */
@@ -41,6 +44,7 @@ export function Article({
             {file}
           </p>
         ) : null}
+        {logo ? <div className="mb-5 flex">{logo}</div> : null}
         {eyebrow ? (
           <p className="mb-2 text-[13px] text-fg-muted">{eyebrow}</p>
         ) : null}

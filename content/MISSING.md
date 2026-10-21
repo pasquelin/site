@@ -9,6 +9,9 @@ s'affiche pas plutôt que d'être approximé.
   sans date dans la liste des distinctions.
 - **RetroRoads** — le produit est en bêta privée, donc les chiffres de
   résultat manquent. La page tient sur l'architecture.
+- **Business Lab** : ni le CV ni LinkedIn ne donnent les dates. La mission
+  s'affiche sans période. Infopro Digital, Staffmatch, Equidia, Arte et
+  Amplement sont datés d'après le profil LinkedIn.
 - **Ardian** — deux lignes seulement dans le CV. C'est la page la plus mince
   du parcours ; un ou deux résultats chiffrés la mettraient à niveau.
 

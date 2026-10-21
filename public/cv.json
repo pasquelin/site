@@ -103,6 +103,46 @@
       "highlights": []
     },
     {
+      "name": "Infopro Digital",
+      "position": "Vue.js front-end developer, webinar platform",
+      "startDate": "2018",
+      "endDate": "2019",
+      "summary": "From December 2018 to March 2019, Alban Pasquelin designed and built a real-time webinar platform at Infopro Digital in Vue.js and OpenTok, which let the group bring the virtual events of its B2B media brands in-house.",
+      "highlights": []
+    },
+    {
+      "name": "Staffmatch",
+      "position": "Angular front-end developer, back office",
+      "startDate": "2018",
+      "endDate": "2018",
+      "summary": "From February to December 2018, Alban Pasquelin led the Angular 5 development of the admin back office at Staffmatch, the platform matching companies with temporary staff.",
+      "highlights": []
+    },
+    {
+      "name": "Equidia",
+      "position": "Angular front-end developer, via DonkeyCode",
+      "startDate": "2017",
+      "endDate": "2018",
+      "summary": "From August 2017 to January 2018, for DonkeyCode, Alban Pasquelin led the complete rebuild of the Equidia TV website, France's reference channel for horse racing: front office and back office in Angular 5, on a PHP and Symfony API.",
+      "highlights": []
+    },
+    {
+      "name": "Arte",
+      "position": "Apple TV app developer, via Hubee",
+      "startDate": "2017",
+      "endDate": "2017",
+      "summary": "From September to December 2017, working through Hubee, Alban Pasquelin built and maintained Arte's Apple TV app, written in TVML and TVJS.",
+      "highlights": []
+    },
+    {
+      "name": "Amplement",
+      "position": "R&D and product strategy director",
+      "startDate": "2017",
+      "endDate": "2017",
+      "summary": "Alban Pasquelin was R&D and product strategy director at Amplement from January to May 2017, leading a team of developers, designers and marketing specialists on the user-experience overhaul and the use of data.",
+      "highlights": []
+    },
+    {
       "name": "Molotov TV",
       "position": "Head of TV division, then head of TV & product design advisor",
       "startDate": "2015",
@@ -114,11 +154,9 @@
       ]
     },
     {
-      "name": "Infopro Digital, Arte, Equidia, Amplement, Business Lab",
-      "position": "Earlier work",
-      "startDate": "2005",
-      "endDate": "2019",
-      "summary": "Between 2005 and 2019, Alban Pasquelin worked for Infopro Digital, Arte, Equidia, Staffmatch, Amplement and Business Lab, where he led a team of ten for Peugeot, Leroy Merlin and E.Leclerc, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.",
+      "name": "Business Lab",
+      "position": "Lead developer, then technical project manager",
+      "summary": "At Business Lab, Alban Pasquelin was lead developer and then technical project manager, heading a team of ten for Peugeot, Leroy Merlin and the E.Leclerc price comparator, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.",
       "highlights": [
         "10 people led",
         "3 awards"
@@ -267,13 +305,13 @@
     },
     {
       "title": "TOPCOM d'Or",
-      "awarder": "TOPCOM · peugeot.com",
-      "date": "2013"
+      "awarder": "TOPCOM · Peugeot 4008, peugeot.com",
+      "date": "2012"
     },
     {
       "title": "TOPCOM d'Or",
-      "awarder": "TOPCOM · Peugeot 4008",
-      "date": "2012"
+      "awarder": "TOPCOM · Peugeot 4008, peugeot.com",
+      "date": "2013"
     },
     {
       "title": "Grand prix Stratégies du digital",

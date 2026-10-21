@@ -79,7 +79,7 @@ The [analytics guide (French)](docs/analytics.md) documents consent, terminal an
 
 | Route | What it is |
 | --- | --- |
-| `/` | Points at `/fr/` and declares it canonical (redirect in `vercel.json`, static fallback from `postbuild`) |
+| `/` | Points at `/fr/` and declares it canonical (redirect in `vercel.json`, static fallback from `app/(index)/page.tsx`) |
 | `/{fr,en}/` | Profile |
 | `/{fr,en}/experience/` and `/experience/[slug]/` | The 8 missions |
 | `/{fr,en}/projects/` and `/projects/[slug]/` | The 7 projects |
@@ -116,7 +116,7 @@ npm start         # serves out/ locally
 | `dev` | Next dev server |
 | `prebuild` | Writes `llms.txt`, `llms-full.txt` and `cv.json` from `content/` |
 | `build` | Static export to `out/` |
-| `postbuild` | Writes the root document, then runs the crawlability check |
+| `postbuild` | Runs the crawlability and SEO checks |
 | `verify:crawl` | Fails if a page's own words are absent from its served HTML |
 | `typecheck` | `tsc --noEmit` |
 | `lint` | ESLint (`eslint-config-next`) |
@@ -152,7 +152,7 @@ The apex is canonical and `www` redirects to it. The domain lives in one line â€
 `content/site.ts`; change it and pages, canonicals, sitemap, JSON-LD and machine files all follow.
 `vercel.json` is kept for a Vercel deployment: it redirects `/` to `/fr/` and serves the
 `llms*.txt` files as `text/plain; charset=utf-8`. On the nginx server that redirect is the root
-document `postbuild` writes.
+document rendered from `app/(index)/page.tsx`.
 
 Three switches are business decisions rather than technical ones:
 

@@ -49,7 +49,7 @@ function llmsTxt(): string {
   lines.push('## Experience')
   lines.push('')
   for (const e of EXPERIENCE) {
-    const period = e.period ? ` (${e.period.from}–${e.period.to})` : ''
+    const period = e.period ? ` (${e.period.from === e.period.to ? e.period.from : `${e.period.from}–${e.period.to}`})` : ''
     lines.push(`- [${e.company} · ${e.role.en}${period}](${url('en', `experience/${e.slug}`)}): ${e.answer.en}`)
   }
   lines.push('')
@@ -96,7 +96,7 @@ function llmsFullTxt(): string {
     out.push('')
     out.push(`Location: ${PERSON.city}, France. Email: ${PERSON.email}.`)
     out.push(`Availability: ${AVAILABILITY.zones[lang].join(' · ')}.`)
-    out.push(`Awards: ${AWARDS.map((a) => (a.year ? `${a.title} (${a.year})` : a.title)).join(', ')}.`)
+    out.push(`Awards: ${AWARDS.map((a) => (a.years.length > 0 ? `${a.title} (${a.years.join(', ')})` : a.title)).join(', ')}.`)
     out.push(`Clients: ${CLIENTS.join(', ')}.`)
     out.push(`Skills: ${KNOWS_ABOUT.join(', ')}.`)
     out.push('')
@@ -129,7 +129,7 @@ function llmsFullTxt(): string {
     out.push('## Experience')
     out.push('')
     for (const e of EXPERIENCE) {
-      const period = e.period ? ` (${e.period.from}–${e.period.to})` : ''
+      const period = e.period ? ` (${e.period.from === e.period.to ? e.period.from : `${e.period.from}–${e.period.to}`})` : ''
       out.push(`### ${e.company} · ${e.role[lang]}${period}`)
       out.push('')
       out.push(url(lang, `experience/${e.slug}`))
@@ -209,7 +209,11 @@ function cvJson(): string {
         keywords: p.stack,
       })),
       skills: [{ name: 'Engineering', keywords: KNOWS_ABOUT }],
-      awards: AWARDS.map((a) => ({ title: a.title, awarder: a.by, ...(a.year ? { date: String(a.year) } : {}) })),
+      awards: AWARDS.flatMap((a) =>
+        a.years.length > 0
+          ? a.years.map((year) => ({ title: a.title, awarder: a.by, date: String(year) }))
+          : [{ title: a.title, awarder: a.by }],
+      ),
       languages: [
         { language: 'French', fluency: 'Native speaker' },
         { language: 'English', fluency: 'Professional working proficiency' },

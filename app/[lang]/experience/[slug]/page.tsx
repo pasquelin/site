@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Answer } from '@/components/ui/Answer'
 import { Article } from '@/components/ui/Article'
+import { BrandLogo } from '@/components/ui/BrandLogo'
 import {
   InspectorLink,
   InspectorPanel,
@@ -11,11 +12,13 @@ import {
   InspectorTags,
 } from '@/components/ui/Inspector'
 import { SourceSection } from '@/components/ui/SourceSection'
+import { BRANDS } from '@/content/brands'
 import { EXPERIENCE, experienceBySlug } from '@/content/experience'
 import { LANGS } from '@/content/site'
 import { UI } from '@/content/ui'
 import { isLang } from '@/lib/i18n'
 import { breadcrumbLd, experienceLd } from '@/lib/jsonld'
+import { formatPeriod } from '@/lib/period'
 import { pageMeta } from '@/lib/seo'
 
 export async function generateStaticParams() {
@@ -47,13 +50,13 @@ export default async function ExperiencePage({
   const exp = experienceBySlug(slug)
   if (!isLang(lang) || !exp) notFound()
 
-  const period = exp.period
-    ? `${exp.period.from}–${exp.period.to === 'present' ? (lang === 'fr' ? "aujourd'hui" : 'now') : exp.period.to}`
-    : undefined
+  const period = exp.period ? formatPeriod(exp.period, lang) : undefined
+  const brand = exp.brand ? BRANDS[exp.brand] : undefined
 
   return (
     <Article
       file={`experience/${exp.slug}.ts`}
+      logo={brand ? <BrandLogo brand={brand} size={48} /> : undefined}
       eyebrow={[exp.role[lang], period].filter(Boolean).join(' · ')}
       title={exp.company}
       inspector={

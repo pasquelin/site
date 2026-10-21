@@ -21,7 +21,7 @@ export function DevModeHint() {
         onClick={() => setMode('dev')}
         data-analytics-action="mode_select"
         data-analytics-target="dev"
-        className="font-mono text-amber underline decoration-amber/40 underline-offset-4 transition-colors hover:decoration-amber"
+        className="ml-1.5 font-mono text-amber underline decoration-amber/40 underline-offset-4 transition-colors hover:decoration-amber"
       >
         {UI.devHint.action[lang]}
       </button>

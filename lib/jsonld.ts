@@ -42,7 +42,7 @@ export function personLd(lang: Lang) {
       { '@type': 'Organization', name: COMPANIES.gosecure.name, url: COMPANIES.gosecure.url },
       { '@type': 'Organization', name: COMPANIES.retroroads.name, url: COMPANIES.retroroads.url },
     ],
-    award: AWARDS.map((a) => (a.year ? `${a.title} ${a.year}` : a.title)),
+    award: AWARDS.map((a) => (a.years.length > 0 ? `${a.title} ${a.years.join(', ')}` : a.title)),
   }
 }
 

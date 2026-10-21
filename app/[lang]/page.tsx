@@ -2,16 +2,20 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { SceneMount } from '@/components/three/SceneMount'
+import { BrandLogo } from '@/components/ui/BrandLogo'
+import { ClientMarquee } from '@/components/ui/ClientMarquee'
 import { DevModeHint } from '@/components/ui/DevModeHint'
 import { Engagements } from '@/components/ui/Engagements'
 import { Metrics } from '@/components/ui/Metrics'
 import { ModeOnly } from '@/components/ui/ModeOnly'
+import { ProjectCard } from '@/components/ui/ProjectCard'
+import { ShowMoreList } from '@/components/ui/ShowMoreList'
 import { AI_AT_WORK } from '@/content/ai'
+import { BRANDS } from '@/content/brands'
 import { EXPERIENCE } from '@/content/experience'
 import { PROJECTS } from '@/content/projects'
 import {
   AWARDS,
-  CLIENTS,
   DIRECTION,
   DOCTRINE,
   HEADLINE,
@@ -29,6 +33,7 @@ import { UI } from '@/content/ui'
 import type { Lang } from '@/content/types'
 import { isLang } from '@/lib/i18n'
 import { profilePageLd } from '@/lib/jsonld'
+import { formatPeriod } from '@/lib/period'
 import { pageMeta } from '@/lib/seo'
 import { keepTogether } from '@/lib/typo'
 
@@ -53,6 +58,39 @@ const splitLead = (line: string): { lead: string; rest: string } => {
 }
 
 const SECTION = 'mt-12 border-t border-line-soft pt-10'
+
+/** One line of the career list: logo slot, company, role, dates. */
+function CareerRow({
+  href,
+  brand,
+  company,
+  role,
+  period,
+}: {
+  href: string
+  brand?: string
+  company: string
+  role?: string
+  period?: string
+}) {
+  const logo = brand ? BRANDS[brand] : undefined
+  return (
+    <Link
+      href={href}
+      className="group flex flex-wrap items-baseline gap-x-4 gap-y-1 py-4 transition-colors hover:bg-ink-900/60"
+    >
+      {/* Une case de largeur fixe, logo ou pas : les noms partent tous du même bord. */}
+      <span aria-hidden className="hidden h-8 w-24 shrink-0 items-center justify-center self-center sm:flex">
+        {logo ? <BrandLogo brand={logo} size={30} className="opacity-90 transition-opacity group-hover:opacity-100" /> : null}
+      </span>
+      <span className="text-[15px] font-medium text-fg-bright group-hover:text-amber">{company}</span>
+      {role ? <span className="text-[14px] text-fg-muted">{role}</span> : null}
+      {period ? (
+        <span className="ml-auto whitespace-nowrap font-mono text-[12px] tabular-nums text-fg-muted">{period}</span>
+      ) : null}
+    </Link>
+  )
+}
 const HEADING = 'mb-4 font-mono text-[12px] text-fg-muted'
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
@@ -62,12 +100,17 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
   return (
     <>
-      <section className="relative isolate overflow-hidden border-b border-line-soft">
+      <section className="relative isolate overflow-hidden">
         <SceneMount className="pointer-events-none absolute inset-0 opacity-55 [mask-image:radial-gradient(70%_95%_at_82%_50%,black_25%,transparent_85%)]" />
         {/* Keeps the headline the brightest thing on the page, whatever the scene does behind it. */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-gradient-to-r from-ink-850 from-30% via-ink-850/90 to-ink-850/15 lg:via-ink-850/70"
+        />
+        {/* The scene fades into the page instead of stopping on a hard edge. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-ink-850"
         />
 
         <div className="relative mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
@@ -117,15 +160,30 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
       </section>
 
-      <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8">
-        <section>
+      {/* Every separator spans the content column. None above the client
+          band: the scene fades out there on its own. */}
+      <div className="mx-auto w-full max-w-6xl px-5 pb-12 sm:px-8">
+        <section aria-label={UI.headings.trustedBy[lang]} className="pt-4">
+          <h2 className={HEADING}>{UI.headings.trustedBy[lang]}</h2>
+          <ClientMarquee />
+        </section>
+
+        <section className={SECTION}>
           <h2 className={HEADING}>{UI.headings.edge[lang]}</h2>
-          <ul className="grid gap-4 lg:grid-cols-3">
+          {/* Chaque carte occupe trois rangées partagées : titres, textes et
+              liens s'alignent d'une carte à l'autre, qu'un titre passe sur
+              deux lignes ou non. */}
+          <ul className="grid gap-x-4 gap-y-4 lg:grid-cols-3">
             {SITUATIONS.map((s) => (
-              <li key={s.title.en} className="flex flex-col rounded-panel border border-line-soft bg-ink-900 p-5">
-                <span className="block text-[16px] font-medium leading-snug text-fg-bright">{keepTogether(s.title[lang])}</span>
-                <span className="mt-2 block flex-1 text-[14px] leading-relaxed text-fg-muted">{keepTogether(s.body[lang])}</span>
-                <span className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[12.5px]">
+              <li
+                key={s.title.en}
+                className="row-span-3 grid grid-rows-subgrid gap-y-0 rounded-panel border border-line-soft bg-ink-900 p-5"
+              >
+                <span className="block text-balance text-[17px] font-medium leading-snug text-fg-bright">
+                  {keepTogether(s.title[lang])}
+                </span>
+                <span className="mt-2 block text-[14px] leading-relaxed text-fg-muted">{keepTogether(s.body[lang])}</span>
+                <span className="mt-4 flex flex-wrap items-end gap-x-4 gap-y-1 font-mono text-[12.5px]">
                   {s.proof.map((p) => (
                     <Link key={p.path} href={`/${lang}/${p.path}/`} className="text-amber hover:underline">
                       {p.label[lang]} →
@@ -220,41 +278,32 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
         <section className={SECTION}>
           <h2 className={HEADING}>{UI.headings.experience[lang]}</h2>
-          <ul data-rm-target="experience" className="divide-y divide-line-soft border-y border-line-soft">
-            {EXPERIENCE.map((e) => (
-              <li key={e.slug}>
-                <Link
+          <ShowMoreList
+            rmTarget="experience"
+            className="divide-y divide-line-soft border-y border-line-soft"
+            initial={6}
+            more={UI.actions.showMore[lang]}
+            less={UI.actions.showLess[lang]}
+            items={EXPERIENCE.map((e) => ({
+              key: e.slug,
+              node: (
+                <CareerRow
                   href={`/${lang}/experience/${e.slug}/`}
-                  className="group flex flex-wrap items-baseline gap-x-4 gap-y-1 py-4 transition-colors hover:bg-ink-900/60"
-                >
-                  <span className="text-[15px] font-medium text-fg-bright group-hover:text-amber">
-                    {e.company}
-                  </span>
-                  <span className="text-[14px] text-fg-muted">{e.role[lang]}</span>
-                  {e.period ? (
-                    <span className="ml-auto font-mono text-[12px] tabular-nums text-fg-muted">
-                      {e.period.from}–{e.period.to === 'present' ? (lang === 'fr' ? "aujourd'hui" : 'now') : e.period.to}
-                    </span>
-                  ) : null}
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  brand={e.brand}
+                  company={e.company}
+                  role={e.role[lang]}
+                  period={e.period ? formatPeriod(e.period, lang) : undefined}
+                />
+              ),
+            }))}
+          />
         </section>
 
-        <section className="mt-12">
+        <section className={SECTION}>
           <h2 className={HEADING}>{UI.headings.projects[lang]}</h2>
-          <ul data-rm-target="projects" className="grid gap-3 sm:grid-cols-2">
+          <ul data-rm-target="projects" className="grid gap-x-3 gap-y-3 sm:grid-cols-2">
             {PROJECTS.slice(0, 4).map((p) => (
-              <li key={p.slug}>
-                <Link
-                  href={`/${lang}/projects/${p.slug}/`}
-                  className="flex h-full flex-col rounded-panel border border-line-soft bg-ink-900 p-4 transition-colors hover:border-amber/40"
-                >
-                  <span className="font-mono text-[14px] text-fg-bright">{p.name}</span>
-                  <span className="mt-1.5 text-[13px] leading-snug text-fg-muted">{p.tagline[lang]}</span>
-                </Link>
-              </li>
+              <ProjectCard key={p.slug} project={p} lang={lang} />
             ))}
           </ul>
           <Link
@@ -265,30 +314,23 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           </Link>
         </section>
 
-        <section id="distinctions" className={`${SECTION} grid gap-10 sm:grid-cols-2`}>
-          <div>
-            <h2 className={HEADING}>{UI.headings.awards[lang]}</h2>
-            <ul className="space-y-4 text-[14px] text-fg">
-              {AWARDS.map((a) => (
-                <li key={`${a.title}${a.year ?? ''}`} className="flex gap-3">
-                  <span className="w-10 shrink-0 font-mono tabular-nums text-fg-muted">{a.year ?? ''}</span>
-                  <span>
-                    <span className="font-medium text-fg-bright">{a.title}</span>
-                    {a.note ? (
-                      <span className="mt-0.5 block text-[13px] leading-relaxed text-fg-muted">{keepTogether(a.note[lang])}</span>
-                    ) : (
-                      <span className="block text-[13px] text-fg-muted">{a.by}</span>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h2 className={HEADING}>{UI.headings.clients[lang]}</h2>
-            <p className="text-[14px] leading-relaxed text-fg">{CLIENTS.join(' · ')}</p>
-          </div>
+        <section id="distinctions" className={SECTION}>
+          <h2 className={HEADING}>{UI.headings.awards[lang]}</h2>
+          <ul className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+            {AWARDS.map((a) => (
+              <li key={a.title} className="border-l-2 border-amber/40 pl-4">
+                <span className="block font-mono text-[12.5px] tabular-nums text-amber">
+                  {a.years.length > 0 ? a.years.join(' · ') : a.by}
+                </span>
+                <span className="mt-1 block text-[15px] font-medium leading-snug text-fg-bright">{a.title}</span>
+                {a.note ? (
+                  <span className="mt-1.5 block text-[13px] leading-relaxed text-fg-muted">{keepTogether(a.note[lang])}</span>
+                ) : null}
+              </li>
+            ))}
+          </ul>
         </section>
+
 
         <section className={SECTION}>
           <h2 className={HEADING}>{UI.headings.stack[lang]}</h2>

@@ -45,14 +45,17 @@ export const UI = {
     openTerminal: { fr: 'Ouvrir le terminal', en: 'Open terminal' },
     closeTerminal: { fr: 'Réduire le terminal', en: 'Collapse terminal' },
     back: { fr: 'Retour', en: 'Back' },
+    showMore: { fr: 'Voir plus', en: 'Show more' },
+    showLess: { fr: 'Voir moins', en: 'Show less' },
   },
 
   headings: {
     experience: { fr: 'Parcours', en: 'Experience' },
-    projects: { fr: 'Projets', en: 'Projects' },
+    projects: { fr: 'Projets personnels', en: 'Personal projects' },
     stack: { fr: 'Technologies', en: 'Technologies' },
     awards: { fr: 'Distinctions', en: 'Awards' },
     clients: { fr: 'Clients', en: 'Clients' },
+    trustedBy: { fr: "Ils m'ont fait confiance", en: 'Trusted by' },
     doctrine: { fr: 'Méthode', en: 'Method' },
     results: { fr: 'Résultats', en: 'Results' },
     elsewhere: { fr: 'Ailleurs', en: 'Elsewhere' },
@@ -122,12 +125,12 @@ export const UI = {
       en: 'Twenty years of engagements by Alban Pasquelin: co-founder and CTO of GoSecure, CTO of RetroRoads, IPTV architect of MyTF1 at e-TF1, lead on the Edito CMS rebuild, first head of the TV division at Molotov TV.',
     },
     projectsIntro: {
-      fr: 'Des produits complets, construits seul, du moteur jusqu’à l’interface.',
-      en: 'Whole products, built solo, from the engine up to the interface.',
+      fr: "Coder reste ma passion, et c'est ici que je teste les technologies avant de les proposer à un client. Ces projets, je les mène seul et sur mon temps libre : des produits complets, du moteur jusqu'à l'interface.",
+      en: 'Coding is still my passion, and this is where I try technologies out before I bring them to a client. I build these projects alone, in my own time: whole products, from the engine up to the interface.',
     },
     projectsDescription: {
-      fr: "Les produits qu'Alban Pasquelin construit seul, du moteur temps réel à l'interface : AI Desktop Studio et ses 310 actions pilotables par agent, le moteur de rendu web Trillion3D, la cartographie 3D map3D, le châssis panels en 8 ko et un SDK mobile de capture vidéo.",
-      en: 'The products Alban Pasquelin builds solo, from the real-time engine up to the interface: AI Desktop Studio with its 310 agent-drivable actions, the Trillion3D web rendering engine, the map3D 3D mapping library, the 8 kB panels application chassis, and a mobile video capture SDK.',
+      fr: "Les projets personnels qu'Alban Pasquelin construit seul, du moteur temps réel à l'interface : AI Desktop Studio et ses 310 actions pilotables par agent, le moteur de rendu web Trillion3D, la cartographie 3D map3D, le châssis panels en 8 ko et un SDK mobile de capture vidéo.",
+      en: 'The personal projects Alban Pasquelin builds solo, from the real-time engine up to the interface: AI Desktop Studio with its 310 agent-drivable actions, the Trillion3D web rendering engine, the map3D 3D mapping library, the 8 kB panels application chassis, and a mobile video capture SDK.',
     },
   },
 } as const

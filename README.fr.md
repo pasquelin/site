@@ -79,7 +79,7 @@ Le [guide des statistiques](docs/analytics.md) décrit le suivi Analytics, les �
 
 | Route | Rôle |
 | --- | --- |
-| `/` | Pointe vers `/fr/` et la déclare canonique (redirection dans `vercel.json`, repli statique écrit par `postbuild`) |
+| `/` | Pointe vers `/fr/` et la déclare canonique (redirection dans `vercel.json`, repli statique rendu par `app/(index)/page.tsx`) |
 | `/{fr,en}/` | Profil |
 | `/{fr,en}/experience/` et `/experience/[slug]/` | Les 8 missions |
 | `/{fr,en}/projects/` et `/projects/[slug]/` | Les 7 projets |
@@ -116,7 +116,7 @@ npm start         # sert out/ en local
 | `dev` | Serveur de développement Next |
 | `prebuild` | Écrit `llms.txt`, `llms-full.txt` et `cv.json` depuis `content/` |
 | `build` | Export statique dans `out/` |
-| `postbuild` | Écrit le document racine, puis lance la vérification de lisibilité |
+| `postbuild` | Lance les vérifications de lisibilité et de référencement |
 | `verify:crawl` | Échoue si les mots d'une page manquent au HTML servi |
 | `typecheck` | `tsc --noEmit` |
 | `lint` | ESLint (`eslint-config-next`) |
@@ -153,7 +153,7 @@ L'apex est canonique et `www` y redirige. Le domaine tient en une ligne — `SIT
 `content/site.ts` : on le change et les pages, les canoniques, le sitemap, le JSON-LD et les
 fichiers machine suivent. `vercel.json` est conservé pour un déploiement Vercel : il redirige `/`
 vers `/fr/` et sert les fichiers `llms*.txt` en `text/plain; charset=utf-8`. Sur le serveur nginx,
-cette redirection est assurée par le document racine qu'écrit `postbuild`.
+cette redirection est assurée par le document racine rendu par `app/(index)/page.tsx`.
 
 Trois interrupteurs relèvent d'une décision commerciale plutôt que technique :
 

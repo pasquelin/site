@@ -76,6 +76,9 @@ export interface Testimonial {
 export interface Experience {
   readonly slug: string
   readonly company: string
+  /** Key of `BRANDS` whose logo leads this mission's line in the career list. */
+  readonly brand?: string
+
   readonly role: I18n
   readonly period?: Period
   /** Rendered as the TypeScript signature in dev mode. */
@@ -137,9 +140,26 @@ export type SceneKey =
   | 'timelineDepth'
   | 'migration'
 
+/** A company's logo, as shown in the client wall and the career list. */
+export interface Brand {
+  readonly name: string
+  /** File name in `public/logos/`. */
+  readonly logo: string
+  /** Width over height of the artwork's cropped viewBox. */
+  readonly ratio: number
+  /**
+   * Dark artwork that would vanish on the dark background. Inverting the
+   * lightness while turning the hue back keeps its colour family.
+   */
+  readonly invert?: boolean
+  /** Where the logo was taken from. */
+  readonly source: string
+}
+
 export interface Award {
   readonly title: string
-  readonly year?: number
+  /** Every year it was won, oldest first. Empty when the year is not known. */
+  readonly years: readonly number[]
   readonly by: string
   /** What the award rewards and for which work, for someone who has never heard of it. */
   readonly note?: I18n

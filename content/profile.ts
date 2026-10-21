@@ -71,8 +71,8 @@ export const HEADLINE_METRICS: readonly Metric[] = [
 export const SITUATIONS: readonly Situation[] = [
   {
     title: {
-      fr: "Votre produit doit changer sans s'arrêter",
-      en: 'Your product has to change without stopping',
+      fr: "Votre produit doit évoluer sans s'arrêter",
+      en: 'Your product must evolve without stopping',
     },
     body: {
       fr: "Les rédactions de TF1 publient tous les jours. J'ai migré leur CMS de Vue.js vers React écran par écran : aucun jour de gel éditorial, et plus de 30 % de temps de chargement gagnés. Pour MyTF1, j'ai réuni les box de tous les opérateurs dans une seule base de code : une nouveauté sort le même jour sur tout le parc.",
@@ -85,8 +85,8 @@ export const SITUATIONS: readonly Situation[] = [
   },
   {
     title: {
-      fr: 'Il vous manque un CTO, ou du temps de CTO',
-      en: 'You need a CTO, or more CTO time',
+      fr: 'Il vous manque un CTO',
+      en: 'You need a CTO',
     },
     body: {
       fr: "J'ai cofondé GoSecure en 2017 et j'en suis le CTO : une application qui relie une personne en danger aux équipes qui peuvent intervenir, en production depuis neuf ans chez des entreprises, des collectivités et des opérateurs de transport. Chez Molotov, j'ai monté le pôle TV dès le démarrage (équipe, backlog, méthode) jusqu'au prix Apple de l'Application de l'année.",
@@ -99,8 +99,8 @@ export const SITUATIONS: readonly Situation[] = [
   },
   {
     title: {
-      fr: 'Vous voulez une IA qui tienne en production',
-      en: 'You want AI that holds up in production',
+      fr: 'Vous voulez une IA fiable en production',
+      en: 'You want reliable AI in production',
     },
     body: {
       fr: "J'ai construit seul AI Desktop Studio : 310 actions qu'un agent IA peut piloter, des modèles qui tournent sur la machine, et chaque nouvelle version mesurée avant d'être adoptée. Sur un produit existant, je fais le même travail : définir ce que l'agent a le droit de faire, garder la trace de ce qu'il fait, rattraper ses erreurs.",
@@ -214,7 +214,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
 export const AWARDS: readonly Award[] = [
   {
     title: 'Propulse',
-    year: 2026,
+    years: [2026],
     by: "Agence de l'innovation pour les transports · GoSecure",
     note: {
       fr: "Le programme de l'État pour l'innovation dans les transports. GoSecure y est retenu pour sa solution de sécurité personnelle dans les transports publics.",
@@ -223,7 +223,7 @@ export const AWARDS: readonly Award[] = [
   },
   {
     title: "Application de l'année Apple",
-    year: 2016,
+    years: [2016],
     by: 'Apple · Molotov TV',
     note: {
       fr: 'Le service de Molotov TV, dont je dirigeais le pôle TV.',
@@ -232,24 +232,16 @@ export const AWARDS: readonly Award[] = [
   },
   {
     title: "TOPCOM d'Or",
-    year: 2013,
-    by: 'TOPCOM · peugeot.com',
+    years: [2012, 2013],
+    by: 'TOPCOM · Peugeot 4008, peugeot.com',
     note: {
-      fr: "La plus haute distinction des Grands Prix TOP/COM, concours français de la communication. Pour peugeot.com, avec l'équipe que je dirigeais chez Business Lab.",
-      en: 'The top award of the TOP/COM Grand Prix, a French communication competition. For peugeot.com, with the team I led at Business Lab.',
-    },
-  },
-  {
-    title: "TOPCOM d'Or",
-    year: 2012,
-    by: 'TOPCOM · Peugeot 4008',
-    note: {
-      fr: 'Même concours, pour la Peugeot 4008.',
-      en: 'Same competition, for the Peugeot 4008.',
+      fr: "La plus haute distinction des Grands Prix TOP/COM, concours français de la communication : en 2012 pour la Peugeot 4008, en 2013 pour peugeot.com, avec l'équipe que je dirigeais chez Business Lab.",
+      en: 'The top award of the TOP/COM Grand Prix, a French communication competition: in 2012 for the Peugeot 4008, in 2013 for peugeot.com, with the team I led at Business Lab.',
     },
   },
   {
     title: 'Grand prix Stratégies du digital',
+    years: [],
     by: 'Stratégies',
     note: {
       fr: "Le prix du magazine Stratégies pour les meilleures réalisations digitales de l'année, avec Business Lab.",

@@ -51,7 +51,7 @@ export const PROJECTS: readonly Project[] = [
     name: 'Trillion3D',
     since: { fr: 'depuis septembre 2026', en: 'since September 2026' },
     tagline: {
-      fr: 'La géométrie virtualisée des moteurs de jeu, dans le navigateur',
+      fr: 'La géométrie des moteurs de jeu, dans le navigateur',
       en: 'Game-engine virtualized geometry, in the browser',
     },
     fn: 'function createWorld(canvas: HTMLCanvasElement): World',
