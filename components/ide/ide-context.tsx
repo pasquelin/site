@@ -74,6 +74,8 @@ const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 const MODE_KEY = 'ide-mode'
+/** The terminal's last state, open or closed, chosen by the visitor. */
+const TERMINAL_KEY = 'ide-terminal'
 
 const EMPTY_LINES: readonly Line[] = []
 
@@ -93,6 +95,7 @@ export function IdeProvider({ lang, children }: { lang: Lang; children: ReactNod
   const nextId = useRef(0)
   const nextSessionId = useRef(1)
   const previousTools = useRef({ terminalOpen, paletteOpen })
+  const restored = useRef(false)
 
   useEffect(() => {
     const previous = previousTools.current
@@ -105,19 +108,34 @@ export function IdeProvider({ lang, children }: { lang: Lang; children: ReactNod
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(MODE_KEY)
+      const terminal = window.localStorage.getItem(TERMINAL_KEY)
       // Reading storage is only possible after hydration, and the server has
       // no way to know the answer — so this state genuinely starts in an effect.
-      if (saved === 'dev') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      if (saved === 'dev') setModeState('dev')
+      // A terminal the visitor closed stays closed; without a choice, it
+      // follows the mode.
+      const open = terminal === null ? saved === 'dev' : terminal === '1'
+      if (open) {
         // Restoring a choice is not a click: the toggle must not be measured.
         previousTools.current = { ...previousTools.current, terminalOpen: true }
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setModeState('dev')
         setTerminalOpen(true)
       }
+      restored.current = true
     } catch {
       /* storage unavailable — the default stands */
     }
   }, [])
+
+  // Remember every open or close the visitor makes, once the saved state is back.
+  useEffect(() => {
+    if (!restored.current) return
+    try {
+      window.localStorage.setItem(TERMINAL_KEY, terminalOpen ? '1' : '0')
+    } catch {
+      /* the choice simply lasts for this visit */
+    }
+  }, [terminalOpen])
 
   const setMode = useCallback((m: Mode) => {
     if (m === mode) return
