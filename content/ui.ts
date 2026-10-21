@@ -23,13 +23,20 @@ export const UI = {
 
   available: { fr: 'Disponible', en: 'Available' },
   availableLong: {
-    fr: 'Disponible pour des missions freelance',
-    en: 'Available for freelance work',
+    fr: 'Disponible maintenant, à Paris, en Suisse romande ou à distance.',
+    en: 'Available now, in Paris, French-speaking Switzerland or remote.',
+  },
+
+  /** Shown in human mode only, so the developer reading over a manager's shoulder finds the rest. */
+  devHint: {
+    question: { fr: 'Vous êtes développeur ?', en: 'Are you a developer?' },
+    action: { fr: 'Passez en mode dev', en: 'Switch to dev mode' },
   },
 
   actions: {
     contact: { fr: 'Me contacter', en: 'Get in touch' },
     downloadCv: { fr: 'Télécharger le CV', en: 'Download CV' },
+    engagements: { fr: 'Missions et tarifs', en: 'Engagements and rates' },
     cvPdf: { fr: 'CV en PDF', en: 'CV as PDF' },
     viewSource: { fr: 'Voir le code source', en: 'View source' },
     liveDemo: { fr: 'Démo en ligne', en: 'Live demo' },
@@ -55,7 +62,12 @@ export const UI = {
     availability: { fr: 'Disponibilité', en: 'Availability' },
     rates: { fr: 'Tarifs', en: 'Rates' },
     services: { fr: 'Prestations', en: 'Services' },
-    edge: { fr: 'Ce qui me distingue', en: 'What sets me apart' },
+    edge: { fr: "Quand m'appeler", en: 'When to call me' },
+    ways: { fr: 'Comment je travaille', en: 'How I work' },
+    engagements: { fr: 'Missions', en: 'Engagements' },
+    testimonials: { fr: 'Témoignages', en: 'Testimonials' },
+    start: { fr: 'Démarrage', en: 'Start' },
+    zones: { fr: 'Où', en: 'Where' },
     education: { fr: 'Formation', en: 'Education' },
     languages: { fr: 'Langues', en: 'Languages' },
   },
@@ -67,8 +79,8 @@ export const UI = {
       en: 'Describe the need in a few lines. I reply within one working day.',
     },
     description: {
-      fr: "Contacter Alban Pasquelin, architecte logiciel et lead tech freelance : formulaire, email et téléphone, disponibilité immédiate, tarifs et zones d'intervention — Paris, Suisse romande, remote Europe.",
-      en: 'Contact Alban Pasquelin, freelance software architect and tech lead: form, email and phone, immediate availability, rates and coverage — Paris, French-speaking Switzerland, remote across Europe.',
+      fr: "Contacter Alban Pasquelin, architecte logiciel et lead tech freelance : formulaire, email et téléphone, disponibilité immédiate, tarifs et zones d'intervention : Paris, Suisse romande, remote Europe.",
+      en: 'Contact Alban Pasquelin, freelance software architect and tech lead: form, email and phone, immediate availability, rates and coverage: Paris, French-speaking Switzerland, remote across Europe.',
     },
     name: { fr: 'Votre nom', en: 'Your name' },
     email: { fr: 'Votre email', en: 'Your email' },
@@ -93,6 +105,11 @@ export const UI = {
       fr: 'Trop de messages envoyés depuis cette connexion. Réessayez dans quelques minutes, ou écrivez à',
       en: 'Too many messages from this connection. Try again in a few minutes, or write to',
     },
+  },
+
+  testimonial: {
+    translated: { fr: "Traduit de l'anglais", en: 'Translated from French' },
+    via: { fr: 'sur', en: 'on' },
   },
 
   meta: {

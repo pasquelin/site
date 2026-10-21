@@ -277,7 +277,7 @@ export function SourceView({
               <span aria-hidden className="ml-1.5 text-[11px] text-amber/70 group-hover:text-amber">
                 ▶
               </span>
-              <span className="sr-only"> — {sceneLabel}</span>
+              <span className="sr-only">, {sceneLabel}</span>
             </button>
           ) : (
             <span className={TONE.fn}>{sig.name}</span>

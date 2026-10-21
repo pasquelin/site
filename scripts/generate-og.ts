@@ -12,6 +12,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import sharp from 'sharp'
 import { HEADLINE, HEADLINE_METRICS, SUBHEAD } from '../content/profile.ts'
+import { UI } from '../content/ui.ts'
 import { PERSON, SITE_URL } from '../content/site.ts'
 
 const WIDTH = 1200
@@ -55,7 +56,18 @@ function voxels(): string {
   return out.join('')
 }
 
-const metrics = HEADLINE_METRICS.map((m) => ({ value: m.value, label: m.label.fr }))
+/** Labels are written for the page, where they wrap; the card has to wrap them itself. */
+function wrap(text: string, width = 18): string[] {
+  const lines: string[] = []
+  for (const word of text.split(' ')) {
+    const last = lines.at(-1)
+    if (last !== undefined && `${last} ${word}`.length <= width) lines[lines.length - 1] = `${last} ${word}`
+    else lines.push(word)
+  }
+  return lines
+}
+
+const metrics = HEADLINE_METRICS.map((m) => ({ value: m.value, label: wrap(m.label.fr) }))
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
   <defs>
@@ -91,13 +103,13 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${
     .map((m, i) => {
       const x = 80 + i * 190
       return `<text x="${x}" y="452" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="46" fill="${AMBER}">${escape(m.value)}</text>
-  <text x="${x}" y="484" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" fill="${MUTED}">${escape(m.label)}</text>`
+  <text x="${x}" y="484" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" fill="${MUTED}">${m.label
+        .map((line, j) => `<tspan x="${x}" dy="${j === 0 ? 0 : 22}">${escape(line)}</tspan>`)
+        .join('')}</text>`
     })
     .join('\n  ')}
 
-  <rect x="78" y="540" width="270" height="42" rx="7" fill="none" stroke="#7ec699" stroke-opacity="0.35"/>
-  <circle cx="102" cy="561" r="5" fill="#7ec699"/>
-  <text x="118" y="567" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" fill="#7ec699">Disponible en freelance</text>
+  <text x="80" y="590" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="18" fill="#7ec699">${escape(UI.availableLong.fr)}</text>
 </svg>`
 
 const publicDir = join(process.cwd(), 'public')

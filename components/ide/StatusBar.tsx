@@ -23,7 +23,7 @@ export function StatusBar({ catalog }: { catalog: readonly CatalogItem[] }) {
   return (
     <footer data-analytics-area="footer" className="flex h-statusbar shrink-0 items-center gap-2 border-t border-line-soft bg-rail px-3 font-mono text-[11px] text-fg-muted">
       <span className="truncate">
-        {PERSON.name} <span className="text-fg-faint">—</span>{' '}
+        {PERSON.name} <span className="text-fg-faint">›</span>{' '}
         <span className="text-fg">{leaf}</span>
       </span>
 

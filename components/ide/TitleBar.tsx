@@ -62,10 +62,7 @@ export function TitleBar() {
         <span className="hidden lg:inline">{host}</span>
 
         {AVAILABILITY.open ? (
-          <span className="hidden items-center gap-1.5 rounded border border-line-soft px-2 py-1 sm:flex">
-            <span aria-hidden className="size-1.5 rounded-full bg-green" />
-            <span className="text-green">{UI.available[lang]}</span>
-          </span>
+          <span className="hidden px-1 text-green sm:inline">{UI.available[lang]}</span>
         ) : null}
 
         <div className="flex items-center rounded border border-line-soft" role="group" aria-label={UI.mode.switchTo[lang]}>

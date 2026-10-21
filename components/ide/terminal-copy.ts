@@ -11,7 +11,7 @@ export const TERMINAL_COPY = {
   fr: {
     read: 'Lecture',
     ready: 'prêt',
-    open: 'Session ouverte',
+    open: 'Session ouverte sur',
     unknown: (command: string) => `commande inconnue : ${command}`,
     helpHint: 'tapez « aide »',
     hint: 'Tapez une commande. « aide » pour la liste.',
@@ -31,7 +31,7 @@ export const TERMINAL_COPY = {
   en: {
     read: 'Read',
     ready: 'ready',
-    open: 'Session open',
+    open: 'Session open on',
     unknown: (command: string) => `unknown command: ${command}`,
     helpHint: 'type "help"',
     hint: 'Type a command. "help" for the list.',

@@ -97,7 +97,7 @@ export function SourceSection({
 
       {scene ? (
         <figcaption className="mt-3 text-[13px] leading-relaxed text-fg-muted">
-          <span className="text-fg">{SCENES[scene].title[lang]}</span> — {SCENES[scene].caption[lang]}
+          <span className="text-fg">{SCENES[scene].title[lang]}.</span> {SCENES[scene].caption[lang]}
         </figcaption>
       ) : null}
     </figure>

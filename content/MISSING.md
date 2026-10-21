@@ -12,6 +12,20 @@ s'affiche pas plutôt que d'être approximé.
 - **Ardian** — deux lignes seulement dans le CV. C'est la page la plus mince
   du parcours ; un ou deux résultats chiffrés la mettraient à niveau.
 
+## À valider
+
+Rédigés d'après les retours sur le site, en attente de confirmation :
+
+- **Formats de mission** (`ENGAGEMENTS` dans `content/profile.ts`) : régie à
+  3 ou 4 jours par semaine, CTO à temps partagé, audit au forfait de 5 à
+  10 jours. `AVAILABILITY.when` annonce aussi le temps partiel.
+- **Engagements de méthode** (`WAYS_OF_WORKING`) : la démo chaque semaine.
+- **Usage de l'IA** (`AI_AT_WORK` dans `content/ai.ts`) : les modèles en local
+  pour le code sensible.
+- **Témoignages** (`TESTIMONIALS`) : recommandations Malt publiques, citées en
+  entier. Prévenir Anthony C. et Fatih K., et demander s'ils acceptent que
+  l'entreprise de la mission soit nommée.
+
 ## À décider
 
 - `SHOW_PHONE` et `SHOW_RATES` dans `content/site.ts` sont à `true`. Le numéro

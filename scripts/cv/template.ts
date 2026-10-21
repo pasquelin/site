@@ -22,7 +22,7 @@ const tags = (list?: readonly string[]) =>
 
 const head = (title: string, org: string | undefined, period: string) => `
   <div class="head">
-    <h3>${escape(title)}${org ? ` <span class="org">— ${escape(org)}</span>` : ''}</h3>
+    <h3>${escape(title)}${org ? ` <span class="org">· ${escape(org)}</span>` : ''}</h3>
     <span class="period">${escape(period)}</span>
   </div>`
 

@@ -45,8 +45,8 @@ export async function generateMetadata({
   return {
     metadataBase: new URL(SITE_URL),
     title: {
-      default: `${PERSON.name} — ${HEADLINE[lang]}`,
-      template: `%s — ${PERSON.name}`,
+      default: `${PERSON.name} | ${HEADLINE[lang]}`,
+      template: `%s | ${PERSON.name}`,
     },
     description: ANSWER[lang],
     authors: [{ name: PERSON.name, url: SITE_URL }],

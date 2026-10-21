@@ -51,8 +51,8 @@ export function track(name: EventName, parameters: Parameters = {}) {
   if (typeof window === 'undefined' || readConsent() !== 'granted') return
   try {
     const page = new URL(location.href)
-    let mode = 'dev'
-    try { if (localStorage.getItem('ide-mode') === 'human') mode = 'human' } catch { /* default mode */ }
+    let mode = 'human'
+    try { if (localStorage.getItem('ide-mode') === 'dev') mode = 'dev' } catch { /* default mode */ }
     window.dataLayer = window.dataLayer ?? []
     // Reset optional values so GTM never reuses a previous event's properties.
     window.dataLayer.push({ analytics: null })

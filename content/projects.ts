@@ -21,13 +21,13 @@ export const PROJECTS: readonly Project[] = [
     body: {
       fr: [
         "Une application de bureau où l'on génère et retravaille des images, des vidéos, des scènes 3D, du son, des matières et des ciels, sans quitter la fenêtre. Les modèles peuvent tourner en local, sur la machine, plutôt que dans un service distant.",
-        "Elle est aussi pilotable par un agent : 310 actions exposées via le protocole MCP, groupées en 26 familles. Une IA peut ouvrir un projet, générer une texture, l'appliquer sur un objet 3D et exporter le résultat — sans qu'un humain touche la souris.",
-        "La partie difficile d'un produit d'IA n'est jamais l'appel au modèle. Ce sont les quatre-vingt-dix pour cent autour : le catalogue indexé, l'éditeur d'image, la timeline vidéo qui décode réellement, la reprise après erreur.",
+        "Elle est aussi pilotable par un agent : 310 actions exposées via le protocole MCP, groupées en 26 familles. Une IA peut ouvrir un projet, générer une texture, l'appliquer sur un objet 3D et exporter le résultat, sans qu'un humain touche la souris.",
+        "Dans un produit d'IA, l'appel au modèle est la partie facile. Le travail est dans les quatre-vingt-dix pour cent autour : le catalogue indexé, l'éditeur d'image, la timeline vidéo qui décode réellement, la reprise après erreur.",
       ],
       en: [
         'A desktop application where you generate and rework images, video, 3D scenes, audio, materials and skyboxes without leaving the window. Models can run locally, on your own machine, rather than in a remote service.',
         'It is also drivable by an agent: 310 actions exposed over the MCP protocol, grouped into 26 families. An AI can open a project, generate a texture, apply it to a 3D object and export the result, with no human touching the mouse.',
-        'The hard part of an AI product is never the model call. It is the ninety percent around it: the indexed catalogue, the image editor, a video timeline that actually decodes, recovery when something fails.',
+        'In an AI product, the model call is the easy part. The work lies in the ninety percent around it: the indexed catalogue, the image editor, a video timeline that actually decodes, recovery when something fails.',
       ],
     },
     code: [
@@ -65,14 +65,14 @@ export const PROJECTS: readonly Project[] = [
     },
     body: {
       fr: [
-        "Les meilleurs moteurs de jeu savent afficher des scènes de milliards de triangles : la géométrie est découpée en petites grappes, et à chaque image on ne charge et on ne dessine que ce qui se voit vraiment. Rien de cela n'existait pour le navigateur. Trillion3D le construit pour les contraintes du web — pas de lancer de rayons matériel, une mémoire graphique bornée, une seule image à la fois — à partir de la seule littérature publiée.",
-        "Le travail est coupé en deux. Un compilateur natif en Rust lit les formats du métier — glTF, FBX, OBJ, USD, Alembic, Blender, Maya, Unity — et les découpe une fois pour toutes en pages compressées. Dans le navigateur, un moteur WebGPU choisit à chaque image le niveau de détail, élimine ce qui est caché, et dessine toute la scène en six commandes au plus.",
-        "Aucun chiffre n'est affirmé sans mesure. Un banc automatisé compare chaque version à la précédente, et au même rendu fait avec Three.js seul, sur les mêmes points de vue et le même budget. Une caméra immobile ne redessine aucune page : c'est mesuré, pas supposé.",
+        "Les meilleurs moteurs de jeu savent afficher des scènes de milliards de triangles : la géométrie est découpée en petites grappes, et à chaque image on ne charge et on ne dessine que ce qui se voit vraiment. Rien de cela n'existait pour le navigateur. Trillion3D le construit à partir de la seule littérature publiée, pour les contraintes du web : pas de lancer de rayons matériel, une mémoire graphique bornée, une seule image à la fois.",
+        "Le travail est coupé en deux. Un compilateur natif en Rust lit les formats du métier (glTF, FBX, OBJ, USD, Alembic, Blender, Maya, Unity) et les découpe une fois pour toutes en pages compressées. Dans le navigateur, un moteur WebGPU choisit à chaque image le niveau de détail, élimine ce qui est caché, et dessine toute la scène en six commandes au plus.",
+        "Aucun chiffre n'est affirmé sans mesure. Un banc automatisé compare chaque version à la précédente, et au même rendu fait avec Three.js seul, sur les mêmes points de vue et le même budget. Une caméra immobile ne redessine aucune page, et le banc le mesure.",
       ],
       en: [
-        'The best game engines can draw scenes of billions of triangles: geometry is split into small clusters, and each frame only what is actually visible is loaded and drawn. None of that existed for the browser. Trillion3D builds it for the web\'s constraints — no hardware ray tracing, bounded GPU memory, one frame at a time — from the published literature alone.',
-        'The work is split in two. A native Rust compiler reads the industry formats — glTF, FBX, OBJ, USD, Alembic, Blender, Maya, Unity — and cuts them once and for all into compressed pages. In the browser, a WebGPU engine picks the level of detail every frame, discards what is hidden, and draws the whole scene in six commands at most.',
-        'No number is claimed without a measurement. An automated bench compares each version with the previous one, and with the same render done in plain Three.js, from the same viewpoints and under the same budget. A still camera redraws zero pages: measured, not assumed.',
+        'The best game engines can draw scenes of billions of triangles: geometry is split into small clusters, and each frame only what is actually visible is loaded and drawn. None of that existed for the browser. Trillion3D builds it from the published literature alone, for the web\'s constraints: no hardware ray tracing, bounded GPU memory, one frame at a time.',
+        'The work is split in two. A native Rust compiler reads the industry formats (glTF, FBX, OBJ, USD, Alembic, Blender, Maya, Unity) and cuts them once and for all into compressed pages. In the browser, a WebGPU engine picks the level of detail every frame, discards what is hidden, and draws the whole scene in six commands at most.',
+        'No number is claimed without a measurement. An automated bench compares each version with the previous one, and with the same render done in plain Three.js, from the same viewpoints and under the same budget. A still camera redraws zero pages, and the bench measures it.',
       ],
     },
     code: [
@@ -140,19 +140,19 @@ export const PROJECTS: readonly Project[] = [
     },
     fn: 'function mountChassis(layout: WorkbenchLayout): PanelTree',
     answer: {
-      fr: "panels est une bibliothèque React d'Alban Pasquelin qui fournit le châssis d'une application outil — rails d'icônes, zones redimensionnables, centre libre avec onglets déplaçables — en 8 kB compressés, sans aucune dépendance, sous licence MIT.",
-      en: 'panels is a React library by Alban Pasquelin providing the chassis of a tool application — icon rails, resizable zones, a free centre with draggable tabs — in 8 kB gzipped, with zero dependencies, MIT licensed.',
+      fr: "panels est une bibliothèque React d'Alban Pasquelin qui fournit le châssis d'une application outil (rails d'icônes, zones redimensionnables, centre libre avec onglets déplaçables) en 8 kB compressés, sans aucune dépendance, sous licence MIT.",
+      en: 'panels is a React library by Alban Pasquelin providing the chassis of a tool application (icon rails, resizable zones, a free centre with draggable tabs) in 8 kB gzipped, with zero dependencies, MIT licensed.',
     },
     body: {
       fr: [
         "Toutes les applications outil se ressemblent : des barres d'icônes sur les côtés, des panneaux que l'on redimensionne, et au centre des documents en onglets que l'on déplace. Tout le monde le réécrit, mal, à chaque projet.",
         "panels fournit ce châssis une fois pour toutes. Il est sans interface imposée : la mécanique est fournie, l'apparence reste la vôtre.",
-        "8 kB compressés, zéro dépendance, MIT. Le poids est un choix de conception, pas un accident.",
+        "8 kB compressés, zéro dépendance, MIT. Ce poids a été choisi dès la conception.",
       ],
       en: [
         'Every tool application looks the same: icon rails down the sides, panels you resize, and tabbed documents in the middle that you drag around. Everyone rewrites it, badly, on every project.',
         'panels supplies that chassis once and for all. It is headless: the mechanics come with it, the appearance stays yours.',
-        '8 kB gzipped, zero dependencies, MIT. The weight is a design decision, not an accident.',
+        '8 kB gzipped, zero dependencies, MIT. That weight was chosen at design time.',
       ],
     },
     code: [
@@ -185,11 +185,11 @@ export const PROJECTS: readonly Project[] = [
     },
     body: {
       fr: [
-        "Tout ce qu'attend un utilisateur d'application mobile en 2026 : filmer, couper, ajouter du texte animé, des autocollants, des transitions, puis exporter — sans que l'application ne bloque pendant le rendu.",
+        "Tout ce qu'attend un utilisateur d'application mobile en 2026 : filmer, couper, ajouter du texte animé, des autocollants, des transitions, puis exporter, sans que l'application ne bloque pendant le rendu.",
         "Le cœur est sans interface. Une équipe branche son propre design par-dessus au lieu de subir celui du SDK.",
       ],
       en: [
-        'Everything a mobile app user expects in 2026: shoot, cut, add animated text, stickers, transitions, then export — without the app freezing during the render.',
+        'Everything a mobile app user expects in 2026: shoot, cut, add animated text, stickers, transitions, then export, without the app freezing during the render.',
         'The core is headless. A team plugs their own design on top instead of inheriting the SDK\'s.',
       ],
     },
@@ -247,16 +247,16 @@ export const PROJECTS: readonly Project[] = [
     },
     fn: 'function registerPlugins(map: Map3D): GeographicSources',
     answer: {
-      fr: "Les plugins map3D d'Alban Pasquelin forment un monorepo pnpm où chaque source de données géographiques — IGN, BD TOPO, Géoplateforme, webcams, Windy — devient un paquet indépendant.",
-      en: 'Alban Pasquelin\'s map3D plugins form a pnpm monorepo where each geographic data source — IGN, BD TOPO, Géoplateforme, webcams, Windy — becomes an independent package.',
+      fr: "Les plugins map3D d'Alban Pasquelin forment un monorepo pnpm où chaque source de données géographiques (IGN, BD TOPO, Géoplateforme, webcams, Windy) devient un paquet indépendant.",
+      en: 'Alban Pasquelin\'s map3D plugins form a pnpm monorepo where each geographic data source (IGN, BD TOPO, Géoplateforme, webcams, Windy) becomes an independent package.',
     },
     body: {
       fr: [
-        "Un plugin, un paquet. On installe la donnée dont on a besoin — cadastre français, webcams, météo — et rien d'autre.",
+        "Un plugin, un paquet. On installe la donnée dont on a besoin (cadastre français, webcams, météo), et rien d'autre.",
         "C'est la preuve qu'une bibliothèque est bien découpée : si l'on peut lui ajouter des capacités depuis l'extérieur sans la modifier, les frontières étaient justes.",
       ],
       en: [
-        'One plugin, one package. You install the data you need — French land registry, webcams, weather — and nothing else.',
+        'One plugin, one package. You install the data you need (French land registry, webcams, weather), and nothing else.',
         'This is the proof a library is well split: if capabilities can be added from the outside without touching it, the boundaries were drawn correctly.',
       ],
     },
@@ -283,11 +283,11 @@ export const PROJECTS: readonly Project[] = [
     body: {
       fr: [
         "Un modèle généraliste ne sait pas piloter une application précise. Celui-ci est spécialisé pour comprendre les 310 actions d'AI Desktop Studio, dans plusieurs langues.",
-        "Tout se passe sur la machine : préparation des données, entraînement, puis évaluation automatisée qui mesure si la nouvelle version fait réellement mieux que l'ancienne. Sans cette mesure, on ne fait pas du fine-tuning, on fait de la superstition.",
+        "Tout se passe sur la machine : préparation des données, entraînement, puis évaluation automatisée qui mesure si la nouvelle version fait réellement mieux que l'ancienne. Sans cette mesure, le fine-tuning relève de la superstition.",
       ],
       en: [
         'A general model cannot drive a specific application. This one is specialised to understand the 310 actions of AI Desktop Studio, across several languages.',
-        'Everything happens on the machine: data preparation, training, then an automated evaluation measuring whether the new version genuinely beats the old one. Without that measurement you are not fine-tuning, you are practising superstition.',
+        'Everything happens on the machine: data preparation, training, then an automated evaluation measuring whether the new version genuinely beats the old one. Without that measurement, fine-tuning is superstition.',
       ],
     },
     code: [

@@ -11,7 +11,7 @@ import type { Lang } from '../../content/types.ts'
 
 export interface CvEntry {
   readonly title: string
-  /** Après le tiret cadratin, en gris : l'entreprise. */
+  /** Après le point médian, en gris : l'entreprise. */
   readonly org?: string
   readonly period: string
   readonly summary?: string
@@ -72,8 +72,8 @@ const STACKS = {
 
 export const CV: Record<Lang, Cv> = {
   fr: {
-    title: 'Alban Pasquelin — CV',
-    headline: 'Architecte & Lead Tech — React Native · React · TypeScript · Three.js',
+    title: 'CV Alban Pasquelin',
+    headline: 'Architecte & Lead Tech | React Native · React · TypeScript · Three.js',
     contact: ['Paris & Genève', ...CONTACT_LINKS],
     headings: {
       profile: 'Profil',
@@ -85,7 +85,7 @@ export const CV: Record<Lang, Cv> = {
       languages: 'Langues',
     },
     profile:
-      "Vingt ans d'ingénierie produit — web, mobile, desktop, environnements embarqués. J'interviens sur l'architecture front et cross-platform, sur les migrations lourdes qui ne doivent rien interrompre, et sur la 3D temps réel. Co-fondateur et CTO de GoSecure depuis 2017, CTO de RetroRoads. Je monte aujourd'hui sur l'ingénierie de produits appuyés sur des modèles génératifs : pas la recherche, **l'industrialisation** — gestion d'assets, performance, reprise après erreur, état persistant.",
+      "Vingt ans d'ingénierie produit sur le web, le mobile, le desktop et l'embarqué. J'interviens sur l'architecture front et cross-platform, sur les migrations lourdes qui ne doivent rien interrompre, et sur la 3D temps réel. Co-fondateur et CTO de GoSecure depuis 2017, CTO de RetroRoads. Je monte aujourd'hui sur l'**industrialisation** de produits appuyés sur des modèles génératifs : gestion d'assets, performance, reprise après erreur, état persistant.",
     experience: [
       {
         title: 'Co-fondateur & CTO',
@@ -97,7 +97,7 @@ export const CV: Record<Lang, Cv> = {
           'Alertes géolocalisées avec photo ou vidéo, console de réception et de coordination des interventions',
           'Intégration aux systèmes existants des clients par API, tableaux de bord de pilotage',
           'Déployée chez des entreprises, des collectivités et des opérateurs de transport',
-          "Lauréate 2026 du programme Propulse de l'Agence Innovation pour les Transports",
+          "Lauréate 2026 du programme Propulse de l'Agence de l'innovation pour les transports",
         ],
         tags: [...STACKS.gosecure, 'temps réel', 'SaaS'],
       },
@@ -115,7 +115,7 @@ export const CV: Record<Lang, Cv> = {
         tags: STACKS.retroroads,
       },
       {
-        title: 'Développeur front-end React — refonte applicative',
+        title: 'Développeur front-end React, refonte applicative',
         org: 'Ardian',
         period: 'juil. 2025 → janv. 2026',
         summary: "Société d'investissement. Refonte d'un outil métier stratégique.",
@@ -138,7 +138,7 @@ export const CV: Record<Lang, Cv> = {
         tags: STACKS.edito,
       },
       {
-        title: 'Architecte IPTV — MyTF1 multi-plateformes',
+        title: 'Architecte IPTV, MyTF1 multi-plateformes',
         org: 'e-TF1',
         period: 'janv. 2021 → janv. 2024',
         bullets: [
@@ -166,9 +166,9 @@ export const CV: Record<Lang, Cv> = {
         bullets: [
           'Structuration du pôle TV : équipe, backlog produit, méthodologie de développement',
           "Conception et développement d'un player vidéo HTML5 compatible DRM pour la diffusion sécurisée",
-          'Applications TV connectées — Apple TV, LG, Samsung — plus iPhone, iPad et desktop',
+          'Applications TV connectées (Apple TV, LG, Samsung), plus iPhone, iPad et desktop',
           "Direction de l'expérience et de l'interface sur l'ensemble des plateformes",
-          "**Apple — Application de l'année 2016**",
+          "**Application de l'année Apple 2016**",
         ],
         tags: STACKS.molotov,
       },
@@ -221,21 +221,21 @@ export const CV: Record<Lang, Cv> = {
       ],
     ],
     awards: [
-      "**Apple** — Application de l'année 2016",
-      "**TOPCOM d'Or 2013** — peugeot.com",
-      "**TOPCOM d'Or 2012** — Peugeot 4008",
+      "**Apple**, Application de l'année 2016",
+      "**TOPCOM d'Or 2013**, peugeot.com",
+      "**TOPCOM d'Or 2012**, Peugeot 4008",
       '**Grand prix Stratégies du digital**',
-      '**Propulse 2026** — Agence Innovation pour les Transports (GoSecure)',
-      'Publication « PHP Solutions » — janvier 2009',
+      '**Propulse 2026**, Agence de l\'innovation pour les transports (GoSecure)',
+      'Publication « PHP Solutions », janvier 2009',
     ],
-    education: 'Titre homologué en art graphique et multimédia — Orfiale, 2002. CFAcom.',
-    languages: 'Français — langue maternelle. Anglais — capacité professionnelle complète.',
+    education: 'Titre homologué en art graphique et multimédia (Orfiale, 2002). CFAcom.',
+    languages: 'Français : langue maternelle. Anglais : capacité professionnelle complète.',
     terms:
-      '**Disponibilité** — Paris et Île-de-France (sur site ou hybride), Suisse romande, remote Europe. **Facturation suisse en place**, donc aucune friction administrative pour un client romand. **Tarif** — 750 à 850 € par jour en France, CHF 1 000 à 1 150 en Suisse.',
+      '**Disponibilité** : Paris et Île-de-France (sur site ou hybride), Suisse romande, remote Europe. **Facturation suisse en place**, donc aucune friction administrative pour un client romand. **Tarif** : 750 à 850 € par jour en France, CHF 1 000 à 1 150 en Suisse.',
   },
   en: {
-    title: 'Alban Pasquelin — CV',
-    headline: 'Software Architect & Tech Lead — React Native · React · TypeScript · Three.js',
+    title: 'Alban Pasquelin CV',
+    headline: 'Software Architect & Tech Lead | React Native · React · TypeScript · Three.js',
     contact: ['Paris & Geneva', ...CONTACT_LINKS],
     headings: {
       profile: 'Profile',
@@ -247,7 +247,7 @@ export const CV: Record<Lang, Cv> = {
       languages: 'Languages',
     },
     profile:
-      'Twenty years of product engineering — web, mobile, desktop, embedded environments. I take on front-end and cross-platform architecture, heavy migrations that must not interrupt service, and real-time 3D. Co-founder and CTO of GoSecure since 2017, CTO of RetroRoads. What I am building up now is the engineering of products backed by generative models: not research, **industrialisation** — asset management, performance, error recovery, persistent state.',
+      'Twenty years of product engineering across web, mobile, desktop and embedded environments. I take on front-end and cross-platform architecture, heavy migrations that must not interrupt service, and real-time 3D. Co-founder and CTO of GoSecure since 2017, CTO of RetroRoads. What I am building up now is the **industrialisation** of products backed by generative models: asset management, performance, error recovery, persistent state.',
     experience: [
       {
         title: 'Co-founder & CTO',
@@ -277,7 +277,7 @@ export const CV: Record<Lang, Cv> = {
         tags: STACKS.retroroads,
       },
       {
-        title: 'React front-end developer — internal tool rebuild',
+        title: 'React front-end developer, internal tool rebuild',
         org: 'Ardian',
         period: 'Jul 2025 → Jan 2026',
         summary: 'Investment firm. Rebuild of a strategic internal tool.',
@@ -288,7 +288,7 @@ export const CV: Record<Lang, Cv> = {
         tags: STACKS.ardian,
       },
       {
-        title: 'Lead — Edito CMS rebuild',
+        title: 'Edito CMS rebuild lead',
         org: 'e-TF1',
         period: 'Jan 2024 → Jul 2025',
         bullets: [
@@ -300,7 +300,7 @@ export const CV: Record<Lang, Cv> = {
         tags: STACKS.edito,
       },
       {
-        title: 'IPTV architect — MyTF1 across all platforms',
+        title: 'IPTV architect, MyTF1 across all platforms',
         org: 'e-TF1',
         period: 'Jan 2021 → Jan 2024',
         bullets: [
@@ -326,9 +326,9 @@ export const CV: Record<Lang, Cv> = {
         bullets: [
           'Built the TV division: team, product backlog, development methodology',
           'Designed and built a DRM-capable HTML5 video player for secure delivery',
-          'Connected-TV apps — Apple TV, LG, Samsung — plus iPhone, iPad and desktop',
+          'Connected-TV apps (Apple TV, LG, Samsung), plus iPhone, iPad and desktop',
           'Owned the experience and the interface across every platform',
-          '**Apple — App of the Year 2016**',
+          '**Apple App of the Year 2016**',
         ],
         tags: STACKS.molotov,
       },
@@ -378,16 +378,16 @@ export const CV: Record<Lang, Cv> = {
       ['Practices', 'Software architecture, design systems, zero-downtime migrations, CI/CD, code review, growing a team'],
     ],
     awards: [
-      '**Apple** — App of the Year 2016',
-      "**TOPCOM d'Or 2013** — peugeot.com",
-      "**TOPCOM d'Or 2012** — Peugeot 4008",
+      '**Apple**, App of the Year 2016',
+      "**TOPCOM d'Or 2013**, peugeot.com",
+      "**TOPCOM d'Or 2012**, Peugeot 4008",
       '**Grand prix Stratégies du digital**',
-      '**Propulse 2026** — French Transport Innovation Agency (GoSecure)',
-      'Published in *PHP Solutions* — January 2009',
+      '**Propulse 2026**, French Transport Innovation Agency (GoSecure)',
+      'Published in *PHP Solutions*, January 2009',
     ],
-    education: 'Accredited degree in graphic and multimedia arts — Orfiale, 2002. CFAcom.',
-    languages: 'French — native. English — full professional proficiency.',
+    education: 'Accredited degree in graphic and multimedia arts (Orfiale, 2002). CFAcom.',
+    languages: 'French: native. English: full professional proficiency.',
     terms:
-      '**Availability** — Paris and Île-de-France (on site or hybrid), French-speaking Switzerland, remote across Europe. **Swiss invoicing already in place**, so a client in Geneva has no administrative friction to handle. **Rate** — €750–850 per day in France, CHF 1,000–1,150 in Switzerland.',
+      '**Availability**: Paris and Île-de-France (on site or hybrid), French-speaking Switzerland, remote across Europe. **Swiss invoicing already in place**, so a client in Geneva has no administrative friction to handle. **Rate**: €750–850 per day in France, CHF 1,000–1,150 in Switzerland.',
   },
 }

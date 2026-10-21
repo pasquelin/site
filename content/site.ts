@@ -106,20 +106,20 @@ export const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? '/ap
 export const AVAILABILITY = {
   open: true,
   when: {
-    fr: 'Immédiatement, temps plein',
-    en: 'Immediately, full time',
+    fr: 'Immédiatement, à temps plein ou partiel',
+    en: 'Immediately, full or part time',
   },
   zones: {
     fr: [
-      'Paris et Île-de-France — sur site ou hybride',
+      'Paris et Île-de-France, sur site ou hybride',
       'Rouen',
-      'Suisse romande — facturation suisse en place',
+      'Suisse romande, avec facturation suisse',
       'Remote Europe',
     ],
     en: [
-      'Paris and Île-de-France — on site or hybrid',
+      'Paris and Île-de-France, on site or hybrid',
       'Rouen',
-      'French-speaking Switzerland — Swiss invoicing in place',
+      'French-speaking Switzerland, with Swiss invoicing',
       'Remote across Europe',
     ],
   },

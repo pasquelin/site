@@ -12,7 +12,19 @@ import { join } from 'node:path'
 import { AI_ANSWER, AI_BODY, AI_METRICS, AI_TITLE } from '../content/ai.ts'
 import { EXPERIENCE } from '../content/experience.ts'
 import { PROJECTS } from '../content/projects.ts'
-import { ANSWER, AWARDS, CLIENTS, DOCTRINE, HEADLINE, KNOWS_ABOUT, PITCH } from '../content/profile.ts'
+import {
+  ANSWER,
+  AWARDS,
+  CLIENTS,
+  DOCTRINE,
+  ENGAGEMENTS,
+  HEADLINE,
+  KNOWS_ABOUT,
+  PITCH,
+  SITUATIONS,
+  TESTIMONIALS,
+  WAYS_OF_WORKING,
+} from '../content/profile.ts'
 import { AVAILABILITY, PERSON, SITE_URL, SOCIALS } from '../content/site.ts'
 import type { Lang } from '../content/types.ts'
 
@@ -30,6 +42,7 @@ function llmsTxt(): string {
   lines.push(PITCH.en)
   lines.push('')
   lines.push(`Available for freelance work: ${AVAILABILITY.zones.en.join(', ')}.`)
+  lines.push(`Engagements: ${ENGAGEMENTS.map((e) => e.title.en).join('; ')}.`)
   lines.push(`Contact: ${PERSON.email}`)
   lines.push('')
 
@@ -37,7 +50,7 @@ function llmsTxt(): string {
   lines.push('')
   for (const e of EXPERIENCE) {
     const period = e.period ? ` (${e.period.from}–${e.period.to})` : ''
-    lines.push(`- [${e.company} — ${e.role.en}${period}](${url('en', `experience/${e.slug}`)}): ${e.answer.en}`)
+    lines.push(`- [${e.company} · ${e.role.en}${period}](${url('en', `experience/${e.slug}`)}): ${e.answer.en}`)
   }
   lines.push('')
 
@@ -75,7 +88,7 @@ function llmsFullTxt(): string {
   const out: string[] = []
 
   for (const lang of ['en', 'fr'] as const) {
-    out.push(`# ${PERSON.name} — ${HEADLINE[lang]} (${lang})`)
+    out.push(`# ${PERSON.name} | ${HEADLINE[lang]} (${lang})`)
     out.push('')
     out.push(ANSWER[lang])
     out.push('')
@@ -88,6 +101,26 @@ function llmsFullTxt(): string {
     out.push(`Skills: ${KNOWS_ABOUT.join(', ')}.`)
     out.push('')
 
+    out.push('## When to call')
+    out.push('')
+    for (const s of SITUATIONS) out.push(`- ${s.title[lang]}. ${s.body[lang]}`)
+    out.push('')
+
+    out.push('## How I work')
+    out.push('')
+    for (const w of WAYS_OF_WORKING[lang]) out.push(`- ${w}`)
+    out.push('')
+
+    out.push('## Engagements')
+    out.push('')
+    for (const e of ENGAGEMENTS) out.push(`- **${e.title[lang]}.** ${e.body[lang]}`)
+    out.push('')
+
+    out.push('## Testimonials')
+    out.push('')
+    for (const t of TESTIMONIALS) out.push(`- "${t.quote[t.original]}" (${t.author}, ${t.role[t.original]}, ${t.source} ${t.year})`)
+    out.push('')
+
     out.push('## Method')
     out.push('')
     for (const d of DOCTRINE[lang]) out.push(`- ${d}`)
@@ -97,7 +130,7 @@ function llmsFullTxt(): string {
     out.push('')
     for (const e of EXPERIENCE) {
       const period = e.period ? ` (${e.period.from}–${e.period.to})` : ''
-      out.push(`### ${e.company} — ${e.role[lang]}${period}`)
+      out.push(`### ${e.company} · ${e.role[lang]}${period}`)
       out.push('')
       out.push(url(lang, `experience/${e.slug}`))
       out.push('')
@@ -115,7 +148,7 @@ function llmsFullTxt(): string {
     out.push('## Projects')
     out.push('')
     for (const p of PROJECTS) {
-      out.push(`### ${p.name} — ${p.tagline[lang]}`)
+      out.push(`### ${p.name} · ${p.tagline[lang]}`)
       out.push('')
       out.push(url(lang, `projects/${p.slug}`))
       out.push('')

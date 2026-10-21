@@ -172,7 +172,7 @@ export function Terminal({
         return
       }
       if (v === 'whoami') {
-        return push([{ kind: 'out', text: 'Alban Pasquelin — architecte logiciel & CTO' }])
+        return push([{ kind: 'out', text: 'Alban Pasquelin, architecte logiciel & CTO' }])
       }
       if (v === 'sudo') {
         return push([{ kind: 'ai', text: lang === 'fr' ? 'Bien tenté. Utilisez plutôt « contact ».' : 'Nice try. Use "contact" instead.' }])
@@ -202,7 +202,9 @@ export function Terminal({
     ],
   )
 
-  if (!terminalOpen) return null
+  // La feuille mobile a sa propre ouverture : le panneau du bas, fermé par
+  // défaut en mode humain, ne doit pas la laisser vide.
+  if (!terminalOpen && !onCollapse) return null
 
   return (
     <div

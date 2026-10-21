@@ -10,7 +10,7 @@ import {
   InspectorSection,
 } from '@/components/ui/Inspector'
 import { SourceSection } from '@/components/ui/SourceSection'
-import { AI_ANSWER, AI_BODY, AI_CODE, AI_METRICS, AI_PRINCIPLES, AI_TITLE } from '@/content/ai'
+import { AI_ANSWER, AI_AT_WORK, AI_BODY, AI_CODE, AI_METRICS, AI_PRINCIPLES, AI_TITLE } from '@/content/ai'
 import { LANGS } from '@/content/site'
 import { UI } from '@/content/ui'
 import { isLang } from '@/lib/i18n'
@@ -65,6 +65,17 @@ export default async function AiPage({ params }: { params: Promise<{ lang: strin
           scene="mcpConstellation"
         />
       </div>
+
+      <Section title={AI_AT_WORK.title[lang]}>
+        <p className="measure mb-4 text-[15px] leading-[1.7] text-fg">{AI_AT_WORK.intro[lang]}</p>
+        <ul className="measure space-y-3 text-[15px] leading-[1.7] text-fg">
+          {AI_AT_WORK.points[lang].map((point) => (
+            <li key={point.slice(0, 30)} className="border-l-2 border-cyan/40 pl-4">
+              {point}
+            </li>
+          ))}
+        </ul>
+      </Section>
 
       <Section title={UI.headings.doctrine[lang]}>
         <ul data-rm-target="ai" className="measure space-y-3 text-[15px] leading-[1.7] text-fg">

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Article, Section } from '@/components/ui/Article'
 import { ContactForm } from '@/components/ui/ContactForm'
+import { Engagements } from '@/components/ui/Engagements'
 import {
   InspectorDownload,
   InspectorLink,
@@ -68,8 +69,8 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
           ) : null}
 
           <InspectorSection label={UI.headings.cv[lang]}>
-            <InspectorDownload href={CV.fr}>Français — PDF</InspectorDownload>
-            <InspectorDownload href={CV.en}>English — PDF</InspectorDownload>
+            <InspectorDownload href={CV.fr}>Français (PDF)</InspectorDownload>
+            <InspectorDownload href={CV.en}>English (PDF)</InspectorDownload>
           </InspectorSection>
 
           <InspectorSection label={UI.headings.elsewhere[lang]}>
@@ -94,6 +95,10 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
           </a>
         </p>
       ) : null}
+
+      <Section title={UI.headings.engagements[lang]}>
+        <Engagements lang={lang} />
+      </Section>
 
       <Section title={UI.headings.services[lang]}>
         <ul

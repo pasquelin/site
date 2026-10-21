@@ -26,6 +26,51 @@ export interface Metric {
   /** The number itself, pre-formatted: `'1'`, `'310'`, `'8 kB'`. */
   readonly value: string
   readonly label: I18n
+  /**
+   * Where the proof lives, without the language segment, e.g.
+   * `experience/tf1-edito`. A number nobody can click is a claim; a number
+   * that leads to its mission is evidence.
+   */
+  readonly path?: string
+}
+
+/** A link to the page that backs a claim. */
+export interface ProofLink {
+  /** Path without the language segment, e.g. `experience/gosecure`. */
+  readonly path: string
+  readonly label: I18n
+}
+
+/**
+ * A problem a client has on the day they call, in their words, followed by
+ * what was done about it elsewhere and how it turned out.
+ */
+export interface Situation {
+  readonly title: I18n
+  readonly body: I18n
+  readonly proof: readonly ProofLink[]
+}
+
+/** An engagement format: what is bought, how long, how it is billed. */
+export interface Engagement {
+  readonly title: I18n
+  readonly body: I18n
+}
+
+/**
+ * Someone who worked with Alban, quoted from a public recommendation. The
+ * original wording is kept; the other language is a labelled translation.
+ */
+export interface Testimonial {
+  /** The language the recommendation was written in. */
+  readonly original: Lang
+  readonly quote: I18n
+  /** As displayed on the source, initial included. */
+  readonly author: string
+  readonly role: I18n
+  readonly source: string
+  readonly url: string
+  readonly year: number
 }
 
 export interface Experience {
@@ -96,6 +141,8 @@ export interface Award {
   readonly title: string
   readonly year?: number
   readonly by: string
+  /** What the award rewards and for which work, for someone who has never heard of it. */
+  readonly note?: I18n
 }
 
 export interface Social {

@@ -55,7 +55,7 @@ export function Narrator({ catalog }: { catalog: readonly CatalogItem[] }) {
     const ms = 120 + Math.floor(Math.random() * 260)
 
     push([
-      ...(first ? [{ kind: 'ai' as const, text: `${copy.open} — pasquelin.com` }] : []),
+      ...(first ? [{ kind: 'ai' as const, text: `${copy.open} pasquelin.com` }] : []),
       { kind: 'cmd', text: `alban open ${item?.path || 'whoami'}` },
       { kind: 'tool', text: `${copy.read}(${file})`, ...(item?.note ? { detail: item.note } : {}) },
       { kind: 'ok', text: `${copy.ready} · ${ms} ms` },

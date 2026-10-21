@@ -33,7 +33,7 @@ export async function generateMetadata({
   return pageMeta({
     lang,
     path: `experience/${slug}`,
-    title: `${exp.company} — ${exp.role[lang]}`,
+    title: `${exp.company} · ${exp.role[lang]}`,
     description: exp.answer[lang],
   })
 }

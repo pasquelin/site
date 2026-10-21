@@ -43,7 +43,7 @@ export function buildCatalog(lang: Lang): readonly CatalogItem[] {
     href: `/${lang}/experience/${e.slug}/`,
     path: `experience/${e.slug}`,
     file: `experience/${e.slug}.ts`,
-    label: `${e.company} — ${e.role[lang]}`,
+    label: `${e.company} · ${e.role[lang]}`,
     note: metricLine(e.metrics, lang),
     group: 'experience',
     icon: 'briefcase',

@@ -62,7 +62,7 @@ export function experienceLd(exp: Experience, lang: Lang) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${exp.company} — ${exp.role[lang]}`,
+    headline: `${exp.company} · ${exp.role[lang]}`,
     description: exp.answer[lang],
     inLanguage: lang,
     url: abs(lang, `experience/${exp.slug}`),
@@ -130,7 +130,7 @@ export function faqLd(lang: Lang) {
           },
           {
             q: 'Quels projets Alban Pasquelin a-t-il construits ?',
-            a: PROJECTS.map((p) => `${p.name} — ${p.tagline.fr}`).join(' · '),
+            a: PROJECTS.map((p) => `${p.name} : ${p.tagline.fr}`).join(' · '),
           },
           {
             q: 'Pour quelles entreprises Alban Pasquelin a-t-il travaillé ?',
@@ -157,7 +157,7 @@ export function faqLd(lang: Lang) {
           },
           {
             q: 'What has Alban Pasquelin built?',
-            a: PROJECTS.map((p) => `${p.name} — ${p.tagline.en}`).join(' · '),
+            a: PROJECTS.map((p) => `${p.name}: ${p.tagline.en}`).join(' · '),
           },
           {
             q: 'Which companies has Alban Pasquelin worked for?',

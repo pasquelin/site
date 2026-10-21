@@ -255,7 +255,7 @@ const EGGS: Record<string, Egg> = {
     animation: 'freeze',
     before: (lang) => [{ kind: 'out', text: pick(lang, 'Ouverture de vim…', 'Opening vim…') }],
     after: (lang) => [
-      { kind: 'ai', text: pick(lang, 'Pour quitter : Échap, puis :q! — bonne chance.', 'To quit: Esc, then :q! — good luck.') },
+      { kind: 'ai', text: pick(lang, 'Pour quitter : Échap, puis :q! (bonne chance).', 'To quit: Esc, then :q! (good luck).') },
     ],
   },
 

@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
     "name": "Alban Pasquelin",
-    "label": "Software Architect & Tech Lead",
+    "label": "Freelance software architect and tech lead",
     "image": "https://avatars.githubusercontent.com/u/74621260?v=4",
     "email": "alban.pasquelin@gmail.com",
     "url": "https://www.pasquelin.com",
@@ -56,7 +56,7 @@
       "position": "CTO",
       "url": "https://retroroads.fr",
       "startDate": "2026",
-      "summary": "Alban Pasquelin has been CTO of RetroRoads since May 2026, a consumer app for classic cars whose three parts he architected — a GraphQL API, an admin panel and an Expo mobile app — with content translated into twenty languages.",
+      "summary": "Alban Pasquelin has been CTO of RetroRoads since May 2026, a consumer app for classic cars whose three parts he architected (a GraphQL API, an admin panel and an Expo mobile app), with content translated into twenty languages.",
       "highlights": [
         "3 systems architected",
         "20 languages",
@@ -65,7 +65,7 @@
     },
     {
       "name": "Ardian",
-      "position": "React front-end developer — internal tool rebuild",
+      "position": "React front-end developer on an internal tool rebuild",
       "startDate": "2025",
       "endDate": "2026",
       "summary": "Alban Pasquelin worked at Ardian from July 2025 to January 2026 on the rebuild of a strategic internal tool: stack and user-experience modernisation, a design system, and Figma implementation.",
@@ -73,7 +73,7 @@
     },
     {
       "name": "e-TF1",
-      "position": "Lead — Edito CMS rebuild",
+      "position": "Edito CMS rebuild lead",
       "startDate": "2024",
       "endDate": "2025",
       "summary": "Alban Pasquelin led the rebuild of TF1's Edito CMS from January 2024 to July 2025, migrating the front end from Vue.js to React with end-to-end TypeScript, preserving data integrity throughout and cutting load times by more than 30%.",
@@ -84,10 +84,10 @@
     },
     {
       "name": "e-TF1",
-      "position": "IPTV architect — MyTF1 across all platforms",
+      "position": "IPTV architect for MyTF1 across all platforms",
       "startDate": "2021",
       "endDate": "2024",
-      "summary": "Alban Pasquelin was IPTV architect at e-TF1 from January 2021 to January 2024, rebuilding MyTF1 across every French operator set-top box from a single codebase — Android TV, WebOS and WPE — with SCTE-35 dynamic ad insertion integrated into the Freewheel stack.",
+      "summary": "Alban Pasquelin was IPTV architect at e-TF1 from January 2021 to January 2024, rebuilding MyTF1 across every French operator set-top box from a single codebase (Android TV, WebOS and WPE), with SCTE-35 dynamic ad insertion integrated into the Freewheel stack.",
       "highlights": [
         "1 codebase",
         "3 set-top box systems",
@@ -107,7 +107,7 @@
       "position": "Head of TV division, then head of TV & product design advisor",
       "startDate": "2015",
       "endDate": "2016",
-      "summary": "Alban Pasquelin was the first head of the TV division at Molotov TV from February 2015 to December 2016, from the startup's early phase through to launch — a service that won Apple App of the Year 2016.",
+      "summary": "Alban Pasquelin was the first head of the TV division at Molotov TV from February 2015 to December 2016, from the startup's early phase through to the launch of the service, which won Apple App of the Year 2016.",
       "highlights": [
         "2016 Apple App of the Year",
         "6 platforms shipped"
@@ -170,7 +170,7 @@
     },
     {
       "name": "panels",
-      "description": "panels is a React library by Alban Pasquelin providing the chassis of a tool application — icon rails, resizable zones, a free centre with draggable tabs — in 8 kB gzipped, with zero dependencies, MIT licensed.",
+      "description": "panels is a React library by Alban Pasquelin providing the chassis of a tool application (icon rails, resizable zones, a free centre with draggable tabs) in 8 kB gzipped, with zero dependencies, MIT licensed.",
       "url": "https://pasquelin.github.io/panels/",
       "keywords": [
         "TypeScript",
@@ -206,7 +206,7 @@
     },
     {
       "name": "map3D plugins",
-      "description": "Alban Pasquelin's map3D plugins form a pnpm monorepo where each geographic data source — IGN, BD TOPO, Géoplateforme, webcams, Windy — becomes an independent package.",
+      "description": "Alban Pasquelin's map3D plugins form a pnpm monorepo where each geographic data source (IGN, BD TOPO, Géoplateforme, webcams, Windy) becomes an independent package.",
       "url": "https://github.com/pasquelin/plugingsMap3D",
       "keywords": [
         "TypeScript",
@@ -256,14 +256,14 @@
   ],
   "awards": [
     {
-      "title": "Apple — Application de l'année",
-      "awarder": "Apple · Molotov TV",
-      "date": "2016"
+      "title": "Propulse",
+      "awarder": "Agence de l'innovation pour les transports · GoSecure",
+      "date": "2026"
     },
     {
-      "title": "Propulse",
-      "awarder": "Agence Innovation pour les Transports · GoSecure",
-      "date": "2026"
+      "title": "Application de l'année Apple",
+      "awarder": "Apple · Molotov TV",
+      "date": "2016"
     },
     {
       "title": "TOPCOM d'Or",

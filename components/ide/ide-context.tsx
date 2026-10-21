@@ -83,8 +83,10 @@ export function IdeProvider({ lang, children }: { lang: Lang; children: ReactNod
   const [sessions, setSessions] = useState<readonly Session[]>([{ id: 0, name: 'Local', lines: [] }])
   const [activeSessionId, setActiveSessionId] = useState(0)
   const [typing, setTyping] = useState(false)
-  const [mode, setModeState] = useState<Mode>('dev')
-  const [terminalOpen, setTerminalOpen] = useState(true)
+  // Human first: the person who signs an engagement rarely writes code. The
+  // terminal belongs to the editor view, so it opens with dev mode.
+  const [mode, setModeState] = useState<Mode>('human')
+  const [terminalOpen, setTerminalOpen] = useState(false)
   const [paletteOpen, setPaletteOpen] = useState(false)
   const [frozen, setFrozen] = useState(false)
   const { count: eggsFound, total: eggsTotal, discover: discoverEgg } = useEggs()
@@ -105,8 +107,13 @@ export function IdeProvider({ lang, children }: { lang: Lang; children: ReactNod
       const saved = window.localStorage.getItem(MODE_KEY)
       // Reading storage is only possible after hydration, and the server has
       // no way to know the answer — so this state genuinely starts in an effect.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      if (saved === 'dev' || saved === 'human') setModeState(saved)
+      if (saved === 'dev') {
+        // Restoring a choice is not a click: the toggle must not be measured.
+        previousTools.current = { ...previousTools.current, terminalOpen: true }
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setModeState('dev')
+        setTerminalOpen(true)
+      }
     } catch {
       /* storage unavailable — the default stands */
     }
@@ -116,6 +123,7 @@ export function IdeProvider({ lang, children }: { lang: Lang; children: ReactNod
     if (m === mode) return
     track('mode_change', { target: m, area: 'presentation', display_mode: m })
     setModeState(m)
+    if (m === 'dev') setTerminalOpen(true)
     try {
       window.localStorage.setItem(MODE_KEY, m)
     } catch {

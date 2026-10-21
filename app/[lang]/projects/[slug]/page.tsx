@@ -33,7 +33,7 @@ export async function generateMetadata({
   return pageMeta({
     lang,
     path: `projects/${slug}`,
-    title: `${project.name} — ${project.tagline[lang]}`,
+    title: `${project.name} · ${project.tagline[lang]}`,
     description: (project.meta ?? project.answer)[lang],
   })
 }
@@ -82,7 +82,7 @@ export default async function ProjectPage({
         <Answer>{project.answer[lang]}</Answer>
         <SourceSection
           signature={project.fn}
-          docTitle={`${project.name} — ${project.tagline[lang]}`}
+          docTitle={`${project.name} · ${project.tagline[lang]}`}
           paragraphs={project.body[lang]}
           code={project.code}
           metrics={project.metrics}

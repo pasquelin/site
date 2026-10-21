@@ -48,8 +48,8 @@ export function ContactForm({ lang }: { lang: Lang }) {
     // to the visitor's mail client rather than failing silently.
     if (!CONTACT_ENDPOINT) {
       track('contact_click', { target: 'email', area: 'contact_form' })
-      const subject = encodeURIComponent(`${lang === 'fr' ? 'Projet' : 'Project'} — ${name}`)
-      const body = encodeURIComponent(`${message}\n\n—\n${name}\n${email}\n${data.get('company') ?? ''}`)
+      const subject = encodeURIComponent(`${lang === 'fr' ? 'Projet de' : 'Project from'} ${name}`)
+      const body = encodeURIComponent(`${message}\n\n--\n${name}\n${email}\n${data.get('company') ?? ''}`)
       window.location.href = `mailto:${PERSON.email}?subject=${subject}&body=${body}`
       setStatus('sent')
       return

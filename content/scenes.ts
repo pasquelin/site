@@ -17,8 +17,8 @@ export const SCENES: Record<SceneKey, SceneMeta> = {
   convergence: {
     title: { fr: 'Trois systèmes, une base de code', en: 'Three systems, one codebase' },
     caption: {
-      fr: "Trois flux de code séparés — Android TV, WebOS, WPE — fusionnent en un flux unique qui alimente les trois box. Le marqueur orange est une insertion publicitaire SCTE-35 remplacée pendant la diffusion.",
-      en: 'Three separate code streams — Android TV, WebOS, WPE — merge into a single stream feeding all three boxes. The amber marker is an SCTE-35 ad insertion swapped mid-broadcast.',
+      fr: "Trois flux de code séparés (Android TV, WebOS, WPE) fusionnent en un flux unique qui alimente les trois box. Le marqueur orange est une insertion publicitaire SCTE-35 remplacée pendant la diffusion.",
+      en: 'Three separate code streams (Android TV, WebOS, WPE) merge into a single stream feeding all three boxes. The amber marker is an SCTE-35 ad insertion swapped mid-broadcast.',
     },
   },
   alertNetwork: {
@@ -31,8 +31,8 @@ export const SCENES: Record<SceneKey, SceneMeta> = {
   migration: {
     title: { fr: 'Migrer sans couper la production', en: 'Migrating without downtime' },
     caption: {
-      fr: "Chaque carré est un écran du CMS. Ils passent de Vue à React un par un, pendant que la barre du bas — la disponibilité du service — ne bouge jamais.",
-      en: 'Each square is one CMS screen. They move from Vue to React one at a time while the bar at the bottom — service availability — never moves.',
+      fr: "Chaque carré est un écran du CMS. Ils passent de Vue à React un par un, pendant que la barre du bas, la disponibilité du service, ne bouge jamais.",
+      en: 'Each square is one CMS screen. They move from Vue to React one at a time while the bar at the bottom, service availability, never moves.',
     },
   },
   mcpConstellation: {
@@ -45,8 +45,8 @@ export const SCENES: Record<SceneKey, SceneMeta> = {
   panelChassis: {
     title: { fr: 'Le châssis se démonte', en: 'The chassis comes apart' },
     caption: {
-      fr: "Les zones d'une application outil — rails, panneaux, centre — se séparent puis se réassemblent. C'est tout ce que fait la bibliothèque, en 8 kB.",
-      en: 'The zones of a tool application — rails, panels, centre — come apart and reassemble. That is everything the library does, in 8 kB.',
+      fr: "Les zones d'une application outil (rails, panneaux, centre) se séparent puis se réassemblent. C'est tout ce que fait la bibliothèque, en 8 kB.",
+      en: 'The zones of a tool application (rails, panels, centre) come apart and reassemble. That is everything the library does, in 8 kB.',
     },
   },
   timelineDepth: {
@@ -59,8 +59,8 @@ export const SCENES: Record<SceneKey, SceneMeta> = {
   codeCube: {
     title: { fr: 'Un monde fait de cubes', en: 'A world made of cubes' },
     caption: {
-      fr: "Les blocs qui composent le monde du jeu se rassemblent, puis se dispersent — la géométrie même du moteur.",
-      en: 'The blocks the game world is made of gather, then scatter — the engine\'s own geometry.',
+      fr: "Les blocs qui composent le monde du jeu se rassemblent, puis se dispersent : c'est la géométrie même du moteur.",
+      en: 'The blocks the game world is made of gather, then scatter: this is the engine\'s own geometry.',
     },
   },
 }
