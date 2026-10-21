@@ -20,7 +20,7 @@ export function Article({
 }: {
   file: string
   eyebrow?: string
-  /** The company's logo, above the eyebrow, on a mission page. */
+  /** The company's logo, right of the eyebrow and title, on a mission page. */
   logo?: ReactNode
   title: string
   /** Facts panel. One grid cell: a sticky right column on wide screens, and
@@ -44,13 +44,18 @@ export function Article({
             {file}
           </p>
         ) : null}
-        {logo ? <div className="mb-5 flex">{logo}</div> : null}
-        {eyebrow ? (
-          <p className="mb-2 text-[13px] text-fg-muted">{eyebrow}</p>
-        ) : null}
-        <h1 className="text-balance text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.02em] text-fg-bright sm:text-[2.4rem]">
-          {title}
-        </h1>
+        {/* Le logo se tient à droite du rôle et du nom, sur la même ligne. */}
+        <div className="flex items-center justify-between gap-6">
+          <div className="min-w-0">
+            {eyebrow ? (
+              <p className="mb-2 text-[13px] text-fg-muted">{eyebrow}</p>
+            ) : null}
+            <h1 className="text-balance text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.02em] text-fg-bright sm:text-[2.4rem]">
+              {title}
+            </h1>
+          </div>
+          {logo ? <div className="flex shrink-0 justify-end">{logo}</div> : null}
+        </div>
       </header>
         {children}
       </article>
