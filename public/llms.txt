@@ -22,7 +22,7 @@ Contact: alban.pasquelin@gmail.com
 - [Arte · Apple TV app developer, via Hubee (2017)](https://www.pasquelin.com/en/experience/arte/): From September to December 2017, working through Hubee, Alban Pasquelin built and maintained Arte's Apple TV app, written in TVML and TVJS.
 - [Amplement · R&D and product strategy director (2017)](https://www.pasquelin.com/en/experience/amplement/): Alban Pasquelin was R&D and product strategy director at Amplement from January to May 2017, leading a team of developers, designers and marketing specialists on the user-experience overhaul and the use of data.
 - [Molotov TV · Head of TV division, then head of TV & product design advisor (2015–2016)](https://www.pasquelin.com/en/experience/molotov/): Alban Pasquelin was the first head of the TV division at Molotov TV from February 2015 to December 2016, from the startup's early phase through to the launch of the service, which won Apple App of the Year 2016.
-- [Business Lab · Lead developer, then technical project manager](https://www.pasquelin.com/en/experience/business-lab/): At Business Lab, Alban Pasquelin was lead developer and then technical project manager, heading a team of ten for Peugeot, Leroy Merlin and the E.Leclerc price comparator, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.
+- [Business Lab · Lead developer, then technical project manager (2012–2015)](https://www.pasquelin.com/en/experience/business-lab/): From 2012 to 2015, at Business Lab, Alban Pasquelin was lead developer and then technical project manager, heading a team of ten for Peugeot, Leroy Merlin and the E.Leclerc price comparator, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.
 
 ## Projects
 

@@ -226,11 +226,11 @@ Results: 2016 Apple App of the Year · 6 platforms shipped.
 
 Technologies: React, JavaScript ES6, HTML5 video, DRM, Apple TV, Smart TV.
 
-### Business Lab · Lead developer, then technical project manager
+### Business Lab · Lead developer, then technical project manager (2012–2015)
 
 https://www.pasquelin.com/en/experience/business-lab/
 
-At Business Lab, Alban Pasquelin was lead developer and then technical project manager, heading a team of ten for Peugeot, Leroy Merlin and the E.Leclerc price comparator, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.
+From 2012 to 2015, at Business Lab, Alban Pasquelin was lead developer and then technical project manager, heading a team of ten for Peugeot, Leroy Merlin and the E.Leclerc price comparator, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.
 
 At Business Lab, I was lead developer, then technical project manager, heading a team of ten.
 
@@ -608,11 +608,11 @@ Results: 2016 Apple Application de l'année · 6 plateformes livrées.
 
 Technologies: React, JavaScript ES6, HTML5 video, DRM, Apple TV, Smart TV.
 
-### Business Lab · Lead développeur, puis chef de projet technique
+### Business Lab · Lead développeur, puis chef de projet technique (2012–2015)
 
 https://www.pasquelin.com/fr/experience/business-lab/
 
-Chez Business Lab, Alban Pasquelin a été lead développeur puis chef de projet technique, à la tête d'une équipe de dix personnes pour Peugeot, Leroy Merlin et le comparateur de prix d'E.Leclerc, avec deux TOPCOM d'Or et le Grand prix Stratégies du digital.
+De 2012 à 2015, chez Business Lab, Alban Pasquelin a été lead développeur puis chef de projet technique, à la tête d'une équipe de dix personnes pour Peugeot, Leroy Merlin et le comparateur de prix d'E.Leclerc, avec deux TOPCOM d'Or et le Grand prix Stratégies du digital.
 
 Chez Business Lab, j'ai été lead développeur, puis chef de projet technique, à la tête d'une équipe de dix personnes.
 

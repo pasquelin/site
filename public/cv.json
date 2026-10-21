@@ -156,7 +156,9 @@
     {
       "name": "Business Lab",
       "position": "Lead developer, then technical project manager",
-      "summary": "At Business Lab, Alban Pasquelin was lead developer and then technical project manager, heading a team of ten for Peugeot, Leroy Merlin and the E.Leclerc price comparator, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.",
+      "startDate": "2012",
+      "endDate": "2015",
+      "summary": "From 2012 to 2015, at Business Lab, Alban Pasquelin was lead developer and then technical project manager, heading a team of ten for Peugeot, Leroy Merlin and the E.Leclerc price comparator, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.",
       "highlights": [
         "10 people led",
         "3 awards"

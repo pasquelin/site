@@ -411,10 +411,11 @@ export const EXPERIENCE: readonly Experience[] = [
     slug: 'business-lab',
     company: 'Business Lab',
     role: { fr: 'Lead développeur, puis chef de projet technique', en: 'Lead developer, then technical project manager' },
+    period: { from: 2012, to: 2015 },
     fn: 'function leadAgencyTeam(team: Team<10>, clients: Brand[]): AwardWinningWork',
     answer: {
-      fr: "Chez Business Lab, Alban Pasquelin a été lead développeur puis chef de projet technique, à la tête d'une équipe de dix personnes pour Peugeot, Leroy Merlin et le comparateur de prix d'E.Leclerc, avec deux TOPCOM d'Or et le Grand prix Stratégies du digital.",
-      en: "At Business Lab, Alban Pasquelin was lead developer and then technical project manager, heading a team of ten for Peugeot, Leroy Merlin and the E.Leclerc price comparator, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.",
+      fr: "De 2012 à 2015, chez Business Lab, Alban Pasquelin a été lead développeur puis chef de projet technique, à la tête d'une équipe de dix personnes pour Peugeot, Leroy Merlin et le comparateur de prix d'E.Leclerc, avec deux TOPCOM d'Or et le Grand prix Stratégies du digital.",
+      en: "From 2012 to 2015, at Business Lab, Alban Pasquelin was lead developer and then technical project manager, heading a team of ten for Peugeot, Leroy Merlin and the E.Leclerc price comparator, winning two TOPCOM d'Or awards and the Grand prix Stratégies du digital.",
     },
     body: {
       fr: [
