@@ -44,16 +44,14 @@ export function Article({
             {file}
           </p>
         ) : null}
-        {/* Le logo se tient à droite du rôle et du nom, sur la même ligne. */}
+        {eyebrow ? (
+          <p className="mb-2 text-[13px] text-fg-muted">{eyebrow}</p>
+        ) : null}
+        {/* Le logo se tient à droite du nom, centré sur la hauteur du titre. */}
         <div className="flex items-center justify-between gap-6">
-          <div className="min-w-0">
-            {eyebrow ? (
-              <p className="mb-2 text-[13px] text-fg-muted">{eyebrow}</p>
-            ) : null}
-            <h1 className="text-balance text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.02em] text-fg-bright sm:text-[2.4rem]">
-              {title}
-            </h1>
-          </div>
+          <h1 className="min-w-0 text-balance text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.02em] text-fg-bright sm:text-[2.4rem]">
+            {title}
+          </h1>
           {logo ? <div className="flex shrink-0 justify-end">{logo}</div> : null}
         </div>
       </header>
